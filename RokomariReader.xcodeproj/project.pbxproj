@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		26DBF0141DBE979100BB6030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBF0131DBE979100BB6030 /* AppDelegate.swift */; };
+		26DBF0161DBE979100BB6030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBF0151DBE979100BB6030 /* ViewController.swift */; };
+		26DBF0191DBE979200BB6030 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DBF0171DBE979200BB6030 /* Main.storyboard */; };
+		26DBF01B1DBE979200BB6030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26DBF01A1DBE979200BB6030 /* Assets.xcassets */; };
+		26DBF01E1DBE979200BB6030 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DBF01C1DBE979200BB6030 /* LaunchScreen.storyboard */; };
+		26DBF0291DBE979200BB6030 /* RokomariReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBF0281DBE979200BB6030 /* RokomariReaderTests.swift */; };
+		26DBF0341DBE979200BB6030 /* RokomariReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBF0331DBE979200BB6030 /* RokomariReaderUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		26DBF0251DBE979200BB6030 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26DBF0081DBE979000BB6030 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26DBF00F1DBE979000BB6030;
+			remoteInfo = RokomariReader;
+		};
+		26DBF0301DBE979200BB6030 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26DBF0081DBE979000BB6030 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26DBF00F1DBE979000BB6030;
+			remoteInfo = RokomariReader;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		26DBF0101DBE979100BB6030 /* RokomariReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RokomariReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		26DBF0131DBE979100BB6030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		26DBF0151DBE979100BB6030 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		26DBF0181DBE979200BB6030 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		26DBF01A1DBE979200BB6030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		26DBF01D1DBE979200BB6030 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		26DBF01F1DBE979200BB6030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26DBF0241DBE979200BB6030 /* RokomariReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RokomariReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		26DBF0281DBE979200BB6030 /* RokomariReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RokomariReaderTests.swift; sourceTree = "<group>"; };
+		26DBF02A1DBE979200BB6030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26DBF02F1DBE979200BB6030 /* RokomariReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RokomariReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		26DBF0331DBE979200BB6030 /* RokomariReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RokomariReaderUITests.swift; sourceTree = "<group>"; };
+		26DBF0351DBE979200BB6030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		26DBF00D1DBE979000BB6030 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26DBF0211DBE979200BB6030 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26DBF02C1DBE979200BB6030 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		26DBF0071DBE979000BB6030 = {
+			isa = PBXGroup;
+			children = (
+				26DBF0121DBE979100BB6030 /* RokomariReader */,
+				26DBF0271DBE979200BB6030 /* RokomariReaderTests */,
+				26DBF0321DBE979200BB6030 /* RokomariReaderUITests */,
+				26DBF0111DBE979100BB6030 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		26DBF0111DBE979100BB6030 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				26DBF0101DBE979100BB6030 /* RokomariReader.app */,
+				26DBF0241DBE979200BB6030 /* RokomariReaderTests.xctest */,
+				26DBF02F1DBE979200BB6030 /* RokomariReaderUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		26DBF0121DBE979100BB6030 /* RokomariReader */ = {
+			isa = PBXGroup;
+			children = (
+				26DBF0131DBE979100BB6030 /* AppDelegate.swift */,
+				26DBF0151DBE979100BB6030 /* ViewController.swift */,
+				26DBF0171DBE979200BB6030 /* Main.storyboard */,
+				26DBF01A1DBE979200BB6030 /* Assets.xcassets */,
+				26DBF01C1DBE979200BB6030 /* LaunchScreen.storyboard */,
+				26DBF01F1DBE979200BB6030 /* Info.plist */,
+			);
+			path = RokomariReader;
+			sourceTree = "<group>";
+		};
+		26DBF0271DBE979200BB6030 /* RokomariReaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				26DBF0281DBE979200BB6030 /* RokomariReaderTests.swift */,
+				26DBF02A1DBE979200BB6030 /* Info.plist */,
+			);
+			path = RokomariReaderTests;
+			sourceTree = "<group>";
+		};
+		26DBF0321DBE979200BB6030 /* RokomariReaderUITests */ = {
+			isa = PBXGroup;
+			children = (
+				26DBF0331DBE979200BB6030 /* RokomariReaderUITests.swift */,
+				26DBF0351DBE979200BB6030 /* Info.plist */,
+			);
+			path = RokomariReaderUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		26DBF00F1DBE979000BB6030 /* RokomariReader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26DBF0381DBE979200BB6030 /* Build configuration list for PBXNativeTarget "RokomariReader" */;
+			buildPhases = (
+				26DBF00C1DBE979000BB6030 /* Sources */,
+				26DBF00D1DBE979000BB6030 /* Frameworks */,
+				26DBF00E1DBE979000BB6030 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RokomariReader;
+			productName = RokomariReader;
+			productReference = 26DBF0101DBE979100BB6030 /* RokomariReader.app */;
+			productType = "com.apple.product-type.application";
+		};
+		26DBF0231DBE979200BB6030 /* RokomariReaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26DBF03B1DBE979200BB6030 /* Build configuration list for PBXNativeTarget "RokomariReaderTests" */;
+			buildPhases = (
+				26DBF0201DBE979200BB6030 /* Sources */,
+				26DBF0211DBE979200BB6030 /* Frameworks */,
+				26DBF0221DBE979200BB6030 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				26DBF0261DBE979200BB6030 /* PBXTargetDependency */,
+			);
+			name = RokomariReaderTests;
+			productName = RokomariReaderTests;
+			productReference = 26DBF0241DBE979200BB6030 /* RokomariReaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		26DBF02E1DBE979200BB6030 /* RokomariReaderUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26DBF03E1DBE979200BB6030 /* Build configuration list for PBXNativeTarget "RokomariReaderUITests" */;
+			buildPhases = (
+				26DBF02B1DBE979200BB6030 /* Sources */,
+				26DBF02C1DBE979200BB6030 /* Frameworks */,
+				26DBF02D1DBE979200BB6030 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				26DBF0311DBE979200BB6030 /* PBXTargetDependency */,
+			);
+			name = RokomariReaderUITests;
+			productName = RokomariReaderUITests;
+			productReference = 26DBF02F1DBE979200BB6030 /* RokomariReaderUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		26DBF0081DBE979000BB6030 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Towhid Islam";
+				TargetAttributes = {
+					26DBF00F1DBE979000BB6030 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = YS4F7VX5G2;
+						ProvisioningStyle = Automatic;
+					};
+					26DBF0231DBE979200BB6030 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = YS4F7VX5G2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 26DBF00F1DBE979000BB6030;
+					};
+					26DBF02E1DBE979200BB6030 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = YS4F7VX5G2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 26DBF00F1DBE979000BB6030;
+					};
+				};
+			};
+			buildConfigurationList = 26DBF00B1DBE979000BB6030 /* Build configuration list for PBXProject "RokomariReader" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 26DBF0071DBE979000BB6030;
+			productRefGroup = 26DBF0111DBE979100BB6030 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				26DBF00F1DBE979000BB6030 /* RokomariReader */,
+				26DBF0231DBE979200BB6030 /* RokomariReaderTests */,
+				26DBF02E1DBE979200BB6030 /* RokomariReaderUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		26DBF00E1DBE979000BB6030 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26DBF01E1DBE979200BB6030 /* LaunchScreen.storyboard in Resources */,
+				26DBF01B1DBE979200BB6030 /* Assets.xcassets in Resources */,
+				26DBF0191DBE979200BB6030 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26DBF0221DBE979200BB6030 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26DBF02D1DBE979200BB6030 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		26DBF00C1DBE979000BB6030 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26DBF0161DBE979100BB6030 /* ViewController.swift in Sources */,
+				26DBF0141DBE979100BB6030 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26DBF0201DBE979200BB6030 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26DBF0291DBE979200BB6030 /* RokomariReaderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26DBF02B1DBE979200BB6030 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26DBF0341DBE979200BB6030 /* RokomariReaderUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		26DBF0261DBE979200BB6030 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26DBF00F1DBE979000BB6030 /* RokomariReader */;
+			targetProxy = 26DBF0251DBE979200BB6030 /* PBXContainerItemProxy */;
+		};
+		26DBF0311DBE979200BB6030 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26DBF00F1DBE979000BB6030 /* RokomariReader */;
+			targetProxy = 26DBF0301DBE979200BB6030 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		26DBF0171DBE979200BB6030 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26DBF0181DBE979200BB6030 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		26DBF01C1DBE979200BB6030 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26DBF01D1DBE979200BB6030 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		26DBF0361DBE979200BB6030 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		26DBF0371DBE979200BB6030 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		26DBF0391DBE979200BB6030 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YS4F7VX5G2;
+				INFOPLIST_FILE = RokomariReader/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swift.RokomariReader;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		26DBF03A1DBE979200BB6030 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YS4F7VX5G2;
+				INFOPLIST_FILE = RokomariReader/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swift.RokomariReader;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		26DBF03C1DBE979200BB6030 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = YS4F7VX5G2;
+				INFOPLIST_FILE = RokomariReaderTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swift.RokomariReaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RokomariReader.app/RokomariReader";
+			};
+			name = Debug;
+		};
+		26DBF03D1DBE979200BB6030 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = YS4F7VX5G2;
+				INFOPLIST_FILE = RokomariReaderTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swift.RokomariReaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RokomariReader.app/RokomariReader";
+			};
+			name = Release;
+		};
+		26DBF03F1DBE979200BB6030 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = YS4F7VX5G2;
+				INFOPLIST_FILE = RokomariReaderUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swift.RokomariReaderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = RokomariReader;
+			};
+			name = Debug;
+		};
+		26DBF0401DBE979200BB6030 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = YS4F7VX5G2;
+				INFOPLIST_FILE = RokomariReaderUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swift.RokomariReaderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = RokomariReader;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		26DBF00B1DBE979000BB6030 /* Build configuration list for PBXProject "RokomariReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26DBF0361DBE979200BB6030 /* Debug */,
+				26DBF0371DBE979200BB6030 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26DBF0381DBE979200BB6030 /* Build configuration list for PBXNativeTarget "RokomariReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26DBF0391DBE979200BB6030 /* Debug */,
+				26DBF03A1DBE979200BB6030 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		26DBF03B1DBE979200BB6030 /* Build configuration list for PBXNativeTarget "RokomariReaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26DBF03C1DBE979200BB6030 /* Debug */,
+				26DBF03D1DBE979200BB6030 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		26DBF03E1DBE979200BB6030 /* Build configuration list for PBXNativeTarget "RokomariReaderUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26DBF03F1DBE979200BB6030 /* Debug */,
+				26DBF0401DBE979200BB6030 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 26DBF0081DBE979000BB6030 /* Project object */;
+}
