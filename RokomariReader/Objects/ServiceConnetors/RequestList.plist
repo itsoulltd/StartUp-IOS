@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ActiveLive</key>
+	<false/>
+	<key>PingUrl</key>
+	<string>www.rokomari.com</string>
+	<key>LiveUrl</key>
+	<string>http://rokomariservices.com/api</string>
+	<key>StagingUrl</key>
+	<string>http://35.160.0.171:8080</string>
+	<key>Referer</key>
+	<string></string>
+	<key>ForgotPassword</key>
+	<dict>
+		<key>routePath</key>
+		<string></string>
+		<key>httpMethod</key>
+		<string>Post</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+	<key>SignUp</key>
+	<dict>
+		<key>routePath</key>
+		<string>api/register</string>
+		<key>httpMethod</key>
+		<string>Post</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+	<key>SignIn</key>
+	<dict>
+		<key>routePath</key>
+		<string>api/authenticate</string>
+		<key>httpMethod</key>
+		<string>Post</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+	<key>GetAllEBooks</key>
+	<dict>
+		<key>routePath</key>
+		<string>ebook/api/ebooks</string>
+		<key>httpMethod</key>
+		<string>Get</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+</dict>
+</plist>

@@ -3,7 +3,7 @@
 //  RokomariReaderTests
 //
 //  Created by Towhid Islam on 10/25/16.
-//  Copyright © 2016 Towhid Islam. All rights reserved.
+//  Copyright © 2016 Rokomari (https://www.rokomari.com/policy). All rights reserved.
 //
 
 import XCTest
