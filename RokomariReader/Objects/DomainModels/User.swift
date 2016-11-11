@@ -41,7 +41,7 @@ class User: DNObject {
                         }
                         onCompletion(nil)
                     }
-//                    self?.transaction = nil
+                    self?.transaction = nil
                 })
             }
             let process = TransactionProcess(request: request, parserType: LoginResponse.self)
