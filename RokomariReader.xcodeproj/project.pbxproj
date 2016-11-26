@@ -54,8 +54,6 @@
 		260BB7251DC1A8C0008472C2 /* DiskUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BB7201DC1A8BF008472C2 /* DiskUtility.swift */; };
 		260BB7261DC1A8C0008472C2 /* SimulatorUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BB7211DC1A8BF008472C2 /* SimulatorUtility.swift */; };
 		261D8ACD1DBF0368004E2577 /* UIImage+Rokomari.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261D8ACC1DBF0368004E2577 /* UIImage+Rokomari.swift */; };
-		261D8AD21DBFDA59004E2577 /* SeliseToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 261D8AD01DBFDA48004E2577 /* SeliseToolKit.framework */; };
-		261D8AD31DBFDA59004E2577 /* SeliseToolKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 261D8AD01DBFDA48004E2577 /* SeliseToolKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		261D8AE11DBFDB34004E2577 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 261D8ADA1DBFDB34004E2577 /* RNCryptor.m */; };
 		261D8AE21DBFDB34004E2577 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 261D8ADC1DBFDB34004E2577 /* RNCryptorEngine.m */; };
 		261D8AE31DBFDB34004E2577 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 261D8ADE1DBFDB34004E2577 /* RNDecryptor.m */; };
@@ -76,6 +74,11 @@
 		26257C651DC6E13C008D6C88 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26257C641DC6E13C008D6C88 /* LoginResponse.swift */; };
 		26257C671DC6E154008D6C88 /* RegistrationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26257C661DC6E154008D6C88 /* RegistrationResponse.swift */; };
 		26257C691DC7A9FA008D6C88 /* TransactionStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26257C681DC7A9FA008D6C88 /* TransactionStack.swift */; };
+		2650BCF01DDECE7A00DAEDBA /* Ebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2650BCEF1DDECE7A00DAEDBA /* Ebook.swift */; };
+		2650BCF21DE0B60B00DAEDBA /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2650BCF11DE0B60B00DAEDBA /* Query.swift */; };
+		2650BCFA1DE2173900DAEDBA /* SeliseToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2650BCF81DE2173100DAEDBA /* SeliseToolKit.framework */; };
+		2650BCFB1DE2173900DAEDBA /* SeliseToolKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2650BCF81DE2173100DAEDBA /* SeliseToolKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		26A945281DE9221100A3A38F /* EBookBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A945271DE9221100A3A38F /* EBookBrowser.swift */; };
 		26DBF0141DBE979100BB6030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBF0131DBE979100BB6030 /* AppDelegate.swift */; };
 		26DBF0161DBE979100BB6030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBF0151DBE979100BB6030 /* ViewController.swift */; };
 		26DBF01B1DBE979200BB6030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26DBF01A1DBE979200BB6030 /* Assets.xcassets */; };
@@ -103,13 +106,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		261D8AD41DBFDA59004E2577 /* Embed Frameworks */ = {
+		2650BCFC1DE2173A00DAEDBA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				261D8AD31DBFDA59004E2577 /* SeliseToolKit.framework in Embed Frameworks */,
+				2650BCFB1DE2173900DAEDBA /* SeliseToolKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,7 +168,6 @@
 		260BB7211DC1A8BF008472C2 /* SimulatorUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulatorUtility.swift; sourceTree = "<group>"; };
 		261D8ACC1DBF0368004E2577 /* UIImage+Rokomari.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Rokomari.swift"; sourceTree = "<group>"; };
 		261D8ACF1DBF0421004E2577 /* RokomariReader-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RokomariReader-Bridging-Header.h"; sourceTree = "<group>"; };
-		261D8AD01DBFDA48004E2577 /* SeliseToolKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeliseToolKit.framework; sourceTree = "<group>"; };
 		261D8AD61DBFDB34004E2577 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
 		261D8AD71DBFDB34004E2577 /* RNCryptor+Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Swift.h"; sourceTree = "<group>"; };
 		261D8AD81DBFDB34004E2577 /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
@@ -198,6 +200,10 @@
 		26257C641DC6E13C008D6C88 /* LoginResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		26257C661DC6E154008D6C88 /* RegistrationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationResponse.swift; sourceTree = "<group>"; };
 		26257C681DC7A9FA008D6C88 /* TransactionStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionStack.swift; sourceTree = "<group>"; };
+		2650BCEF1DDECE7A00DAEDBA /* Ebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ebook.swift; sourceTree = "<group>"; };
+		2650BCF11DE0B60B00DAEDBA /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
+		2650BCF81DE2173100DAEDBA /* SeliseToolKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeliseToolKit.framework; sourceTree = "<group>"; };
+		26A945271DE9221100A3A38F /* EBookBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBookBrowser.swift; sourceTree = "<group>"; };
 		26DBF0101DBE979100BB6030 /* RokomariReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RokomariReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DBF0131DBE979100BB6030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		26DBF0151DBE979100BB6030 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../ViewController.swift; sourceTree = "<group>"; };
@@ -218,7 +224,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				261D8AD21DBFDA59004E2577 /* SeliseToolKit.framework in Frameworks */,
+				2650BCFA1DE2173900DAEDBA /* SeliseToolKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +347,7 @@
 				260BB70A1DC1A532008472C2 /* UserProfile.swift */,
 				260BB7121DC1A743008472C2 /* Login.swift */,
 				260BB7141DC1A753008472C2 /* ForgotPassword.swift */,
+				2650BCF11DE0B60B00DAEDBA /* Query.swift */,
 			);
 			path = FormModels;
 			sourceTree = "<group>";
@@ -365,11 +372,11 @@
 		261D8ACE1DBF03AD004E2577 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				2650BCF81DE2173100DAEDBA /* SeliseToolKit.framework */,
 				261D8AF01DBFE236004E2577 /* XMLReader */,
 				261D8AE91DBFE1E7004E2577 /* UUIDGenarator */,
 				261D8AE51DBFDB69004E2577 /* TRVSMonitor */,
 				261D8AD51DBFDB34004E2577 /* RNCryptor */,
-				261D8AD01DBFDA48004E2577 /* SeliseToolKit.framework */,
 			);
 			path = libs;
 			sourceTree = "<group>";
@@ -449,6 +456,7 @@
 				26257C5E1DC59529008D6C88 /* Response.swift */,
 				26257C641DC6E13C008D6C88 /* LoginResponse.swift */,
 				26257C661DC6E154008D6C88 /* RegistrationResponse.swift */,
+				2650BCEF1DDECE7A00DAEDBA /* Ebook.swift */,
 			);
 			path = ResponseModels;
 			sourceTree = "<group>";
@@ -557,6 +565,7 @@
 			isa = PBXGroup;
 			children = (
 				26257C5B1DC591DA008D6C88 /* User.swift */,
+				26A945271DE9221100A3A38F /* EBookBrowser.swift */,
 			);
 			path = DomainModels;
 			sourceTree = "<group>";
@@ -589,7 +598,7 @@
 				26DBF00C1DBE979000BB6030 /* Sources */,
 				26DBF00D1DBE979000BB6030 /* Frameworks */,
 				26DBF00E1DBE979000BB6030 /* Resources */,
-				261D8AD41DBFDA59004E2577 /* Embed Frameworks */,
+				2650BCFC1DE2173A00DAEDBA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -725,6 +734,7 @@
 			files = (
 				26DBF0161DBE979100BB6030 /* ViewController.swift in Sources */,
 				260BB70B1DC1A532008472C2 /* Registration.swift in Sources */,
+				2650BCF01DDECE7A00DAEDBA /* Ebook.swift in Sources */,
 				261D8AE31DBFDB34004E2577 /* RNDecryptor.m in Sources */,
 				260BB6FF1DC1A38E008472C2 /* Credential.swift in Sources */,
 				260BB6CD1DBFE7CE008472C2 /* DNSecureFile.swift in Sources */,
@@ -761,6 +771,7 @@
 				260BB7131DC1A743008472C2 /* Login.swift in Sources */,
 				260BB7001DC1A38E008472C2 /* OAuth.swift in Sources */,
 				26DBF0491DBE98AF00BB6030 /* AssetsCatalog.swift in Sources */,
+				26A945281DE9221100A3A38F /* EBookBrowser.swift in Sources */,
 				261D8AE41DBFDB34004E2577 /* RNEncryptor.m in Sources */,
 				260BB6D41DC12ECB008472C2 /* DateSort.swift in Sources */,
 				260668921DC47A8700C76045 /* RequestFactory.swift in Sources */,
@@ -782,6 +793,7 @@
 				261D8AEE1DBFE1E7004E2577 /* KeychainWrapper.m in Sources */,
 				2606688F1DC47A8700C76045 /* DNXRequest.swift in Sources */,
 				2606689F1DC5230400C76045 /* AppStateMatchine.swift in Sources */,
+				2650BCF21DE0B60B00DAEDBA /* Query.swift in Sources */,
 				260BB7061DC1A38E008472C2 /* ResolutionStrategy.swift in Sources */,
 				26257C631DC666E1008D6C88 /* Notifications.swift in Sources */,
 				26257C691DC7A9FA008D6C88 /* TransactionStack.swift in Sources */,
@@ -944,6 +956,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RokomariReader/Resource/RokomariReader-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -966,6 +979,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RokomariReader/Resource/RokomariReader-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

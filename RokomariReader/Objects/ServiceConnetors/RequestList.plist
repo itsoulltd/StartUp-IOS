@@ -48,5 +48,14 @@
 		<key>contentType</key>
 		<string>Json</string>
 	</dict>
+	<key>SearchEBooks</key>
+	<dict>
+		<key>routePath</key>
+		<string>ebook/api/_search/ebooks</string>
+		<key>httpMethod</key>
+		<string>Get</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
 </dict>
 </plist>
