@@ -9,22 +9,21 @@
 import UIKit
 import SeliseToolKit
 
-class NameResource: DNObject {
-    var id: NSNumber?
+public class NameResource: Response {
     var image_url: NSString?
     var name_bangla: NSString?
     var name_english: NSString?
 }
 
-class Category: NameResource {
+public class Category: NameResource {
     
 }
 
-class Author: NameResource {
+public class Author: NameResource {
     
 }
 
-class Publisher: NameResource {
+public class Publisher: NameResource {
     
 }
 

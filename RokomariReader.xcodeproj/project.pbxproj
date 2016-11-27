@@ -74,6 +74,7 @@
 		26257C651DC6E13C008D6C88 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26257C641DC6E13C008D6C88 /* LoginResponse.swift */; };
 		26257C671DC6E154008D6C88 /* RegistrationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26257C661DC6E154008D6C88 /* RegistrationResponse.swift */; };
 		26257C691DC7A9FA008D6C88 /* TransactionStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26257C681DC7A9FA008D6C88 /* TransactionStack.swift */; };
+		264D2C721DEAF6B100617EEA /* DNObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264D2C711DEAF6B100617EEA /* DNObject+Extension.swift */; };
 		2650BCF01DDECE7A00DAEDBA /* Ebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2650BCEF1DDECE7A00DAEDBA /* Ebook.swift */; };
 		2650BCF21DE0B60B00DAEDBA /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2650BCF11DE0B60B00DAEDBA /* Query.swift */; };
 		2650BCFA1DE2173900DAEDBA /* SeliseToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2650BCF81DE2173100DAEDBA /* SeliseToolKit.framework */; };
@@ -200,6 +201,7 @@
 		26257C641DC6E13C008D6C88 /* LoginResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		26257C661DC6E154008D6C88 /* RegistrationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationResponse.swift; sourceTree = "<group>"; };
 		26257C681DC7A9FA008D6C88 /* TransactionStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionStack.swift; sourceTree = "<group>"; };
+		264D2C711DEAF6B100617EEA /* DNObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DNObject+Extension.swift"; sourceTree = "<group>"; };
 		2650BCEF1DDECE7A00DAEDBA /* Ebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ebook.swift; sourceTree = "<group>"; };
 		2650BCF11DE0B60B00DAEDBA /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		2650BCF81DE2173100DAEDBA /* SeliseToolKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeliseToolKit.framework; sourceTree = "<group>"; };
@@ -566,6 +568,7 @@
 			children = (
 				26257C5B1DC591DA008D6C88 /* User.swift */,
 				26A945271DE9221100A3A38F /* EBookBrowser.swift */,
+				264D2C711DEAF6B100617EEA /* DNObject+Extension.swift */,
 			);
 			path = DomainModels;
 			sourceTree = "<group>";
@@ -764,6 +767,7 @@
 				260BB7261DC1A8C0008472C2 /* SimulatorUtility.swift in Sources */,
 				2606689E1DC5230400C76045 /* AppState.swift in Sources */,
 				260BB71B1DC1A883008472C2 /* AppInfo.swift in Sources */,
+				264D2C721DEAF6B100617EEA /* DNObject+Extension.swift in Sources */,
 				260668A71DC5248C00C76045 /* DomainTestState.swift in Sources */,
 				261D8AE21DBFDB34004E2577 /* RNCryptorEngine.m in Sources */,
 				261D8AEF1DBFE1E7004E2577 /* UUIDGenerator.m in Sources */,

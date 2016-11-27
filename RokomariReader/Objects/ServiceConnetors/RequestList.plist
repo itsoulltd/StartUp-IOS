@@ -57,5 +57,59 @@
 		<key>contentType</key>
 		<string>Json</string>
 	</dict>
+	<key>GetAllAuthors</key>
+	<dict>
+		<key>routePath</key>
+		<string>ebook/api/authors</string>
+		<key>httpMethod</key>
+		<string>Get</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+	<key>SearchAuthors</key>
+	<dict>
+		<key>routePath</key>
+		<string>ebook/api/_search/authors</string>
+		<key>httpMethod</key>
+		<string>Get</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+	<key>GetAllCategories</key>
+	<dict>
+		<key>routePath</key>
+		<string>ebook/api/categories</string>
+		<key>httpMethod</key>
+		<string>Get</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+	<key>SearchCategories</key>
+	<dict>
+		<key>routePath</key>
+		<string>ebook/api/_search/categories</string>
+		<key>httpMethod</key>
+		<string>Get</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+	<key>GetAllPublishers</key>
+	<dict>
+		<key>routePath</key>
+		<string>ebook/api/publishers</string>
+		<key>httpMethod</key>
+		<string>Get</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+	<key>SearchPublishers</key>
+	<dict>
+		<key>routePath</key>
+		<string>ebook/api/_search/publishers</string>
+		<key>httpMethod</key>
+		<string>Get</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
 </dict>
 </plist>
