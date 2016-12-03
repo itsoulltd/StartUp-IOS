@@ -75,10 +75,14 @@
 		26257C671DC6E154008D6C88 /* RegistrationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26257C661DC6E154008D6C88 /* RegistrationResponse.swift */; };
 		26257C691DC7A9FA008D6C88 /* TransactionStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26257C681DC7A9FA008D6C88 /* TransactionStack.swift */; };
 		264D2C721DEAF6B100617EEA /* DNObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264D2C711DEAF6B100617EEA /* DNObject+Extension.swift */; };
+		264D2C751DEF512E00617EEA /* SeliseToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 264D2C731DEF512600617EEA /* SeliseToolKit.framework */; };
+		264D2C761DEF512E00617EEA /* SeliseToolKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 264D2C731DEF512600617EEA /* SeliseToolKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		264D2C7A1DF1D1B600617EEA /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264D2C791DF1D1B600617EEA /* Validation.swift */; };
+		264D2C7C1DF2677600617EEA /* Banners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264D2C7B1DF2677600617EEA /* Banners.swift */; };
+		264D2C7E1DF269BC00617EEA /* NameResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264D2C7D1DF269BC00617EEA /* NameResource.swift */; };
+		264D2C801DF2C3AD00617EEA /* ContactUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264D2C7F1DF2C3AD00617EEA /* ContactUs.swift */; };
 		2650BCF01DDECE7A00DAEDBA /* Ebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2650BCEF1DDECE7A00DAEDBA /* Ebook.swift */; };
 		2650BCF21DE0B60B00DAEDBA /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2650BCF11DE0B60B00DAEDBA /* Query.swift */; };
-		2650BCFA1DE2173900DAEDBA /* SeliseToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2650BCF81DE2173100DAEDBA /* SeliseToolKit.framework */; };
-		2650BCFB1DE2173900DAEDBA /* SeliseToolKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2650BCF81DE2173100DAEDBA /* SeliseToolKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26A945281DE9221100A3A38F /* EBookBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A945271DE9221100A3A38F /* EBookBrowser.swift */; };
 		26DBF0141DBE979100BB6030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBF0131DBE979100BB6030 /* AppDelegate.swift */; };
 		26DBF0161DBE979100BB6030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBF0151DBE979100BB6030 /* ViewController.swift */; };
@@ -107,13 +111,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2650BCFC1DE2173A00DAEDBA /* Embed Frameworks */ = {
+		264D2C771DEF512E00617EEA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2650BCFB1DE2173900DAEDBA /* SeliseToolKit.framework in Embed Frameworks */,
+				264D2C761DEF512E00617EEA /* SeliseToolKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,9 +206,13 @@
 		26257C661DC6E154008D6C88 /* RegistrationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationResponse.swift; sourceTree = "<group>"; };
 		26257C681DC7A9FA008D6C88 /* TransactionStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionStack.swift; sourceTree = "<group>"; };
 		264D2C711DEAF6B100617EEA /* DNObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DNObject+Extension.swift"; sourceTree = "<group>"; };
+		264D2C731DEF512600617EEA /* SeliseToolKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeliseToolKit.framework; sourceTree = "<group>"; };
+		264D2C791DF1D1B600617EEA /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		264D2C7B1DF2677600617EEA /* Banners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banners.swift; sourceTree = "<group>"; };
+		264D2C7D1DF269BC00617EEA /* NameResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameResource.swift; sourceTree = "<group>"; };
+		264D2C7F1DF2C3AD00617EEA /* ContactUs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUs.swift; sourceTree = "<group>"; };
 		2650BCEF1DDECE7A00DAEDBA /* Ebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ebook.swift; sourceTree = "<group>"; };
 		2650BCF11DE0B60B00DAEDBA /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
-		2650BCF81DE2173100DAEDBA /* SeliseToolKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeliseToolKit.framework; sourceTree = "<group>"; };
 		26A945271DE9221100A3A38F /* EBookBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBookBrowser.swift; sourceTree = "<group>"; };
 		26DBF0101DBE979100BB6030 /* RokomariReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RokomariReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DBF0131DBE979100BB6030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
@@ -226,7 +234,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2650BCFA1DE2173900DAEDBA /* SeliseToolKit.framework in Frameworks */,
+				264D2C751DEF512E00617EEA /* SeliseToolKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +358,7 @@
 				260BB7121DC1A743008472C2 /* Login.swift */,
 				260BB7141DC1A753008472C2 /* ForgotPassword.swift */,
 				2650BCF11DE0B60B00DAEDBA /* Query.swift */,
+				264D2C791DF1D1B600617EEA /* Validation.swift */,
 			);
 			path = FormModels;
 			sourceTree = "<group>";
@@ -374,7 +383,7 @@
 		261D8ACE1DBF03AD004E2577 /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				2650BCF81DE2173100DAEDBA /* SeliseToolKit.framework */,
+				264D2C731DEF512600617EEA /* SeliseToolKit.framework */,
 				261D8AF01DBFE236004E2577 /* XMLReader */,
 				261D8AE91DBFE1E7004E2577 /* UUIDGenarator */,
 				261D8AE51DBFDB69004E2577 /* TRVSMonitor */,
@@ -459,6 +468,7 @@
 				26257C641DC6E13C008D6C88 /* LoginResponse.swift */,
 				26257C661DC6E154008D6C88 /* RegistrationResponse.swift */,
 				2650BCEF1DDECE7A00DAEDBA /* Ebook.swift */,
+				264D2C7D1DF269BC00617EEA /* NameResource.swift */,
 			);
 			path = ResponseModels;
 			sourceTree = "<group>";
@@ -569,6 +579,8 @@
 				26257C5B1DC591DA008D6C88 /* User.swift */,
 				26A945271DE9221100A3A38F /* EBookBrowser.swift */,
 				264D2C711DEAF6B100617EEA /* DNObject+Extension.swift */,
+				264D2C7B1DF2677600617EEA /* Banners.swift */,
+				264D2C7F1DF2C3AD00617EEA /* ContactUs.swift */,
 			);
 			path = DomainModels;
 			sourceTree = "<group>";
@@ -601,7 +613,7 @@
 				26DBF00C1DBE979000BB6030 /* Sources */,
 				26DBF00D1DBE979000BB6030 /* Frameworks */,
 				26DBF00E1DBE979000BB6030 /* Resources */,
-				2650BCFC1DE2173A00DAEDBA /* Embed Frameworks */,
+				264D2C771DEF512E00617EEA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -760,6 +772,7 @@
 				26257C5C1DC591DA008D6C88 /* User.swift in Sources */,
 				26257C671DC6E154008D6C88 /* RegistrationResponse.swift in Sources */,
 				26257C611DC666CB008D6C88 /* StoryboardIDs.swift in Sources */,
+				264D2C7C1DF2677600617EEA /* Banners.swift in Sources */,
 				260BB71C1DC1A883008472C2 /* AppStoryboard.swift in Sources */,
 				260BB70C1DC1A532008472C2 /* UserProfile.swift in Sources */,
 				260BB7071DC1A38E008472C2 /* ValidationRules.swift in Sources */,
@@ -786,6 +799,7 @@
 				260BB7221DC1A8BF008472C2 /* AppAppearance.swift in Sources */,
 				26257C5F1DC59529008D6C88 /* Response.swift in Sources */,
 				260BB7251DC1A8C0008472C2 /* DiskUtility.swift in Sources */,
+				264D2C7E1DF269BC00617EEA /* NameResource.swift in Sources */,
 				260668AB1DC5264E00C76045 /* DNCoreDocument.swift in Sources */,
 				260668941DC47A8700C76045 /* SequentialRequestProcessor.swift in Sources */,
 				260BB6D31DC12ECB008472C2 /* AlphabeticalSort.swift in Sources */,
@@ -793,6 +807,7 @@
 				260BB7051DC1A38E008472C2 /* DNRuleSystem.swift in Sources */,
 				260BB7151DC1A753008472C2 /* ForgotPassword.swift in Sources */,
 				260BB6F81DC1A38E008472C2 /* FontConfig.swift in Sources */,
+				264D2C801DF2C3AD00617EEA /* ContactUs.swift in Sources */,
 				261D8AF31DBFE236004E2577 /* XMLReader.m in Sources */,
 				261D8AEE1DBFE1E7004E2577 /* KeychainWrapper.m in Sources */,
 				2606688F1DC47A8700C76045 /* DNXRequest.swift in Sources */,
@@ -801,6 +816,7 @@
 				260BB7061DC1A38E008472C2 /* ResolutionStrategy.swift in Sources */,
 				26257C631DC666E1008D6C88 /* Notifications.swift in Sources */,
 				26257C691DC7A9FA008D6C88 /* TransactionStack.swift in Sources */,
+				264D2C7A1DF1D1B600617EEA /* Validation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,30 +9,57 @@
 import UIKit
 import SeliseToolKit
 
-public class Query: DNObject {
+public class Query: DNObject, FormValidator {
     var page: NSNumber = 0
     var size: NSNumber = 20
     var sort: NSArray?
     
-    public func queryString() -> String{
-        var str = "page=\(page)&size=\(size)"
-        for item in sort! {
-            str += "&sort=\(item)"
+    private var engineMapper: [String:DNRuleSystem] = [String:DNRuleSystem]()
+    func addRule(rule: DNRule, forKey key: String) -> Void{
+        var engine = engineMapper[key]
+        if engine == nil {
+            engine = DNRuleSystem(strategy: RuleEvaluationStrategy.ForwardChaining)
         }
-        return str
+        engine?.addRule(rule)
+        engineMapper[key] = engine
     }
+    
+    func validate(key: String, forValue value: AnyObject?) -> (invalid:Bool, reasons:[String]) {
+        if let engin = engineMapper[key] {
+            if let val = value{
+                engin.setState(key, value: val)
+            }else{
+                if let val = valueForKeyPath(key){
+                    engin.setState(key, value: val)
+                }
+            }
+            engin.resetSystem()
+            engin.evaluateSystem()
+            let expression = engin.satisfied(fact: key)
+            return (expression, engin.messagesFor(fact: key))
+        }
+        return (false, ["No Validator is found for \(key)!?! Please Check"])
+    }
+    
+    /*public override func serializeValue(value: AnyObject!, forKey key: String!) -> AnyObject! {
+        if key == "engineMapper" {
+            return NSNull()
+        }else{
+            return super.serializeValue(value, forKey: key)
+        }
+    }*/
 }
 
 public class SearchQuery: Query {
-    
     var query: NSString?
     
-    public override func queryString() -> String {
-        var superStr = super.queryString()
-        if let qu = query{
-            superStr += "&query=\(qu)"
-        }
-        return superStr
+    func applyFieldValidation() {
+        let required = DNRule(condition: { (system: DNRuleSystem) -> Bool in
+            let input = system.state("query")
+            return (input == nil)
+            }, assertion: { (system: DNRuleSystem) -> Void in
+                system.assert(fact: "query", grade: 1.0, message: "query is required.")
+        })
+        addRule(required, forKey: "query")
     }
-    
 }

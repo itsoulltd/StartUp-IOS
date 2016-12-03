@@ -19,7 +19,11 @@ class DomainTestCases: NSObject {
     func runTest(){
         print("Test Is Running")
         login()
-        fetchAllBooks()
+        //fetchAllBooks()
+        searchBooks()
+        //fetchAllPublisher()
+        //fetchAllAuthors()
+        //fetchAllCategory()
     }
     
     func login(){
@@ -36,22 +40,66 @@ class DomainTestCases: NSObject {
     func fetchAllBooks(){
         let query = Query()
         query.sort = ["edition", "isbn"]
-        browser.fetch(query) { (res) in
-            for book in res{
+        browser.fetch(query) { (books) in
+            for book in books{
                 print(book.serializeIntoInfo())
             }
+            self.monitor.signal()
         }
+        monitor.wait()
     }
     
     func searchBooks(){
         let searchQ = SearchQuery()
-        searchQ.query = "Purfume"
-        searchQ.sort = ["edition", "isbn"]
-        browser.search(searchQ) { (res) in
-            for book in res{
-                print(book.serializeIntoInfo())
+        searchQ.applyFieldValidation()
+        searchQ.query = "Purfume hi there"
+        //searchQ.sort = ["edition", "isbn"]
+        
+        let tuple = searchQ.validate("query", forValue: nil)
+        if tuple.invalid == false {
+            browser.search(searchQ) { (books) in
+                for book in books{
+                    print(book.serializeIntoInfo())
+                }
+                self.monitor.signal()
             }
+            monitor.wait()
+        }else{
+            print("\(tuple.reasons.first!)")
         }
+    }
+    
+    func fetchAllPublisher(){
+        let query = Query()
+        browser.publishers(query) { (publishers) in
+            for publisher in publishers{
+                print(publisher.serializeIntoInfo())
+            }
+            self.monitor.signal()
+        }
+        monitor.wait()
+    }
+    
+    func fetchAllCategory(){
+        let query = Query()
+        browser.categories(query) { (categories) in
+            for category in categories{
+                print(category.serializeIntoInfo())
+            }
+            self.monitor.signal()
+        }
+        monitor.wait()
+    }
+    
+    func fetchAllAuthors(){
+        let query = Query()
+        browser.authors(query) { (authors) in
+            for author in authors{
+                print(author.serializeIntoInfo())
+            }
+            self.monitor.signal()
+        }
+        monitor.wait()
     }
 }
 

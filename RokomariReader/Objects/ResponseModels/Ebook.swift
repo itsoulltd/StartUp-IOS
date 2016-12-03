@@ -9,22 +9,28 @@
 import UIKit
 import SeliseToolKit
 
-public class NameResource: Response {
-    var image_url: NSString?
-    var name_bangla: NSString?
-    var name_english: NSString?
+public class EBookResource: NameResource{
+    var imageUrl: NSString?
+    var nameBangla: NSString?
+    var nameEnglish: NSString?
 }
 
-public class Category: NameResource {
-    
+public class Category: EBookResource {
+    var parentId: NSInteger = 0
 }
 
-public class Author: NameResource {
-    
+public class Author: EBookResource {
+    var detail: NSString?
 }
 
-public class Publisher: NameResource {
-    
+public class Publisher: EBookResource {
+    var detail: NSString?
+}
+
+public enum EBookStatus: NSString{
+    case Available = "available"
+    case Unavailable = "unavailable"
+    case Unknown = "unknown"
 }
 
 public class EBook: Response {
@@ -43,6 +49,16 @@ public class EBook: Response {
     var price_sales: NSNumber?
     var publisher: Publisher?
     var rokomari_id: NSNumber?
-    var status: NSString?
+    var status: EBookStatus = .Unknown
+    
+    public override func updateValue(value: AnyObject!, forKey key: String!) {
+        if key == "status" {
+            if let val = value as? NSString  {
+                self.status = EBookStatus(rawValue: val)!
+            }
+        }else{
+            super.updateValue(value, forKey: key)
+        }
+    }
 }
 
