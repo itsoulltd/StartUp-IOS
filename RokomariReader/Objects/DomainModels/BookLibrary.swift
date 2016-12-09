@@ -9,14 +9,12 @@
 import UIKit
 import SeliseToolKit
 
-public class EBookBrowser: DNObject {
+public class BookLibrary: DNObject {
     
     var searchResult: [SearchQuery:[EBook]] = [SearchQuery:[EBook]]()
     var fetchResult: [Query:[EBook]] = [Query:[EBook]]()
     
-    var authorResults: [Query: [Author]] = [Query: [Author]]()
     var categoryResults: [Query: [Category]] = [Query: [Category]]()
-    var publisherResults: [Query: [Publisher]] = [Query: [Publisher]]()
     
     private var searchBooks: TransactionStack?
     public func search(query: SearchQuery, onCompletion: (([EBook]) -> Void)) -> Void {
@@ -62,35 +60,6 @@ public class EBookBrowser: DNObject {
         fetchBooks?.commit()
     }
     
-    private var authorTransac: TransactionStack?
-    public func authors(query: Query, onCompletion: (([Author]) -> Void)) -> Void{
-        var request: DNRequest?
-        if query is SearchQuery {
-            request = RequestFactory.defaultFactory().request(forKey: "SearchAuthors")
-        }else{
-            request = RequestFactory.defaultFactory().request(forKey: "GetAllAuthors")
-        }
-        
-        guard let req = request else{
-            fatalError("Invalid Request Object at \(#line) \(#function)")
-        }
-        
-        authorTransac = TransactionStack(callBack: { [weak self] (received) in
-            guard let res = received as? [Author] else{
-                onCompletion([Author]())
-                return
-            }
-            self?.authorResults[query] = res
-            onCompletion(res)
-        })
-        
-        req.addAuth()
-        req.payLoad = query
-        let process = TransactionProcess(request: req, parserType: Author.self)
-        authorTransac?.push(process)
-        authorTransac?.commit()
-    }
-    
     private var categoryTransac: TransactionStack?
     public func categories(query: Query, onCompletion: (([Category]) -> Void)) -> Void{
         var request: DNRequest?
@@ -120,33 +89,24 @@ public class EBookBrowser: DNObject {
         categoryTransac?.commit()
     }
     
-    private var publisherTransac: TransactionStack?
-    public func publishers(query: Query, onCompletion: (([Publisher]) -> Void)) -> Void{
-        var request: DNRequest?
-        if query is SearchQuery {
-            request = RequestFactory.defaultFactory().request(forKey: "SearchPublishers")
-        }else{
-            request = RequestFactory.defaultFactory().request(forKey: "GetAllPublishers")
+    private var bookTrans: TransactionStack?
+    public func ebook(by id: NSNumber, onCompletion: ((EBook?) -> Void)) -> Void{
+        guard let request = RequestFactory.defaultFactory().request(forKey: "GetEBook") else{
+            fatalError("GetEBook not found")
         }
         
-        guard let req = request else{
-            fatalError("Invalid Request Object at \(#line) \(#function)")
-        }
+        request.addAuth()
+        request.payLoad = DNObject(info: ["id":id.longValue])
         
-        publisherTransac = TransactionStack(callBack: { [weak self] (received) in
-            guard let res = received as? [Publisher] else{
-                onCompletion([Publisher]())
-                return
+        bookTrans = TransactionStack(callBack: { (received) in
+            if let vm = received?.first as? EBook{
+                onCompletion(vm)
             }
-            self?.publisherResults[query] = res
-            onCompletion(res)
         })
         
-        req.addAuth()
-        req.payLoad = query
-        let process = TransactionProcess(request: req, parserType: Publisher.self)
-        publisherTransac?.push(process)
-        publisherTransac?.commit()
+        let process = TransactionProcess(request: request, parserType: EBook.self)
+        self.bookTrans?.push(process)
+        self.bookTrans?.commit()
     }
     
 }

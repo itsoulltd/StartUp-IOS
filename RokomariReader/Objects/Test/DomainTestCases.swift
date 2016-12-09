@@ -14,16 +14,19 @@ class DomainTestCases: NSObject {
     var userManagement: UserManagement = UserManagement(profileType: UserProfile.self)
     var monitor: TRVSMonitor = TRVSMonitor(expectedSignalCount: 1)
     var user = User()
-    var browser: EBookBrowser = EBookBrowser()
+    var browser: BookLibrary = BookLibrary()
+    var authorCatalog = AuthorCatalog()
+    var publisherCatalog = PublisherCatalog()
     
     func runTest(){
         print("Test Is Running")
         login()
         //fetchAllBooks()
-        searchBooks()
+        //searchBooks()
         //fetchAllPublisher()
         //fetchAllAuthors()
         //fetchAllCategory()
+        rokomaryHelp()
     }
     
     func login(){
@@ -71,7 +74,7 @@ class DomainTestCases: NSObject {
     
     func fetchAllPublisher(){
         let query = Query()
-        browser.publishers(query) { (publishers) in
+        self.publisherCatalog.publishers(query) { (publishers) in
             for publisher in publishers{
                 print(publisher.serializeIntoInfo())
             }
@@ -93,13 +96,29 @@ class DomainTestCases: NSObject {
     
     func fetchAllAuthors(){
         let query = Query()
-        browser.authors(query) { (authors) in
+        self.authorCatalog.authors(query) { (authors) in
             for author in authors{
                 print(author.serializeIntoInfo())
             }
             self.monitor.signal()
         }
         monitor.wait()
+    }
+    
+    func rokomaryHelp(){
+        let contactus = ContactUs(info: ["email": "m.towhid.islam@gmail.com",
+            "message": "Need Some Assistance",
+            "name": "Towhid",
+            "phone": "01712645571",
+            "status": "responded",
+            "subject": "Hi there!"])
+        
+        self.user.rokomaryHelp(contactus) { (res) in
+            if let r = res{
+                print(r.serializeIntoInfo())
+            }
+        }
+        
     }
 }
 

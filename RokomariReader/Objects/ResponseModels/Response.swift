@@ -40,7 +40,7 @@ public class Response: DNObject {
         super.init(coder: aDecoder)
     }
     
-    var id: NSString = NSUUID().UUIDString
+    var id: NSObject = NSUUID().UUIDString
     var failed: Bool{
         return (code.rawValue == HttpStatusCode.OK.rawValue || code.rawValue == HttpStatusCode.Created.rawValue) ? true : false
     }

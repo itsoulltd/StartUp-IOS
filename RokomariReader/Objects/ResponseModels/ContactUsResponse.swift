@@ -7,15 +7,8 @@
 //
 
 import Foundation
-import SeliseToolKit
 
-public enum ContactUsStatus: NSString{
-    case Invalid = "invalid"
-    case NotResponded = "not_responded"
-    case Responded = "responded"
-}
-
-public class ContactUs: Response{
+public class ContactUsResponse: Response{
     var createdDate: NSString?
     var lastModifiedBy: NSString?
     var lastModifiedDate: NSString?

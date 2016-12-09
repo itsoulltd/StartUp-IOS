@@ -48,6 +48,15 @@
 		<key>contentType</key>
 		<string>Json</string>
 	</dict>
+	<key>GetEBook</key>
+	<dict>
+		<key>routePath</key>
+		<string>ebook/api/ebooks</string>
+		<key>httpMethod</key>
+		<string>Get</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
 	<key>SearchEBooks</key>
 	<dict>
 		<key>routePath</key>
@@ -111,5 +120,22 @@
 		<key>contentType</key>
 		<string>Json</string>
 	</dict>
+	<key>ContactUs</key>
+	<dict>
+		<key>routePath</key>
+		<string>ebook/api/contactuses</string>
+		<key>httpMethod</key>
+		<string>Post</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+	<key>GetEbookFile</key>
+	<dict/>
+	<key>routePath</key>
+	<string>ebook/api/ebook-files</string>
+	<key>httpMethod</key>
+	<string>Get</string>
+	<key>contentType</key>
+	<string>Json</string>
 </dict>
 </plist>

@@ -50,4 +50,27 @@ class User: DNObject {
         }
     }
     
+    private var helpTrans: TransactionStack?
+    func rokomaryHelp(contactUs: ContactUs, onComplete: ((ContactUsResponse?) -> Void)) -> Void{
+        
+        guard let request = RequestFactory.defaultFactory().request(forKey: "ContactUs") else{
+            fatalError("ContactUs not found")
+        }
+        
+        request.addAuth()
+        request.payLoad = contactUs
+        
+        helpTrans = TransactionStack(callBack: { (received) in
+            guard let contactUsRes = received?.first as? ContactUsResponse else{
+                onComplete(nil)
+                return
+            }
+            onComplete(contactUsRes)
+        })
+        
+        let process = TransactionProcess(request: request, parserType: ContactUsResponse.self)
+        self.helpTrans?.push(process)
+        self.helpTrans?.commit()
+    }
+    
 }

@@ -9,6 +9,6 @@
 import UIKit
 import SeliseToolKit
 
-class ForgotPassword: DNObject {
+class ForgotPassword: BaseForm {
 
 }

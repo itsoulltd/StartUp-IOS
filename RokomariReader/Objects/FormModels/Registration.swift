@@ -27,7 +27,7 @@ import SeliseToolKit
     "password": "string"
 }*/
 
-class Registration: DNObject {
+class Registration: BaseForm {
     var email :NSString?
     var password :NSString?
     var passwordConfirmation :NSString?

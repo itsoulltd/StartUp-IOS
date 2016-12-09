@@ -171,7 +171,8 @@ public class TransactionProcess: NSObject, RequestProcessingProtocol{
     public func execute(success: ((next: RequestProcessingProtocol?, previousResponse: [DNObjectProtocol]?) -> Void), failed: ((abort: Bool, reason: Response) -> Void)) -> Void {
         NetworkActivityController.sharedInstance().startNetworkActivity()
         RemoteSession.defaultSession().sendMessage(request) { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
-            if let res = response as? NSHTTPURLResponse where res.statusCode == HttpStatusCode.OK.rawValue{
+            if let res = response as? NSHTTPURLResponse
+                where (res.statusCode == HttpStatusCode.OK.rawValue || res.statusCode == HttpStatusCode.Created.rawValue){
                 do{
                     if let info = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary{
                         print(info)
