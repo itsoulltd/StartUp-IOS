@@ -8,6 +8,6 @@
 
 import Foundation
 
-class LoginResponse: Response {
+class AfterLogin: Response {
     var id_token: NSString?
 }

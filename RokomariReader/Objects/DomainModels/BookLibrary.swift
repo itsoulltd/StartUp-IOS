@@ -11,20 +11,20 @@ import SeliseToolKit
 
 public class BookLibrary: DNObject {
     
-    var searchResult: [SearchQuery:[EBook]] = [SearchQuery:[EBook]]()
-    var fetchResult: [Query:[EBook]] = [Query:[EBook]]()
+    var searchResult: [SearchQuery:[Book]] = [SearchQuery:[Book]]()
+    var fetchResult: [Query:[Book]] = [Query:[Book]]()
     
     var categoryResults: [Query: [Category]] = [Query: [Category]]()
     
     private var searchBooks: TransactionStack?
-    public func search(query: SearchQuery, onCompletion: (([EBook]) -> Void)) -> Void {
+    public func search(query: SearchQuery, onCompletion: (([Book]) -> Void)) -> Void {
         guard let request = RequestFactory.defaultFactory().request(forKey: "SearchEBooks") else{
             fatalError("SearchEBooks not available")
         }
         
         searchBooks = TransactionStack(callBack: { [weak self] (received) in
-            guard let res = received as? [EBook] else{
-                onCompletion([EBook]())
+            guard let res = received as? [Book] else{
+                onCompletion([Book]())
                 return
             }
             self?.searchResult[query] = res
@@ -33,20 +33,20 @@ public class BookLibrary: DNObject {
         
         request.addAuth()
         request.payLoad = query
-        let process = TransactionProcess(request: request, parserType: EBook.self)
+        let process = TransactionProcess(request: request, parserType: Book.self)
         searchBooks?.push(process)
         searchBooks?.commit()
     }
     
     private var fetchBooks: TransactionStack?
-    public func fetch(query: Query, onCompletion: (([EBook]) -> Void)) -> Void {
+    public func fetch(query: Query, onCompletion: (([Book]) -> Void)) -> Void {
         guard let request = RequestFactory.defaultFactory().request(forKey: "GetAllEBooks") else{
             fatalError("GetAllEBooks not available")
         }
         
         fetchBooks = TransactionStack(callBack: { [weak self] (received) in
-            guard let res = received as? [EBook] else{
-                onCompletion([EBook]())
+            guard let res = received as? [Book] else{
+                onCompletion([Book]())
                 return
             }
             self?.fetchResult[query] = res
@@ -55,7 +55,7 @@ public class BookLibrary: DNObject {
         
         request.addAuth()
         request.payLoad = query
-        let process = TransactionProcess(request: request, parserType: EBook.self)
+        let process = TransactionProcess(request: request, parserType: Book.self)
         fetchBooks?.push(process)
         fetchBooks?.commit()
     }
@@ -90,7 +90,7 @@ public class BookLibrary: DNObject {
     }
     
     private var bookTrans: TransactionStack?
-    public func ebook(by id: NSNumber, onCompletion: ((EBook?) -> Void)) -> Void{
+    public func ebook(by id: NSNumber, onCompletion: ((Book?) -> Void)) -> Void{
         guard let request = RequestFactory.defaultFactory().request(forKey: "GetEBook") else{
             fatalError("GetEBook not found")
         }
@@ -99,12 +99,12 @@ public class BookLibrary: DNObject {
         request.payLoad = DNObject(info: ["id":id.longValue])
         
         bookTrans = TransactionStack(callBack: { (received) in
-            if let vm = received?.first as? EBook{
+            if let vm = received?.first as? Book{
                 onCompletion(vm)
             }
         })
         
-        let process = TransactionProcess(request: request, parserType: EBook.self)
+        let process = TransactionProcess(request: request, parserType: Book.self)
         self.bookTrans?.push(process)
         self.bookTrans?.commit()
     }

@@ -23,12 +23,12 @@ class User: DNObject {
     
     var transaction: TransactionStack?
     
-    func login(form: Login, onCompletion: (LoginResponse?) -> Void) {
+    func login(form: LoginForm, onCompletion: (AfterLogin?) -> Void) {
         if let request = RequestFactory.defaultFactory().request(forKey: "SignIn") as? DNXRequest{
             request.payLoad = form
             if transaction == nil {
                 transaction = TransactionStack(callBack: {[weak self] (received) in
-                    if let loginResponse = received?.first as? LoginResponse{
+                    if let loginResponse = received?.first as? AfterLogin{
                         self?.management.loginWithToken(loginResponse.id_token as! String, email: form.username as! String, password: form.password as! String, remembered: form.rememberMe.boolValue)
                         let profile = UserProfile()
                         profile.userName = form.username
@@ -44,14 +44,14 @@ class User: DNObject {
                     self?.transaction = nil
                 })
             }
-            let process = TransactionProcess(request: request, parserType: LoginResponse.self)
+            let process = TransactionProcess(request: request, parserType: AfterLogin.self)
             transaction?.push(process)
             transaction?.commit()
         }
     }
     
     private var helpTrans: TransactionStack?
-    func rokomaryHelp(contactUs: ContactUs, onComplete: ((ContactUsResponse?) -> Void)) -> Void{
+    func rokomaryHelp(contactUs: ContactUsForm, onComplete: ((ContactUs?) -> Void)) -> Void{
         
         guard let request = RequestFactory.defaultFactory().request(forKey: "ContactUs") else{
             fatalError("ContactUs not found")
@@ -61,14 +61,14 @@ class User: DNObject {
         request.payLoad = contactUs
         
         helpTrans = TransactionStack(callBack: { (received) in
-            guard let contactUsRes = received?.first as? ContactUsResponse else{
+            guard let contactUsRes = received?.first as? ContactUs else{
                 onComplete(nil)
                 return
             }
             onComplete(contactUsRes)
         })
         
-        let process = TransactionProcess(request: request, parserType: ContactUsResponse.self)
+        let process = TransactionProcess(request: request, parserType: ContactUs.self)
         self.helpTrans?.push(process)
         self.helpTrans?.commit()
     }

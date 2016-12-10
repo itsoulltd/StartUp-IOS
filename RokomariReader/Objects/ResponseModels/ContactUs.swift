@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ContactUsResponse: Response{
+public class ContactUs: Response{
     var createdDate: NSString?
     var lastModifiedBy: NSString?
     var lastModifiedDate: NSString?

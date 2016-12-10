@@ -24,7 +24,7 @@ public enum ContactUsStatus: NSString{
  "subject": "Hi there!"
  }*/
 
-public class ContactUs: BaseForm{
+public class ContactUsForm: BaseForm{
     
     var status: NSString = ContactUsStatus.Responded.rawValue
     var phone: NSString?

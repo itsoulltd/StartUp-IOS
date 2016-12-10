@@ -9,7 +9,7 @@
 import UIKit
 import SeliseToolKit
 
-class UserProfile: DNObject {
+class UserProfile: BaseForm {
     var userName: NSString?
     var firstName: NSString?
     var lastName: NSString?

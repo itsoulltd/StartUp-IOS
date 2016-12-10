@@ -9,7 +9,7 @@
 import UIKit
 import SeliseToolKit
 
-class Rating: BaseForm {
+class RatingForm: BaseForm {
     var ebookId: NSNumber?
     var id: NSNumber?
     var value: NSNumber?

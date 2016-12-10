@@ -8,6 +8,6 @@
 
 import Foundation
 
-class RegistrationResponse: Response {
+class AfterRegistration: Response {
 
 }

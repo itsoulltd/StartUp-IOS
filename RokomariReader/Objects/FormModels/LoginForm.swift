@@ -9,7 +9,7 @@
 import UIKit
 import SeliseToolKit
 
-class Login: BaseForm {
+class LoginForm: BaseForm {
     var password: NSString?
     var username: NSString?
     var rememberMe: NSNumber = false

@@ -130,12 +130,49 @@
 		<string>Json</string>
 	</dict>
 	<key>GetEbookFile</key>
-	<dict/>
-	<key>routePath</key>
-	<string>ebook/api/ebook-files</string>
-	<key>httpMethod</key>
-	<string>Get</string>
-	<key>contentType</key>
-	<string>Json</string>
+	<dict>
+		<key>routePath</key>
+		<string>ebook/api/ebook-files</string>
+		<key>httpMethod</key>
+		<string>Get</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+	<key>GetRatings</key>
+	<dict>
+		<key>httpMethod</key>
+		<string>Get</string>
+		<key>contentType</key>
+		<string>Json</string>
+		<key>routePath</key>
+		<string>ebook/api/ratings</string>
+	</dict>
+	<key>SearchRatings</key>
+	<dict>
+		<key>routePath</key>
+		<string>ebook/api/_search/ratings</string>
+		<key>httpMethod</key>
+		<string>Get</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+	<key>GetReviews</key>
+	<dict>
+		<key>routePath</key>
+		<string>ebook/api/reviews</string>
+		<key>httpMethod</key>
+		<string>Get</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+	<key>SearchReviews</key>
+	<dict>
+		<key>routePath</key>
+		<string>ebook/api/_search/reviews</string>
+		<key>httpMethod</key>
+		<string>Get</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
 </dict>
 </plist>

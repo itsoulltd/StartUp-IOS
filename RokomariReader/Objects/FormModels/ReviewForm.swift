@@ -1,5 +1,5 @@
 //
-//  ReviewResponse.swift
+//  Review.swift
 //  RokomariReader
 //
 //  Created by Towhid Islam on 12/3/16.
@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import SeliseToolKit
 
-public class ReviewResponse: NameResource{
-    var title: NSString?
+public class ReviewForm: BaseForm{
     var detail: NSString?
-    weak var ebook: EBook?
-    var customer: NSString?
+    var ebookId: NSNumber?
+    var id: NSNumber?
+    var title: NSString?
 }

@@ -30,7 +30,7 @@ class DomainTestCases: NSObject {
     }
     
     func login(){
-        let model = Login()
+        let model = LoginForm()
         model.password = "admin"
         model.username = "admin"
         user.login(model) { (response) in
@@ -106,7 +106,7 @@ class DomainTestCases: NSObject {
     }
     
     func rokomaryHelp(){
-        let contactus = ContactUs(info: ["email": "m.towhid.islam@gmail.com",
+        let contactus = ContactUsForm(info: ["email": "m.towhid.islam@gmail.com",
             "message": "Need Some Assistance",
             "name": "Towhid",
             "phone": "01712645571",
