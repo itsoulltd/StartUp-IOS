@@ -102,6 +102,8 @@
 		26DBF0291DBE979200BB6030 /* RokomariReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBF0281DBE979200BB6030 /* RokomariReaderTests.swift */; };
 		26DBF0341DBE979200BB6030 /* RokomariReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBF0331DBE979200BB6030 /* RokomariReaderUITests.swift */; };
 		26DBF0491DBE98AF00BB6030 /* AssetsCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBF0481DBE98AF00BB6030 /* AssetsCatalog.swift */; };
+		CE4FDF061E059F3D0084A107 /* LoginTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4FDF051E059F3D0084A107 /* LoginTVC.swift */; };
+		CE4FDF071E059F3D0084A107 /* LoginTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4FDF051E059F3D0084A107 /* LoginTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -249,6 +251,7 @@
 		26DBF0331DBE979200BB6030 /* RokomariReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RokomariReaderUITests.swift; sourceTree = "<group>"; };
 		26DBF0351DBE979200BB6030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26DBF0481DBE98AF00BB6030 /* AssetsCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetsCatalog.swift; sourceTree = "<group>"; };
+		CE4FDF051E059F3D0084A107 /* LoginTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -569,6 +572,7 @@
 		26DBF0421DBE97BF00BB6030 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				CE4FDF031E053C970084A107 /* ViewControllers */,
 				260BB7181DC1A85D008472C2 /* AppConfig */,
 				260BB6DE1DC1A38E008472C2 /* DateFormatter */,
 				260BB6E11DC1A38E008472C2 /* FontController */,
@@ -634,6 +638,22 @@
 				260668A61DC5248C00C76045 /* DomainTestState.swift */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		CE4FDF031E053C970084A107 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE4FDF041E053C970084A107 /* LoginViewControllers */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CE4FDF041E053C970084A107 /* LoginViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE4FDF051E059F3D0084A107 /* LoginTVC.swift */,
+			);
+			path = LoginViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -861,6 +881,7 @@
 				26257C631DC666E1008D6C88 /* Notifications.swift in Sources */,
 				26257C691DC7A9FA008D6C88 /* TransactionStack.swift in Sources */,
 				264D2C7A1DF1D1B600617EEA /* Validation.swift in Sources */,
+				CE4FDF061E059F3D0084A107 /* LoginTVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,6 +890,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26DBF0291DBE979200BB6030 /* RokomariReaderTests.swift in Sources */,
+				CE4FDF071E059F3D0084A107 /* LoginTVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

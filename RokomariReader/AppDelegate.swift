@@ -28,8 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     @objc func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        AppStateMatchine.SharedMatchine().loadStates([DomainTestState()])
-        AppStateMatchine.SharedMatchine().move(to: DomainTestState.self)
+    //    AppStateMatchine.SharedMatchine().loadStates([DomainTestState()])
+    //    AppStateMatchine.SharedMatchine().move(to: DomainTestState.self)
         return true
     }
 
