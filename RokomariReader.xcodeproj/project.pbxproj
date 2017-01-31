@@ -102,6 +102,8 @@
 		26DBF0291DBE979200BB6030 /* RokomariReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBF0281DBE979200BB6030 /* RokomariReaderTests.swift */; };
 		26DBF0341DBE979200BB6030 /* RokomariReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBF0331DBE979200BB6030 /* RokomariReaderUITests.swift */; };
 		26DBF0491DBE98AF00BB6030 /* AssetsCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBF0481DBE98AF00BB6030 /* AssetsCatalog.swift */; };
+		CE2524941E403A6D00BA7273 /* RegistrationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2524931E403A6D00BA7273 /* RegistrationTVC.swift */; };
+		CE2524971E404F1A00BA7273 /* ForgetPasswordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2524961E404F1A00BA7273 /* ForgetPasswordTVC.swift */; };
 		CE4FDF061E059F3D0084A107 /* LoginTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4FDF051E059F3D0084A107 /* LoginTVC.swift */; };
 		CE4FDF071E059F3D0084A107 /* LoginTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4FDF051E059F3D0084A107 /* LoginTVC.swift */; };
 /* End PBXBuildFile section */
@@ -251,6 +253,8 @@
 		26DBF0331DBE979200BB6030 /* RokomariReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RokomariReaderUITests.swift; sourceTree = "<group>"; };
 		26DBF0351DBE979200BB6030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26DBF0481DBE98AF00BB6030 /* AssetsCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetsCatalog.swift; sourceTree = "<group>"; };
+		CE2524931E403A6D00BA7273 /* RegistrationTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationTVC.swift; sourceTree = "<group>"; };
+		CE2524961E404F1A00BA7273 /* ForgetPasswordTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordTVC.swift; sourceTree = "<group>"; };
 		CE4FDF051E059F3D0084A107 /* LoginTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -640,9 +644,28 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
+		CE2524921E403A0000BA7273 /* RegistrationViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE2524931E403A6D00BA7273 /* RegistrationTVC.swift */,
+			);
+			name = RegistrationViewControllers;
+			path = LoginViewControllers/RegistrationViewControllers;
+			sourceTree = "<group>";
+		};
+		CE2524951E404EFF00BA7273 /* ForgetPasswordViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE2524961E404F1A00BA7273 /* ForgetPasswordTVC.swift */,
+			);
+			path = ForgetPasswordViewControllers;
+			sourceTree = "<group>";
+		};
 		CE4FDF031E053C970084A107 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE2524951E404EFF00BA7273 /* ForgetPasswordViewControllers */,
+				CE2524921E403A0000BA7273 /* RegistrationViewControllers */,
 				CE4FDF041E053C970084A107 /* LoginViewControllers */,
 			);
 			path = ViewControllers;
@@ -845,6 +868,7 @@
 				260BB7001DC1A38E008472C2 /* OAuth.swift in Sources */,
 				26DBF0491DBE98AF00BB6030 /* AssetsCatalog.swift in Sources */,
 				26A945281DE9221100A3A38F /* BookLibrary.swift in Sources */,
+				CE2524941E403A6D00BA7273 /* RegistrationTVC.swift in Sources */,
 				264D2C881DF32A0400617EEA /* PublisherCatalog.swift in Sources */,
 				261D8AE41DBFDB34004E2577 /* RNEncryptor.m in Sources */,
 				260BB6D41DC12ECB008472C2 /* DateSort.swift in Sources */,
@@ -880,6 +904,7 @@
 				264D2C8A1DF333EB00617EEA /* Review.swift in Sources */,
 				26257C631DC666E1008D6C88 /* Notifications.swift in Sources */,
 				26257C691DC7A9FA008D6C88 /* TransactionStack.swift in Sources */,
+				CE2524971E404F1A00BA7273 /* ForgetPasswordTVC.swift in Sources */,
 				264D2C7A1DF1D1B600617EEA /* Validation.swift in Sources */,
 				CE4FDF061E059F3D0084A107 /* LoginTVC.swift in Sources */,
 			);
