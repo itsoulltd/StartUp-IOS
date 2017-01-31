@@ -26,13 +26,13 @@ class DomainTestCases: NSObject {
         //fetchAllPublisher()
         //fetchAllAuthors()
         //fetchAllCategory()
-        rokomaryHelp()
+        //rokomaryHelp()
     }
     
     func login(){
         let model = LoginForm()
-        model.password = "admin"
-        model.username = "admin"
+        model.password = "towhid"
+        model.username = "towhid"
         user.login(model) { (response) in
             print(response?.id_token!)
             self.monitor.signal()
