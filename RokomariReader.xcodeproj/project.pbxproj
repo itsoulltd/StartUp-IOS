@@ -106,6 +106,10 @@
 		CE2524971E404F1A00BA7273 /* ForgetPasswordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2524961E404F1A00BA7273 /* ForgetPasswordTVC.swift */; };
 		CE4FDF061E059F3D0084A107 /* LoginTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4FDF051E059F3D0084A107 /* LoginTVC.swift */; };
 		CE4FDF071E059F3D0084A107 /* LoginTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4FDF051E059F3D0084A107 /* LoginTVC.swift */; };
+		CE9D8EE21E43A16800FAE669 /* MegaGridTvc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D8EDE1E43A16800FAE669 /* MegaGridTvc.swift */; };
+		CE9D8EE31E43A16800FAE669 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D8EDF1E43A16800FAE669 /* CustomTableViewCell.swift */; };
+		CE9D8EE41E43A16800FAE669 /* AuthorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D8EE01E43A16800FAE669 /* AuthorTableViewCell.swift */; };
+		CE9D8EE51E43A16800FAE669 /* PopularCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D8EE11E43A16800FAE669 /* PopularCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -256,6 +260,10 @@
 		CE2524931E403A6D00BA7273 /* RegistrationTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationTVC.swift; sourceTree = "<group>"; };
 		CE2524961E404F1A00BA7273 /* ForgetPasswordTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordTVC.swift; sourceTree = "<group>"; };
 		CE4FDF051E059F3D0084A107 /* LoginTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTVC.swift; sourceTree = "<group>"; };
+		CE9D8EDE1E43A16800FAE669 /* MegaGridTvc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MegaGridTvc.swift; sourceTree = "<group>"; };
+		CE9D8EDF1E43A16800FAE669 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		CE9D8EE01E43A16800FAE669 /* AuthorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorTableViewCell.swift; sourceTree = "<group>"; };
+		CE9D8EE11E43A16800FAE669 /* PopularCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -664,6 +672,7 @@
 		CE4FDF031E053C970084A107 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE9D8EDD1E43A11D00FAE669 /* StoreViewControllers */,
 				CE2524951E404EFF00BA7273 /* ForgetPasswordViewControllers */,
 				CE2524921E403A0000BA7273 /* RegistrationViewControllers */,
 				CE4FDF041E053C970084A107 /* LoginViewControllers */,
@@ -677,6 +686,17 @@
 				CE4FDF051E059F3D0084A107 /* LoginTVC.swift */,
 			);
 			path = LoginViewControllers;
+			sourceTree = "<group>";
+		};
+		CE9D8EDD1E43A11D00FAE669 /* StoreViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE9D8EDE1E43A16800FAE669 /* MegaGridTvc.swift */,
+				CE9D8EDF1E43A16800FAE669 /* CustomTableViewCell.swift */,
+				CE9D8EE01E43A16800FAE669 /* AuthorTableViewCell.swift */,
+				CE9D8EE11E43A16800FAE669 /* PopularCollectionViewCell.swift */,
+			);
+			path = StoreViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -843,6 +863,7 @@
 				260668901DC47A8700C76045 /* GenericSynchronizer.swift in Sources */,
 				261D8AFC1DBFE4C5004E2577 /* UTI.swift in Sources */,
 				261D8AF91DBFE4C5004E2577 /* DNFile.swift in Sources */,
+				CE9D8EE41E43A16800FAE669 /* AuthorTableViewCell.swift in Sources */,
 				261D8B021DBFE511004E2577 /* RNCryptorHelper.m in Sources */,
 				260BB6D51DC12ECB008472C2 /* NumericSort.swift in Sources */,
 				2606688E1DC47A8700C76045 /* DNRequestFactory.swift in Sources */,
@@ -850,6 +871,7 @@
 				26257C671DC6E154008D6C88 /* AfterRegistration.swift in Sources */,
 				26257C611DC666CB008D6C88 /* StoryboardIDs.swift in Sources */,
 				264D2C7C1DF2677600617EEA /* Banners.swift in Sources */,
+				CE9D8EE51E43A16800FAE669 /* PopularCollectionViewCell.swift in Sources */,
 				260BB71C1DC1A883008472C2 /* AppStoryboard.swift in Sources */,
 				260BB70C1DC1A532008472C2 /* UserProfile.swift in Sources */,
 				26BC8CA31DFA69A300DE01BF /* Category.swift in Sources */,
@@ -895,6 +917,7 @@
 				261D8AF31DBFE236004E2577 /* XMLReader.m in Sources */,
 				261D8AEE1DBFE1E7004E2577 /* KeychainWrapper.m in Sources */,
 				2606688F1DC47A8700C76045 /* DNXRequest.swift in Sources */,
+				CE9D8EE21E43A16800FAE669 /* MegaGridTvc.swift in Sources */,
 				264D2C841DF3002A00617EEA /* ContactUsForm.swift in Sources */,
 				264D2C8E1DF33D6200617EEA /* RatingForm.swift in Sources */,
 				2606689F1DC5230400C76045 /* AppStateMatchine.swift in Sources */,
@@ -904,6 +927,7 @@
 				264D2C8A1DF333EB00617EEA /* Review.swift in Sources */,
 				26257C631DC666E1008D6C88 /* Notifications.swift in Sources */,
 				26257C691DC7A9FA008D6C88 /* TransactionStack.swift in Sources */,
+				CE9D8EE31E43A16800FAE669 /* CustomTableViewCell.swift in Sources */,
 				CE2524971E404F1A00BA7273 /* ForgetPasswordTVC.swift in Sources */,
 				264D2C7A1DF1D1B600617EEA /* Validation.swift in Sources */,
 				CE4FDF061E059F3D0084A107 /* LoginTVC.swift in Sources */,

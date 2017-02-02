@@ -50,7 +50,9 @@ class LoginTVC: UITableViewController {
     
     @IBAction func signInButtonAction(sender: UIButton) {
         print("sign in button tapped")
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let megaGridTvc = storyboard.instantiateViewControllerWithIdentifier("MegaGridTvc") as! MegaGridTvc
+        self.navigationController?.pushViewController(megaGridTvc, animated: true)
     }
     
     @IBAction func forgetPasswordButtonAction(sender: AnyObject) {
