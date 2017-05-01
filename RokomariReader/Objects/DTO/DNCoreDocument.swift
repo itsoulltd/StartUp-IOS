@@ -86,7 +86,7 @@ class DNCoreDocument: NSObject {
     private func saveURL(fileName: String) -> NSURL{
         let directories = NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask) as NSArray
         let finalUrl = (directories.lastObject as! NSURL).URLByAppendingPathComponent(fileName)
-        return finalUrl
+        return finalUrl!
     }
     
     private func savePath(fileName: String) -> String{

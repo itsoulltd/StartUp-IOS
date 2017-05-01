@@ -20,7 +20,7 @@ extension UIImage{
         drawInRect(CGRectMake(0, 0, size.width, size.height))
         let normalizedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return normalizedImage
+        return normalizedImage!
     }
     
 }
