@@ -10,19 +10,19 @@ import Foundation
 import GameplayKit
 
 @available(iOS 9.0, *)
-public class AppStateMatchine: NSObject{
+open class AppStateMatchine: NSObject{
     
-    private struct Shared {
+    fileprivate struct Shared {
         static let Matchine = AppStateMatchine()
     }
     
-    public class func SharedMatchine() -> AppStateMatchine{
+    open class func SharedMatchine() -> AppStateMatchine{
         return Shared.Matchine
     }
     
-    private var stateMatchine: GKStateMachine!
-    private var states: [GKState]!
-    private var currentStateIndex: Int = -1
+    fileprivate var stateMatchine: GKStateMachine!
+    fileprivate var states: [GKState]!
+    fileprivate var currentStateIndex: Int = -1
     
     override init() {
         super.init()
@@ -34,20 +34,20 @@ public class AppStateMatchine: NSObject{
         stateMatchine = GKStateMachine(states: states)
     }
     
-    func loadStates(states: [GKState]){
-        self.states.appendContentsOf(states)
+    func loadStates(_ states: [GKState]){
+        self.states.append(contentsOf: states)
         stateMatchine = GKStateMachine(states: self.states)
     }
     
     func move(to stateType: GKState.Type){
-        stateMatchine.enterState(stateType)
+        stateMatchine.enter(stateType)
     }
     
     func moveNext(){
         currentStateIndex += 1
         if currentStateIndex < states.count{
             let state = states[currentStateIndex]
-            stateMatchine.enterState(state.dynamicType)
+            stateMatchine.enter(type(of: state))
             if currentStateIndex == states.count{
                 currentStateIndex = -1
             }
@@ -58,7 +58,7 @@ public class AppStateMatchine: NSObject{
         currentStateIndex -= 1
         if currentStateIndex > -1{
             let state = states[currentStateIndex]
-            stateMatchine.enterState(state.dynamicType)
+            stateMatchine.enter(type(of: state))
         }
     }
     

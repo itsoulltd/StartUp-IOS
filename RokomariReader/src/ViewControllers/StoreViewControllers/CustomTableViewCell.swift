@@ -10,7 +10,7 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet fileprivate weak var collectionView: UICollectionView!
     
     var collectionViewOffset: CGFloat {
         get {
@@ -27,13 +27,13 @@ class CustomTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
-    func setCollectionViewDataSourceDelegate<D: protocol<UICollectionViewDataSource,UICollectionViewDelegate>> (dataSourceDelegate: D, forRow row: Int)
+    func setCollectionViewDataSourceDelegate<D: UICollectionViewDataSource & UICollectionViewDelegate> (_ dataSourceDelegate: D, forRow row: Int)
     {
         collectionView.dataSource = dataSourceDelegate
         collectionView.delegate = dataSourceDelegate
@@ -43,12 +43,12 @@ class CustomTableViewCell: UITableViewCell {
     
  ///////////////
     
-    @IBAction func authorSeeAllAction(sender: UIButton) {
+    @IBAction func authorSeeAllAction(_ sender: UIButton) {
         print("Display all list of authors")
         
     }
     
-    @IBAction func popularSeeAllAction(sender: UIButton) {
+    @IBAction func popularSeeAllAction(_ sender: UIButton) {
         print("Display all list of popular books")
         
     }

@@ -8,32 +8,32 @@
 
 import UIKit
 import Foundation
-import SeliseToolKit
+import CoreDataStack
 
 class BackgroundFetchMonitor: NSObject {
     
-    private var commendList: [FetchCommend] = [FetchCommend]()
+    fileprivate var commendList: [FetchCommend] = [FetchCommend]()
 
-    func configureFetchSchedule(application: UIApplication) -> Void{
+    func configureFetchSchedule(_ application: UIApplication) -> Void{
         application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
     }
     
-    func executeFetch(completionHandler: (UIBackgroundFetchResult) -> Void){
+    func executeFetch(_ completionHandler: (UIBackgroundFetchResult) -> Void){
         if commendList.isEmpty {
-            completionHandler(UIBackgroundFetchResult.NoData)
+            completionHandler(UIBackgroundFetchResult.noData)
             return
         }
         for commend in commendList {
-            commend.fetch()
+            let _ = commend.fetch()
         }
-        completionHandler(UIBackgroundFetchResult.NewData)
+        completionHandler(UIBackgroundFetchResult.newData)
     }
     
-    func addCommend(commend: FetchCommend){
+    func addCommend(_ commend: FetchCommend){
         commendList.append(commend)
     }
     
-    func removeCommend(commend: FetchCommend){
+    func removeCommend(_ commend: FetchCommend){
         //TODO:
     }
     

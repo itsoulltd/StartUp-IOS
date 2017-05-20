@@ -7,18 +7,20 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
+import CoreNetworkStack
+import WebServiceKit
 
-public class BookLibrary: DNObject {
+open class BookLibrary: NGObject {
     
     var searchResult: [SearchQuery:[Book]] = [SearchQuery:[Book]]()
     var fetchResult: [Query:[Book]] = [Query:[Book]]()
     
     var categoryResults: [Query: [Category]] = [Query: [Category]]()
     
-    private var searchBooks: TransactionStack?
-    public func search(query: SearchQuery, onCompletion: (([Book]) -> Void)) -> Void {
-        guard let request = RequestFactory.defaultFactory().request(forKey: "SearchEBooks") else{
+    fileprivate var searchBooks: TransactionStack?
+    open func search(_ query: SearchQuery, onCompletion: @escaping (([Book]) -> Void)) -> Void {
+        guard let request = ServiceBroker.defaultFactory().request(forKey: "SearchEBooks") else{
             fatalError("SearchEBooks not available")
         }
         
@@ -33,14 +35,14 @@ public class BookLibrary: DNObject {
         
         request.addAuth()
         request.payLoad = query
-        let process = TransactionProcess(request: request, parserType: Book.self)
+        let process = Transaction(request: request, parserType: Book.self)
         searchBooks?.push(process)
         searchBooks?.commit()
     }
     
-    private var fetchBooks: TransactionStack?
-    public func fetch(query: Query, onCompletion: (([Book]) -> Void)) -> Void {
-        guard let request = RequestFactory.defaultFactory().request(forKey: "GetAllEBooks") else{
+    fileprivate var fetchBooks: TransactionStack?
+    open func fetch(_ query: Query, onCompletion: @escaping (([Book]) -> Void)) -> Void {
+        guard let request = ServiceBroker.defaultFactory().request(forKey: "GetAllEBooks") else{
             fatalError("GetAllEBooks not available")
         }
         
@@ -55,18 +57,18 @@ public class BookLibrary: DNObject {
         
         request.addAuth()
         request.payLoad = query
-        let process = TransactionProcess(request: request, parserType: Book.self)
+        let process = Transaction(request: request, parserType: Book.self)
         fetchBooks?.push(process)
         fetchBooks?.commit()
     }
     
-    private var categoryTransac: TransactionStack?
-    public func categories(query: Query, onCompletion: (([Category]) -> Void)) -> Void{
-        var request: DNRequest?
+    fileprivate var categoryTransac: TransactionStack?
+    open func categories(_ query: Query, onCompletion: @escaping (([Category]) -> Void)) -> Void{
+        var request: HttpWebRequest?
         if query is SearchQuery {
-            request = RequestFactory.defaultFactory().request(forKey: "SearchCategories")
+            request = ServiceBroker.defaultFactory().request(forKey: "SearchCategories")
         }else{
-            request = RequestFactory.defaultFactory().request(forKey: "GetAllCategories")
+            request = ServiceBroker.defaultFactory().request(forKey: "GetAllCategories")
         }
         
         guard let req = request else{
@@ -84,19 +86,19 @@ public class BookLibrary: DNObject {
         
         req.addAuth()
         req.payLoad = query
-        let process = TransactionProcess(request: req, parserType: Category.self)
+        let process = Transaction(request: req, parserType: Category.self)
         categoryTransac?.push(process)
         categoryTransac?.commit()
     }
     
-    private var bookTrans: TransactionStack?
-    public func ebook(by id: NSNumber, onCompletion: ((Book?) -> Void)) -> Void{
-        guard let request = RequestFactory.defaultFactory().request(forKey: "GetEBook") else{
+    fileprivate var bookTrans: TransactionStack?
+    open func ebook(by id: NSNumber, onCompletion: @escaping ((Book?) -> Void)) -> Void{
+        guard let request = ServiceBroker.defaultFactory().request(forKey: "GetEBook") else{
             fatalError("GetEBook not found")
         }
         
         request.addAuth()
-        request.payLoad = DNObject(info: ["id":id.longValue])
+        request.payLoad = NGObject(info: ["id":id.int64Value])
         
         bookTrans = TransactionStack(callBack: { (received) in
             if let vm = received?.first as? Book{
@@ -104,7 +106,7 @@ public class BookLibrary: DNObject {
             }
         })
         
-        let process = TransactionProcess(request: request, parserType: Book.self)
+        let process = Transaction(request: request, parserType: Book.self)
         self.bookTrans?.push(process)
         self.bookTrans?.commit()
     }

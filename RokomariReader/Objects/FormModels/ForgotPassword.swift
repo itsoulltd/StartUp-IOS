@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
 
 class ForgotPassword: BaseForm {
 

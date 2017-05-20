@@ -9,41 +9,41 @@
 import Foundation
 
 public protocol Validation: NSObjectProtocol{
-    func validate(value: AnyObject) -> Bool
+    func validate(_ value: AnyObject) -> Bool
 }
 
 public enum RelationalOperator: Int {
     
-    case Equal
-    case Min
-    case MinOrEqual
-    case Max
-    case MaxOrEqual
+    case equal
+    case min
+    case minOrEqual
+    case max
+    case maxOrEqual
 }
 
 /*!
 * LogicalExpression is abstruct base class, Don't instantiate this Class
 */
 
-public class Equal: NSObject, Validation {
+open class Equal: NSObject, Validation {
     
-    private let baseValue: AnyObject!
+    fileprivate let baseValue: AnyObject!
     
     public init(baseValue: AnyObject){
         self.baseValue = baseValue
     }
     
-    public func validate(value: AnyObject) -> Bool {
+    open func validate(_ value: AnyObject) -> Bool {
         let result = value.hashValue == baseValue.hashValue
         return result
     }
 }
 
-public class EqualDate: Equal {
+open class EqualDate: Equal {
     
-    override public func validate(value: AnyObject) -> Bool {
-        if (baseValue is NSDate && value is NSDate){
-            return (value as! NSDate).compare((baseValue as! NSDate)) == NSComparisonResult.OrderedSame
+    override open func validate(_ value: AnyObject) -> Bool {
+        if (baseValue is NSDate && value is Date){
+            return (value as! Date).compare((baseValue as! Date)) == ComparisonResult.orderedSame
         }
         else{
             return super.validate(value)
@@ -51,19 +51,19 @@ public class EqualDate: Equal {
     }
 }
 
-public class Greater: Equal {
+open class Greater: Equal {
     
-    override public func validate(value: AnyObject) -> Bool {
+    override open func validate(_ value: AnyObject) -> Bool {
         let result = value.hashValue > baseValue.hashValue
         return result
     }
 }
 
-public class GreaterDate: Greater {
+open class GreaterDate: Greater {
     
-    override public func validate(value: AnyObject) -> Bool {
-        if (baseValue is NSDate && value is NSDate){
-            return (value as! NSDate).compare((baseValue as! NSDate)) == NSComparisonResult.OrderedDescending
+    override open func validate(_ value: AnyObject) -> Bool {
+        if (baseValue is NSDate && value is Date){
+            return (value as! Date).compare((baseValue as! Date)) == ComparisonResult.orderedDescending
         }
         else{
             return super.validate(value)
@@ -71,19 +71,19 @@ public class GreaterDate: Greater {
     }
 }
 
-public class Smaller: Greater {
+open class Smaller: Greater {
     
-    override public func validate(value: AnyObject) -> Bool {
+    override open func validate(_ value: AnyObject) -> Bool {
         let result =  value.hashValue < baseValue.hashValue
         return result
     }
 }
 
-public class SmallerDate: Smaller {
+open class SmallerDate: Smaller {
     
-    override public func validate(value: AnyObject) -> Bool {
-        if (baseValue is NSDate && value is NSDate){
-            return (value as! NSDate).compare((baseValue as! NSDate)) == NSComparisonResult.OrderedAscending
+    override open func validate(_ value: AnyObject) -> Bool {
+        if (baseValue is NSDate && value is Date){
+            return (value as! Date).compare((baseValue as! Date)) == ComparisonResult.orderedAscending
         }
         else{
             return super.validate(value)
@@ -91,7 +91,7 @@ public class SmallerDate: Smaller {
     }
 }
 
-public class Logical: NSObject, Validation {
+open class Logical: NSObject, Validation {
     
     var left: Validation
     var right: Validation
@@ -101,51 +101,51 @@ public class Logical: NSObject, Validation {
         self.right = right
     }
     
-    public func validate(value: AnyObject) -> Bool {
+    open func validate(_ value: AnyObject) -> Bool {
         //
         fatalError("You have to subclass LogicalExpresion")
     }
 }
 
-public class And: Logical {
+open class And: Logical {
     
-    override public func validate(value: AnyObject) -> Bool {
+    override open func validate(_ value: AnyObject) -> Bool {
         let result = left.validate(value) && right.validate(value)
         return result
     }
 }
 
-public class Or: Logical {
+open class Or: Logical {
     
-    override public func validate(value: AnyObject) -> Bool {
+    override open func validate(_ value: AnyObject) -> Bool {
         let result = left.validate(value) || right.validate(value)
         return result
     }
 }
 
-public class Xor: Logical {
+open class Xor: Logical {
     
-    override public func validate(value: AnyObject) -> Bool {
+    override open func validate(_ value: AnyObject) -> Bool {
         let result = left.validate(value) != right.validate(value)
         return result
     }
 }
 
-public class Nor: Logical {
+open class Nor: Logical {
     
-    override public func validate(value: AnyObject) -> Bool {
+    override open func validate(_ value: AnyObject) -> Bool {
         let result = !(left.validate(value) != right.validate(value))
         return result
     }
 }
 
-public class Length: NSObject, Validation {
+open class Length: NSObject, Validation {
     
-    private var validLength: Int
+    fileprivate var validLength: Int
     var targetLength: Int {
         return validLength
     }
-    private var relation: RelationalOperator
+    fileprivate var relation: RelationalOperator
     var relationOperator: RelationalOperator{
         return relation
     }
@@ -155,7 +155,7 @@ public class Length: NSObject, Validation {
         self.relation = relation
     }
     
-    public func validate(value: AnyObject) -> Bool {
+    open func validate(_ value: AnyObject) -> Bool {
         
         if value is NSNumber{
             let inValue = value as! Int
@@ -166,21 +166,21 @@ public class Length: NSObject, Validation {
         }
     }
     
-    private func validationCheck(inValue: Int) -> Bool{
+    fileprivate func validationCheck(_ inValue: Int) -> Bool{
         //
-        if (relation ==  RelationalOperator.Min && inValue >= validLength){
+        if (relation ==  RelationalOperator.min && inValue >= validLength){
             return false
         }
-        else if (relation ==  RelationalOperator.MinOrEqual && inValue > validLength){
+        else if (relation ==  RelationalOperator.minOrEqual && inValue > validLength){
             return false
         }
-        else if (relation ==  RelationalOperator.Max && inValue <= validLength){
+        else if (relation ==  RelationalOperator.max && inValue <= validLength){
             return false
         }
-        else if (relation ==  RelationalOperator.MaxOrEqual && inValue < validLength){
+        else if (relation ==  RelationalOperator.maxOrEqual && inValue < validLength){
             return false
         }
-        else if (relation ==  RelationalOperator.Equal && inValue != validLength){
+        else if (relation ==  RelationalOperator.equal && inValue != validLength){
             return false
         }
         else{
@@ -190,14 +190,14 @@ public class Length: NSObject, Validation {
     
 }
 
-public class RegX: NSObject, Validation {
+open class RegX: NSObject, Validation {
     
-    private var regxString: String
+    fileprivate var regxString: String
     
     var regx: NSRegularExpression? {
         var regEx: NSRegularExpression?
         do {
-            regEx = try NSRegularExpression(pattern: regxString, options: NSRegularExpressionOptions.CaseInsensitive)
+            regEx = try NSRegularExpression(pattern: regxString, options: NSRegularExpression.Options.caseInsensitive)
         } catch let error as NSError {
             regEx = nil
             print(error.debugDescription)
@@ -209,14 +209,14 @@ public class RegX: NSObject, Validation {
         regxString = pattern
     }
     
-    public func validate(value: AnyObject) -> Bool {
+    open func validate(_ value: AnyObject) -> Bool {
         
         if value is NSString{
             let input = value as! String
             guard let regx = self.regx else{
                 return false
             }
-            let matches = regx.numberOfMatchesInString(input, options: NSMatchingOptions.ReportCompletion, range: NSMakeRange(0, input.characters.count))
+            let matches = regx.numberOfMatches(in: input, options: NSRegularExpression.MatchingOptions.reportCompletion, range: NSMakeRange(0, input.characters.count))
             return matches == 1
         }
         else{

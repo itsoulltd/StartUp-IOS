@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class EBookResource: NameResource{
+open class EBookResource: NameResource{
     var imageUrl: NSString?
     var nameBangla: NSString?
     var nameEnglish: NSString?

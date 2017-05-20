@@ -7,17 +7,20 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
+import FileSystemSDK
+import CoreNetworkStack
+import WebServiceKit
 
 public enum FileSourceType: NSString{
     case ePub = "ePub"
-    case PDF = "pdf"
-    case JPG = "jpg"
-    case PNG = "png"
-    case GIF = "gif"
+    case pdf = "pdf"
+    case jpg = "jpg"
+    case png = "png"
+    case gif = "gif"
 }
 
-public class FileSource: NameResource{
+open class FileSource: NameResource{
     weak var ebook: Book?
     var file: NSString?
     var fileType: FileSourceType?
@@ -26,7 +29,7 @@ public class FileSource: NameResource{
     var version: NSString?
 }
 
-public class Book: Response {
+open class Book: Response {
     var authors: [Author] = [Author]()
     var categories: [Category] = [Category]()
     var detail_bangla: NSString?
@@ -42,17 +45,17 @@ public class Book: Response {
     var price_sales: NSNumber?
     var publisher: Publisher?
     var rokomari_id: NSNumber?
-    var status: ResourceStatus = .Unknown
+    var status: ResourceStatus = .unknown
     
     var avarageRating: NSNumber?
     var reviews: [Review] = [Review]()
     var rating: [Rating] = [Rating]()
     
-    private var savedFolder = DNFolder(name: "Saved", searchDirectoryType: NSSearchPathDirectory.DocumentDirectory)
-    var file: DNFile?
+    fileprivate var savedFolder = Folder(name: "Saved", searchDirectoryType: FileManager.SearchPathDirectory.documentDirectory)
+    var file: File?
     var fileSource: FileSource?
     
-    public override func updateValue(value: AnyObject!, forKey key: String!) {
+    open override func updateValue(_ value: Any!, forKey key: String!) {
         if key == "status" {
             if let val = value as? NSString  {
                 self.status = ResourceStatus(rawValue: val)!
@@ -62,9 +65,9 @@ public class Book: Response {
         }
     }
     
-    private var fileTransaction: TransactionStack?
-    public func fetchFileInfo(onCompletion: ((FileSource?) -> Void)) -> Void{
-        guard let request = RequestFactory.defaultFactory().request(forKey: "GetEbookFile") else{
+    fileprivate var fileTransaction: TransactionStack?
+    open func fetchFileInfo(_ onCompletion: @escaping ((FileSource?) -> Void)) -> Void{
+        guard let request = ServiceBroker.defaultFactory().request(forKey: "GetEbookFile") else{
             fatalError("GetEbookFile not found")
         }
         
@@ -77,22 +80,22 @@ public class Book: Response {
             onCompletion(file)
         })
         
-        let process = TransactionProcess(request: request, parserType: FileSource.self)
+        let process = Transaction(request: request, parserType: FileSource.self)
         self.fileTransaction?.push(process)
         self.fileTransaction?.commit()
         
     }
     
-    private var ratingTransactions: TransactionStack?
-    public func fetchRatings(query: Query, onCompletion: (([Rating]?) -> Void)) -> Void{
+    fileprivate var ratingTransactions: TransactionStack?
+    open func fetchRatings(_ query: Query, onCompletion: @escaping (([Rating]?) -> Void)) -> Void{
         
-        var req: DNRequest?
+        var req: HttpWebRequest?
         if query is SearchQuery {
-            req = RequestFactory.defaultFactory().request(forKey: "SearchRatings")
+            req = ServiceBroker.defaultFactory().request(forKey: "SearchRatings")
         }else{
-            req = RequestFactory.defaultFactory().request(forKey: "GetRatings")
+            req = ServiceBroker.defaultFactory().request(forKey: "GetRatings")
             if let idx = self.id as? NSNumber{
-                query.updateValue(idx.longValue, forKey: "ebook_id")
+                query.updateValue(idx.intValue, forKey: "ebook_id")
             }
         }
         
@@ -109,21 +112,21 @@ public class Book: Response {
             onCompletion(items)
         })
         
-        let process = TransactionProcess(request: request, parserType: Rating.self)
+        let process = Transaction(request: request, parserType: Rating.self)
         self.ratingTransactions?.push(process)
         self.ratingTransactions?.commit()
     }
     
-    private var reviewTransactions: TransactionStack?
-    public func fetchReviews(query: Query, onCompletion: (([Review]?) -> Void)) -> Void{
+    fileprivate var reviewTransactions: TransactionStack?
+    open func fetchReviews(_ query: Query, onCompletion: @escaping (([Review]?) -> Void)) -> Void{
         
-        var req: DNRequest?
+        var req: HttpWebRequest?
         if query is SearchQuery {
-            req = RequestFactory.defaultFactory().request(forKey: "SearchReviews")
+            req = ServiceBroker.defaultFactory().request(forKey: "SearchReviews")
         }else{
-            req = RequestFactory.defaultFactory().request(forKey: "GetReviews")
+            req = ServiceBroker.defaultFactory().request(forKey: "GetReviews")
             if let idx = self.id as? NSNumber{
-                query.updateValue(idx.longValue, forKey: "ebook_id")
+                query.updateValue(idx.intValue, forKey: "ebook_id")
             }
         }
         
@@ -140,7 +143,7 @@ public class Book: Response {
             onCompletion(items)
         })
         
-        let process = TransactionProcess(request: request, parserType: Review.self)
+        let process = Transaction(request: request, parserType: Review.self)
         self.reviewTransactions?.push(process)
         self.reviewTransactions?.commit()
     }

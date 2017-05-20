@@ -11,25 +11,25 @@ import Foundation
 public protocol ResolutionStrategyProtocol : NSObjectProtocol{
     var factTable: NSMutableDictionary {get} //Is our Working Memory
     var messageBox: NSMutableDictionary {get} //Simple Log keeping.
-    func assert(message message: String?, forFact fact: String)
-    func execute(system: DNRuleSystem, rules: [DNRuleProtocol]) -> Void
+    func assert(message: String?, forFact fact: String)
+    func execute(_ system: DNRuleSystem, rules: [DNRuleProtocol]) -> Void
     func reset() -> Void
 }
 
-public class ForwardChaining: NSObject, ResolutionStrategyProtocol{
+open class ForwardChaining: NSObject, ResolutionStrategyProtocol{
     
-    private var _factTable: NSMutableDictionary = NSMutableDictionary(capacity: 7)
-    private var _factMessageTable: NSMutableDictionary = NSMutableDictionary(capacity: 7)
+    fileprivate var _factTable: NSMutableDictionary = NSMutableDictionary(capacity: 7)
+    fileprivate var _factMessageTable: NSMutableDictionary = NSMutableDictionary(capacity: 7)
     
-    public var factTable: NSMutableDictionary {
+    open var factTable: NSMutableDictionary {
         return _factTable
     }
     
-    public var messageBox: NSMutableDictionary{
+    open var messageBox: NSMutableDictionary{
         return _factMessageTable
     }
     
-    public func execute(system: DNRuleSystem, rules: [DNRuleProtocol]) {
+    open func execute(_ system: DNRuleSystem, rules: [DNRuleProtocol]) {
         //evaluate
         let total = rules.count
         var confirmCount = 0
@@ -40,46 +40,46 @@ public class ForwardChaining: NSObject, ResolutionStrategyProtocol{
             }
         }
         let fraction = Double(confirmCount) / Double(total)
-        system.assert(fact: DNRuleSystem.DNRuleSystemKeys.Progress, grade: fraction)
+        system.assert(fact: DNRuleSystem.DNRuleSystemKeys.Progress, grade: NSNumber(value: fraction))
     }
     
-    public func reset() {
+    open func reset() {
         factTable.removeAllObjects()
         messageBox.removeAllObjects()
     }
     
-    public func assert(message message: String?, forFact fact: String) {
+    open func assert(message: String?, forFact fact: String) {
         if let msg = message{
-            var messages = messageBox.objectForKey(fact) as? [String]
+            var messages = messageBox.object(forKey: fact) as? [String]
             if messages == nil {
-                messageBox.setObject([msg], forKey: fact)
+                messageBox.setObject([msg], forKey: fact as NSCopying)
             }else{
-                messages?.insert(msg, atIndex: 0) //Latest on top.
-                messageBox.setObject(messages!, forKey: fact)
+                messages?.insert(msg, at: 0) //Latest on top.
+                messageBox.setObject(messages!, forKey: fact as NSCopying)
             }
         }
     }
     
 }
 
-public class BackwardChaining: ForwardChaining{
+open class BackwardChaining: ForwardChaining{
     
-    public override func execute(system: DNRuleSystem, rules: [DNRuleProtocol]) {
+    open override func execute(_ system: DNRuleSystem, rules: [DNRuleProtocol]) {
         //TODO: implement BackwardChaining
         super.execute(system, rules: rules)
     }
     
 }
 
-public class Progressive: ForwardChaining{
+open class Progressive: ForwardChaining{
     
-    private var confirmRules: Set<DNRule> = Set<DNRule>()
+    fileprivate var confirmRules: Set<DNRule> = Set<DNRule>()
     
     func isOrderd() -> Bool{
         return false
     }
     
-    public override func execute(system: DNRuleSystem, rules: [DNRuleProtocol]) {
+    open override func execute(_ system: DNRuleSystem, rules: [DNRuleProtocol]) {
         //evaluate
         for rule in rules{
             if confirmRules.contains(rule as! DNRule) == false{
@@ -96,19 +96,19 @@ public class Progressive: ForwardChaining{
         let total = rules.count
         let confirmCount = confirmRules.count
         let fraction = Double(confirmCount) / Double(total)
-        system.assert(fact: DNRuleSystem.DNRuleSystemKeys.Progress, grade: fraction)
+        system.assert(fact: DNRuleSystem.DNRuleSystemKeys.Progress, grade: NSNumber(value: fraction))
     }
     
-    public override func reset() {
+    open override func reset() {
         super.reset()
         if confirmRules.isEmpty == false{
-            confirmRules.removeAll(keepCapacity: true)
+            confirmRules.removeAll(keepingCapacity: true)
         }
     }
     
 }
 
-public class OrderedProgressive: Progressive{
+open class OrderedProgressive: Progressive{
     
     override func isOrderd() -> Bool {
         return true

@@ -7,17 +7,19 @@
 //
 
 import Foundation
-import SeliseToolKit
+import CoreDataStack
+import CoreNetworkStack
+import WebServiceKit
 
-public class Banners: DNObject{
+open class Banners: NGObject{
     
-    private var transaction: TransactionStack?
-    func fetch(query: Query, onCompletion:(([Banner]) -> Void)) -> Void{
-        var request: DNRequest?
+    fileprivate var transaction: TransactionStack?
+    func fetch(_ query: Query, onCompletion:@escaping (([Banner]) -> Void)) -> Void{
+        var request: HttpWebRequest?
         if query is SearchQuery {
-            request = RequestFactory.defaultFactory().request(forKey: "")
+            request = ServiceBroker.defaultFactory().request(forKey: "")
         }else{
-            request = RequestFactory.defaultFactory().request(forKey: "")
+            request = ServiceBroker.defaultFactory().request(forKey: "")
         }
         
         guard let req = request else{
@@ -34,14 +36,14 @@ public class Banners: DNObject{
         
         req.addAuth()
         req.payLoad = query
-        let process = TransactionProcess(request: req, parserType: Banner.self)
+        let process = Transaction(request: req, parserType: Banner.self)
         transaction?.push(process)
         transaction?.commit()
     }
     
 }
 
-public class Banner: NameResource{
+open class Banner: NameResource{
     var image: NSString?
     var link: NSString?
     var name: NSString?
@@ -50,7 +52,7 @@ public class Banner: NameResource{
     
 }
 
-public class BannerQuery: Query{
+open class BannerQuery: Query{
     var type: NSString?
     var status: NameResource?
 }

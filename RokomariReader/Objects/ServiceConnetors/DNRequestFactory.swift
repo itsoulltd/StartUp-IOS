@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import SeliseToolKit
+import CoreDataStack
 
-public class RequestMetadata: DNObject{
+public class RequestMetadata: NGObject{
     
     var httpMethod: HTTP_METHOD!
     var contentType: Application_ContentType!

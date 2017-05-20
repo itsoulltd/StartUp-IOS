@@ -29,14 +29,14 @@ class LoginTVC: UITableViewController {
     
     func setUpUI()
     {
-        self.tableView.separatorColor = UIColor.clearColor()
+        self.tableView.separatorColor = UIColor.clear
         
         self.emailContainerView.layer.cornerRadius = 2.0
-        self.emailContainerView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.emailContainerView.layer.borderColor = UIColor.lightGray.cgColor
         self.emailContainerView.layer.borderWidth = 1.0
         
         self.passwordContainerView.layer.cornerRadius = 2.0
-        self.passwordContainerView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.passwordContainerView.layer.borderColor = UIColor.lightGray.cgColor
         self.passwordContainerView.layer.borderWidth = 1.0
         
         self.signInButton.layer.cornerRadius = 2.0
@@ -48,35 +48,35 @@ class LoginTVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func signInButtonAction(sender: UIButton) {
+    @IBAction func signInButtonAction(_ sender: UIButton) {
         print("sign in button tapped")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let megaGridTvc = storyboard.instantiateViewControllerWithIdentifier("MegaGridTvc") as! MegaGridTvc
+        let megaGridTvc = storyboard.instantiateViewController(withIdentifier: "MegaGridTvc") as! MegaGridTvc
         self.navigationController?.pushViewController(megaGridTvc, animated: true)
     }
     
-    @IBAction func forgetPasswordButtonAction(sender: AnyObject) {
+    @IBAction func forgetPasswordButtonAction(_ sender: AnyObject) {
         print("forget password button tapped")
         //ForgetPasswordTVC
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let forgetpasswordTvc = storyboard.instantiateViewControllerWithIdentifier("ForgetPasswordTVC") as! ForgetPasswordTVC
+        let forgetpasswordTvc = storyboard.instantiateViewController(withIdentifier: "ForgetPasswordTVC") as! ForgetPasswordTVC
         self.navigationController?.pushViewController(forgetpasswordTvc, animated: true)
     }
     
-    @IBAction func facebookButtonAction(sender: AnyObject) {
+    @IBAction func facebookButtonAction(_ sender: AnyObject) {
         print("facebook button tapped")
         
     }
     
-    @IBAction func gmailButtonAction(sender: AnyObject) {
+    @IBAction func gmailButtonAction(_ sender: AnyObject) {
         print("gmial button tapped")
         
     }
 
-    @IBAction func signUpButtonAction(sender: AnyObject) {
+    @IBAction func signUpButtonAction(_ sender: AnyObject) {
         print("signup button tapped")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let registrationTvc = storyboard.instantiateViewControllerWithIdentifier("RegistrationTVC") as! RegistrationTVC
+        let registrationTvc = storyboard.instantiateViewController(withIdentifier: "RegistrationTVC") as! RegistrationTVC
         self.navigationController?.pushViewController(registrationTvc, animated: true)
     }
 //

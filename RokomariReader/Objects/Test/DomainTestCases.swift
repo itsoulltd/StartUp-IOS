@@ -7,7 +7,9 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
+import CoreNetworkStack
+import WebServiceKit
 
 class DomainTestCases: NSObject {
 
@@ -34,7 +36,7 @@ class DomainTestCases: NSObject {
         model.password = "towhid"
         model.username = "towhid"
         user.login(model) { (response) in
-            print(response?.id_token!)
+            print(response?.id_token! as Any)
             self.monitor.signal()
         }
         monitor.wait()
@@ -106,14 +108,14 @@ class DomainTestCases: NSObject {
     }
     
     func rokomaryHelp(){
-        let contactus = ContactUsForm(info: ["email": "m.towhid.islam@gmail.com",
-            "message": "Need Some Assistance",
-            "name": "Towhid",
-            "phone": "01712645571",
+        let contactus = ContactUsForm(info: ["email" as NSObject: "m.towhid.islam@gmail.com" as AnyObject,
+            "message" as NSObject: "Need Some Assistance" as AnyObject,
+            "name" as NSObject: "Towhid" as AnyObject,
+            "phone" as NSObject: "01712645571",
             "status": "responded",
             "subject": "Hi there!"])
         
-        self.user.rokomaryHelp(contactus) { (res) in
+        self.user.rokomaryHelp(contactus!) { (res) in
             if let r = res{
                 print(r.serializeIntoInfo())
             }

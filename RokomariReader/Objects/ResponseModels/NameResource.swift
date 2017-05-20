@@ -7,23 +7,24 @@
 //
 
 import Foundation
-import SeliseToolKit
+import CoreDataStack
+import WebServiceKit
 
 public enum ResourceStatus: NSString{
-    case Active = "active"
-    case Inactive = "inactive"
-    case Available = "available"
-    case Unavailable = "unavailable"
-    case Unknown = "unknown"
+    case active = "active"
+    case inactive = "inactive"
+    case available = "available"
+    case unavailable = "unavailable"
+    case unknown = "unknown"
 }
 
-public class NameResource: Response {
+open class NameResource: Response {
     var createdDate: NSString?
     var lastModifiedBy: NSString?
     var lastModifiedDate: NSString?
-    var status: ResourceStatus = .Inactive
+    var status: ResourceStatus = .inactive
     
-    public override func updateValue(value: AnyObject!, forKey key: String!) {
+    open override func updateValue(_ value: Any!, forKey key: String!) {
         if key == "status" {
             if let val = value as? NSString  {
                 self.status = ResourceStatus(rawValue: val)!

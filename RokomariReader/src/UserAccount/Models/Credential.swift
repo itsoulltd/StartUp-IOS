@@ -7,17 +7,17 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
 
-class Credential: DNObject {
+class Credential: NGObject {
     
-    let emailIdentifier: String = "\(NSBundle.mainBundle().bundleIdentifier!).user_email"
-    let passwordIdentifier: String = "\(NSBundle.mainBundle().bundleIdentifier!).user_password"
-    let rememberIdentifier: String = "\(NSBundle.mainBundle().bundleIdentifier!).user_remember"
+    let emailIdentifier: String = "\(Bundle.main.bundleIdentifier!).user_email"
+    let passwordIdentifier: String = "\(Bundle.main.bundleIdentifier!).user_password"
+    let rememberIdentifier: String = "\(Bundle.main.bundleIdentifier!).user_remember"
     
     var isRemembered: Bool{
         get{
-            let valueInString = KeychainWrapper.keychainStringFromMatchingIdentifier(rememberIdentifier)
+            let valueInString = KeychainWrapper.keychainStringFrom(matchingIdentifier: rememberIdentifier)
             return (valueInString == nil) ? false : valueInString == "true"
         }
         set{
@@ -28,7 +28,7 @@ class Credential: DNObject {
    
     var email: String?{
         get{
-            return KeychainWrapper.keychainStringFromMatchingIdentifier(emailIdentifier)
+            return KeychainWrapper.keychainStringFrom(matchingIdentifier: emailIdentifier)
         }
         set{
             KeychainWrapper.createKeychainValue(newValue, forIdentifier: emailIdentifier)
@@ -37,14 +37,14 @@ class Credential: DNObject {
     
     var password: String?{
         get{
-            return KeychainWrapper.keychainStringFromMatchingIdentifier(passwordIdentifier)
+            return KeychainWrapper.keychainStringFrom(matchingIdentifier: passwordIdentifier)
         }
         set{
             KeychainWrapper.createKeychainValue(newValue, forIdentifier: passwordIdentifier)
         }
     }
     
-    override func updateValue(value: AnyObject!, forKey key: String!) {
+    override func updateValue(_ value: Any!, forKey key: String!) {
         if key == "email" {
             email = value as? String
         }
@@ -56,19 +56,19 @@ class Credential: DNObject {
         }
     }
     
-    func removeCredential(passwordOnly:Bool){
+    func removeCredential(_ passwordOnly:Bool){
         //if not true then remove only password
         //else remove both
         if passwordOnly != true{
-            if let _ = KeychainWrapper.keychainStringFromMatchingIdentifier(emailIdentifier){
-                KeychainWrapper.deleteItemFromKeychainWithIdentifier(emailIdentifier)
+            if let _ = KeychainWrapper.keychainStringFrom(matchingIdentifier: emailIdentifier){
+                KeychainWrapper.deleteItemFromKeychain(withIdentifier: emailIdentifier)
             }
         }
-        if let _ = KeychainWrapper.keychainStringFromMatchingIdentifier(passwordIdentifier){
-            KeychainWrapper.deleteItemFromKeychainWithIdentifier(passwordIdentifier)
+        if let _ = KeychainWrapper.keychainStringFrom(matchingIdentifier: passwordIdentifier){
+            KeychainWrapper.deleteItemFromKeychain(withIdentifier: passwordIdentifier)
         }
-        if let _ = KeychainWrapper.keychainStringFromMatchingIdentifier(rememberIdentifier){
-            KeychainWrapper.deleteItemFromKeychainWithIdentifier(rememberIdentifier)
+        if let _ = KeychainWrapper.keychainStringFrom(matchingIdentifier: rememberIdentifier){
+            KeychainWrapper.deleteItemFromKeychain(withIdentifier: rememberIdentifier)
         }
     }
 }

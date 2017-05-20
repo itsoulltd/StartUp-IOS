@@ -7,17 +7,18 @@
 //
 
 import Foundation
-import SeliseToolKit
+import CoreDataStack
+import CoreNetworkStack
 
-extension DNRequest{
+extension HttpWebRequest{
     
     /**
      Call this method to remove cookies for a specific URL.
      */
     class func removeCookie(forURL url: NSURL){
-        if let cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookiesForURL(url){
+        if let cookies = HTTPCookieStorage.shared.cookies(for: url as URL){
             for cookie in cookies{
-                NSHTTPCookieStorage.sharedHTTPCookieStorage().deleteCookie(cookie)
+                HTTPCookieStorage.shared.deleteCookie(cookie)
             }
         }
     }
@@ -34,7 +35,7 @@ extension DNRequest{
     
 }
 
-public class DNXRequest: DNRequest{
+open class DNXRequest: HttpWebRequest{
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -44,17 +45,17 @@ public class DNXRequest: DNRequest{
         super.init(baseUrl: baseUrl, method: httpMethod, contentType: contentType)
     }
     
-    public required override init!(baseUrl: String!, method httpMethod: HTTP_METHOD, contentType: Application_ContentType, cachePolicy policy: NSURLRequestCachePolicy) {
+    public required override init!(baseUrl: String!, method httpMethod: HTTP_METHOD, contentType: Application_ContentType, cachePolicy policy: NSURLRequest.CachePolicy) {
         super.init(baseUrl: baseUrl, method: httpMethod, contentType: contentType, cachePolicy: policy)
     }
     
-    public override func httpRequestConfiguration(request: NSMutableURLRequest!) {
-        request.HTTPShouldHandleCookies = true
+    open override func httpRequestConfiguration(_ request: NSMutableURLRequest!) {
+        request.httpShouldHandleCookies = true
     }
     
 }
 
-public class DNXFileUploadRequest: DNFileUploadRequest{
+open class DNXFileUploadRequest: HttpFileRequest{
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -64,12 +65,12 @@ public class DNXFileUploadRequest: DNFileUploadRequest{
         super.init(baseUrl: baseUrl, method: httpMethod, contentType: Application_Multipart_FormData)
     }
     
-    public required override init!(baseUrl: String!, method httpMethod: HTTP_METHOD, contentType: Application_ContentType, cachePolicy policy: NSURLRequestCachePolicy) {
+    public required override init!(baseUrl: String!, method httpMethod: HTTP_METHOD, contentType: Application_ContentType, cachePolicy policy: NSURLRequest.CachePolicy) {
         super.init(baseUrl: baseUrl, method: httpMethod, contentType: contentType, cachePolicy: policy)
     }
     
-    public override func httpRequestConfiguration(request: NSMutableURLRequest!) {
-        request.HTTPShouldHandleCookies = true
+    open override func httpRequestConfiguration(_ request: NSMutableURLRequest!) {
+        request.httpShouldHandleCookies = true
     }
     
 }

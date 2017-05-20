@@ -7,17 +7,18 @@
 //
 
 import Foundation
+import WebServiceKit
 
-public class ContactUs: Response{
+open class ContactUs: Response{
     var createdDate: NSString?
     var lastModifiedBy: NSString?
     var lastModifiedDate: NSString?
-    var status: ContactUsStatus = .Invalid
+    var status: ContactUsStatus = .invalid
     var phone: NSString?
     var subject: NSString?
     var email: NSString?
     
-    public override func updateValue(value: AnyObject!, forKey key: String!) {
+    open override func updateValue(_ value: Any!, forKey key: String!) {
         if key == "status" {
             if let val = value as? NSString  {
                 self.status = ContactUsStatus(rawValue: val)!

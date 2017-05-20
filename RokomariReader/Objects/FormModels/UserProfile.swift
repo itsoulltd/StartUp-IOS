@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
 
 class UserProfile: BaseForm {
     var userName: NSString?
@@ -17,25 +17,25 @@ class UserProfile: BaseForm {
         return "\(firstName) \(lastName)"
     }
     var age: NSNumber?
-    var dob: NSDate?
-    var profileImagePath: NSURL?
-    var thumbNailPath: NSURL?
+    var dob: Date?
+    var profileImagePath: URL?
+    var thumbNailPath: URL?
     
-    override func updateValue(value: AnyObject!, forKey key: String!) {
+    override func updateValue(_ value: Any!, forKey key: String!) {
         
         if key == "firstName"{
-            firstName = value as? String
+            firstName = value as? String as NSString?
         }
         else if key == "lastName"{
-            lastName = value as? String
+            lastName = value as? String as NSString?
         }
         else if key == "age"{
             
             if let val = value as? String{
-                age = Int(val)
+                age = Int(val) as NSNumber?
             }
             else{
-                age = value as? Int
+                age = value as? Int as NSNumber?
             }
         }
         else if key == "dob"{
@@ -48,17 +48,17 @@ class UserProfile: BaseForm {
         }
     }
     
-    override func updateDate(dateStr: String!) -> NSDate! {
+    override func updateDate(_ dateStr: String!) -> Date! {
         
-        let formatter: NSDateFormatter = NSDateFormatter()
+        let formatter: Foundation.DateFormatter = Foundation.DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
-        return formatter.dateFromString(dateStr)
+        return formatter.date(from: dateStr)
     }
     
-    override func serializeDate(date: NSDate!) -> String! {
+    override func serializeDate(_ date: Date!) -> String! {
         
-        let formatter: NSDateFormatter = NSDateFormatter()
+        let formatter: Foundation.DateFormatter = Foundation.DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
-        return formatter.stringFromDate(date)
+        return formatter.string(from: date)
     }
 }

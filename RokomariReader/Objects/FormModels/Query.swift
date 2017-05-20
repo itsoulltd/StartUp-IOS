@@ -7,15 +7,15 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
 
-public class Query: BaseForm {
+open class Query: BaseForm {
     var page: NSNumber = 0
     var size: NSNumber = 20
     var sort: NSArray?
 }
 
-public class SearchQuery: Query {
+open class SearchQuery: Query {
     var query: NSString?
     
     func applyFieldValidation() {

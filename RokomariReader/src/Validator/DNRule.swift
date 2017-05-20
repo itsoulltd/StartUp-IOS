@@ -14,10 +14,10 @@ public protocol DNRuleProtocol: NSObjectProtocol {
     func executeAssertion() -> Void
 }
 
-public class DNRule: NSObject, DNRuleProtocol{
+open class DNRule: NSObject, DNRuleProtocol{
     
-    private weak var _system: DNRuleSystem?
-    weak public var system: DNRuleSystem? {
+    fileprivate weak var _system: DNRuleSystem?
+    weak open var system: DNRuleSystem? {
         get{
             return _system
         }
@@ -26,74 +26,74 @@ public class DNRule: NSObject, DNRuleProtocol{
         }
     }
     
-    public var assertion: ((system: DNRuleSystem) -> Void)!
-    private var blockPredicate: ((system: DNRuleSystem) -> Bool)!
+    open var assertion: ((_ system: DNRuleSystem) -> Void)!
+    fileprivate var blockPredicate: ((_ system: DNRuleSystem) -> Bool)!
     
-    private override init(){
+    fileprivate override init(){
         super.init()
     }
     
-    public init(condition: (system: DNRuleSystem) -> Bool, assertion: (system: DNRuleSystem) -> Void) {
+    public init(condition: @escaping (_ system: DNRuleSystem) -> Bool, assertion: @escaping (_ system: DNRuleSystem) -> Void) {
         super.init()
         self.blockPredicate = condition
         self.assertion = assertion
     }
     
-    public func validate() -> Bool {
+    open func validate() -> Bool {
         guard let system = _system else{
             print("\(#function) at line \(#line) : DNRuleSystem is nil")
             return false
         }
-        return blockPredicate(system: system)
+        return blockPredicate(system)
     }
     
-    public func executeAssertion() {
+    open func executeAssertion() {
         guard let system = _system else{
             print("\(#function) at line \(#line) : DNRuleSystem is nil")
             return
         }
-        assertion(system: system)
+        assertion(system)
     }
 }
 
-public class DNLogicRule: DNRule{
+open class DNLogicRule: DNRule{
     
-    private var logicTree: Logical!
-    private var logicPredicate: ((system: DNRuleSystem) -> AnyObject)!
+    fileprivate var logicTree: Logical!
+    fileprivate var logicPredicate: ((_ system: DNRuleSystem) -> AnyObject)!
     
-    public init(condition: Logical, value: (system: DNRuleSystem) -> AnyObject, assertion: (system: DNRuleSystem) -> Void) {
+    public init(condition: Logical, value: @escaping (_ system: DNRuleSystem) -> AnyObject, assertion: @escaping (_ system: DNRuleSystem) -> Void) {
         super.init()
         self.logicTree = condition
         self.logicPredicate = value
         self.assertion = assertion
     }
     
-    public override func validate() -> Bool {
+    open override func validate() -> Bool {
         guard let system = _system else{
             print("\(#function) at line \(#line) : DNRuleSystem is nil")
             return false
         }
-        return logicTree.validate(logicPredicate(system: system))
+        return logicTree.validate(logicPredicate(system))
     }
     
 }
 
-public class DNValidationRule: DNRule{
-    private var validation: Validation!
-    private var logicPredicate: ((system: DNRuleSystem) -> AnyObject)!
+open class DNValidationRule: DNRule{
+    fileprivate var validation: Validation!
+    fileprivate var logicPredicate: ((_ system: DNRuleSystem) -> AnyObject)!
     
-    public init(validation: Validation, value: (system: DNRuleSystem) -> AnyObject, assertion: (system: DNRuleSystem) -> Void) {
+    public init(validation: Validation, value: @escaping (_ system: DNRuleSystem) -> AnyObject, assertion: @escaping (_ system: DNRuleSystem) -> Void) {
         super.init()
         self.validation = validation
         self.logicPredicate = value
         self.assertion = assertion
     }
     
-    public override func validate() -> Bool {
+    open override func validate() -> Bool {
         guard let system = _system else{
             print("\(#function) at line \(#line) : DNRuleSystem is nil")
             return false
         }
-        return validation.validate(logicPredicate(system: system))
+        return validation.validate(logicPredicate(system))
     }
 }

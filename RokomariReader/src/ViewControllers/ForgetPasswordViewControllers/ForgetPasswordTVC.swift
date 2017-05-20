@@ -28,10 +28,10 @@ class ForgetPasswordTVC: UITableViewController {
     
     func setUpUI()
     {
-        self.tableView.separatorColor = UIColor.clearColor()
+        self.tableView.separatorColor = UIColor.clear
         
         self.emailContainerView.layer.cornerRadius = 2.0
-        self.emailContainerView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.emailContainerView.layer.borderColor = UIColor.lightGray.cgColor
         self.emailContainerView.layer.borderWidth = 1.0
         
         self.sendButton.layer.cornerRadius = 2.0
@@ -43,7 +43,7 @@ class ForgetPasswordTVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func sendButtonAction(sender: UIButton) {
+    @IBAction func sendButtonAction(_ sender: UIButton) {
         print("send button pressed")
     }
     

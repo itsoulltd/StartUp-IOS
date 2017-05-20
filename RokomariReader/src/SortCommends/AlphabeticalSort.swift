@@ -7,22 +7,22 @@
 //
 
 import Foundation
-import SeliseToolKit
+import CoreDataStack
 
 class AlphabeticalSort: SortCommend {
     
-    override func sort(inout inMemory collection: [DNObjectProtocol], forKeyPath keyPath: String?, order: NSComparisonResult = NSComparisonResult.OrderedAscending) -> [DNObjectProtocol] {
+    override func sort(inMemory collection: inout [NGObjectProtocol], forKeyPath keyPath: String?, order: ComparisonResult = ComparisonResult.orderedAscending) -> [NGObjectProtocol] {
         self.order = order
-        collection.sortInPlace { (first, second) -> Bool in
-            return self.compare(first, second: second, forKeyPath: keyPath)
+        collection.sort { (first, second) -> Bool in
+            return self.compare(first as! NSObject, second: second, forKeyPath: keyPath)
         }
         return collection
     }
     
-    override func sort(collection: [DNObjectProtocol], forKeyPath keyPath: String?, order: NSComparisonResult = NSComparisonResult.OrderedAscending) -> [DNObjectProtocol] {
+    override func sort(_ collection: [NGObjectProtocol], forKeyPath keyPath: String?, order: ComparisonResult = ComparisonResult.orderedAscending) -> [NGObjectProtocol] {
         self.order = order
-        let sorted = collection.sort { (first, second) -> Bool in
-            return self.compare(first, second: second, forKeyPath: keyPath)
+        let sorted = collection.sorted { (first, second) -> Bool in
+            return self.compare(first as! NSObject, second: second, forKeyPath: keyPath)
         }
         return sorted
     }

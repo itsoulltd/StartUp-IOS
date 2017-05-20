@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import WebServiceKit
 
 class AfterRegistration: Response {
 

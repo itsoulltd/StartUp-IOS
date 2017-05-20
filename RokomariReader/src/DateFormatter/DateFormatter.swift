@@ -18,9 +18,9 @@ class DateFormatter: DNDateFormatter {
     static let yesterdaySuffix = NSLocalizedString("Yesterday", comment: "")
     static let tomorrowSuffix = NSLocalizedString("Tomorrow", comment: "")
     
-    func relativeDateString(forDate date: NSDate) -> String{
-        let units: NSCalendarUnit = [NSCalendarUnit.Day, NSCalendarUnit.WeekOfYear, NSCalendarUnit.Month, NSCalendarUnit.Year]
-        let components = NSCalendar.currentCalendar().components(units, fromDate: date, toDate: NSDate(), options: NSCalendarOptions.MatchFirst)
+    func relativeDateString(forDate date: Date) -> String{
+        let units: NSCalendar.Unit = [NSCalendar.Unit.day, NSCalendar.Unit.weekOfYear, NSCalendar.Unit.month, NSCalendar.Unit.year]
+        let components = (Calendar.current as NSCalendar).components(units, from: date, to: Date(), options: NSCalendar.Options.matchFirst)
         let years = abs(components.year)
         let months = abs(components.month)
         let weeks = abs(components.weekOfYear)
@@ -39,7 +39,7 @@ class DateFormatter: DNDateFormatter {
                 return "\(days) " + DateFormatter.daysSuffix
             }
             else{
-                return (components.day < 0) ? DateFormatter.tomorrowSuffix : DateFormatter.yesterdaySuffix
+                return (components.day! < 0) ? DateFormatter.tomorrowSuffix : DateFormatter.yesterdaySuffix
             }
         }
         else{
@@ -47,13 +47,13 @@ class DateFormatter: DNDateFormatter {
         }
     }
     
-    func serverSideDateFormatter() -> NSDateFormatter{
+    func serverSideDateFormatter() -> Foundation.DateFormatter{
         //yyyy-MM-dd'T'HH:mm:ssZ OR yyyy-MM-dd'T'HH:mm:ss.sssz OR yyyy-MM-dd'T'HH:mm:ss.sssZ
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"
-        formatter.timeZone = NSTimeZone(name: "UTC")
+        formatter.timeZone = TimeZone(identifier: "UTC")
         //fr_CH en_US
         //println("Local Identifier \(NSLocale.currentLocale().localeIdentifier)")//
-        formatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocale().localeIdentifier)
+        formatter.locale = Locale(localeIdentifier: Locale.current.localeIdentifier)
         return formatter
     }
     

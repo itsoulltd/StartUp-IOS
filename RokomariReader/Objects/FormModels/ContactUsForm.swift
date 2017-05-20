@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import SeliseToolKit
+import CoreDataStack
 
 public enum ContactUsStatus: NSString{
-    case Invalid = "invalid"
-    case NotResponded = "not_responded"
-    case Responded = "responded"
+    case invalid = "invalid"
+    case notResponded = "not_responded"
+    case responded = "responded"
 }
 
 /*{
@@ -24,9 +24,9 @@ public enum ContactUsStatus: NSString{
  "subject": "Hi there!"
  }*/
 
-public class ContactUsForm: BaseForm{
+open class ContactUsForm: BaseForm{
     
-    var status: NSString = ContactUsStatus.Responded.rawValue
+    var status: NSString = ContactUsStatus.responded.rawValue
     var phone: NSString?
     var subject: NSString?
     var email: NSString?
@@ -37,7 +37,7 @@ public class ContactUsForm: BaseForm{
         addRequiredRule(to: "email")
     }
     
-    override init!(info: [NSObject : AnyObject]!) {
+    override init!(info: [AnyHashable: Any]!) {
         super.init(info: info)
         addRequiredRule(to: "email")
     }

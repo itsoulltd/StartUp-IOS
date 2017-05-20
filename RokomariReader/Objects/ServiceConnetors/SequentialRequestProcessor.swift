@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import SeliseToolKit
+import CoreDataStack
 
 public protocol RequestProcessingProtocol: NSObjectProtocol{
     var parserType: Response.Type {get set}
@@ -19,12 +19,12 @@ public protocol RequestProcessingProtocol: NSObjectProtocol{
     func addObjectToMemory(value: AnyObject, key: String) -> Void
     func copyObject(fromMemory memory: [NSObject : AnyObject], key: String) -> Void
     func copyAll(from: [NSObject : AnyObject]) -> Void
-    func execute(success: ((next: RequestProcessingProtocol?, previousResponse: [DNObjectProtocol]?) -> Void), failed: ((abort: Bool, reason: Response) -> Void)) -> Void
+    func execute(success: ((next: RequestProcessingProtocol?, previousResponse: [NGObjectProtocol]?) -> Void), failed: ((abort: Bool, reason: Response) -> Void)) -> Void
 }
 
 public protocol RequestProcessorDelegate: NSObjectProtocol{
-    func processingDidFinished(processor: RequestProcessor, finalResponse: [DNObjectProtocol]?) -> Void
-    func processingDidFailed(processor: RequestProcessor, failedResponse: DNObjectProtocol) -> Void
+    func processingDidFinished(processor: RequestProcessor, finalResponse: [NGObjectProtocol]?) -> Void
+    func processingDidFailed(processor: RequestProcessor, failedResponse: NGObjectProtocol) -> Void
     func processingWillStart(processor: RequestProcessor, forProcess process: RequestProcessingProtocol) -> Void
     func processingDidEnd(processor: RequestProcessor, forProcess process: RequestProcessingProtocol) -> Void
 }
@@ -34,9 +34,9 @@ public class RequestProcessor: NSObject{
     private var stack: [RequestProcessingProtocol] = [RequestProcessingProtocol]()
     private var abortMark: Bool = false
     private weak var delegate: RequestProcessorDelegate?
-    private var errorResponseType: DNObject.Type!
+    private var errorResponseType: NGObject.Type!
     
-    public required init(delegate: RequestProcessorDelegate?, errorResponse: DNObject.Type = DNObject.self){
+    public required init(delegate: RequestProcessorDelegate?, errorResponse: NGObject.Type = NGObject.self){
         super.init()
         self.delegate = delegate
         self.errorResponseType = errorResponse
@@ -168,7 +168,7 @@ public class TransactionProcess: NSObject, RequestProcessingProtocol{
         }
     }
     
-    public func execute(success: ((next: RequestProcessingProtocol?, previousResponse: [DNObjectProtocol]?) -> Void), failed: ((abort: Bool, reason: Response) -> Void)) -> Void {
+    public func execute(success: ((next: RequestProcessingProtocol?, previousResponse: [NGObjectProtocol]?) -> Void), failed: ((abort: Bool, reason: Response) -> Void)) -> Void {
         NetworkActivityController.sharedInstance().startNetworkActivity()
         RemoteSession.defaultSession().sendMessage(request) { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
             if let res = response as? NSHTTPURLResponse
@@ -183,7 +183,7 @@ public class TransactionProcess: NSObject, RequestProcessingProtocol{
                     }
                     else if let info = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as? NSArray{
                         print(info)
-                        var responseItems = [DNObject]()
+                        var responseItems = [NGObject]()
                         for item in info as! [[NSObject : AnyObject]]{
                             let parseInfo = self.parserType.init(info: item)
                             parseInfo.handleHttpResponse(res, error: error)

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
 
 struct AppValidationConstants {
     static let UserNameMinLength = 1
@@ -46,8 +46,8 @@ class AppRuleSystem: NSObject {
         return DNRuleSystem()
     }
     
-    class func addRequiredRule(inout ruleSystem: DNRuleSystem, forFact fact: String){
-        ruleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+    class func addRequiredRule(_ ruleSystem: inout DNRuleSystem, forFact fact: String){
+        let _ = ruleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
             let input = system.state(fact) as! String
             return (input.characters.count <= 0)
             }, assertion: { (system: DNRuleSystem) -> Void in
@@ -55,19 +55,19 @@ class AppRuleSystem: NSObject {
         }))
     }
     
-    class func addLengthRule(inout ruleSystem: DNRuleSystem, forFact fact: String, length: Length){
-        ruleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+    class func addLengthRule(_ ruleSystem: inout DNRuleSystem, forFact fact: String, length: Length){
+        let _ = ruleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
             let input = system.state(fact) as! String
-            return length.validate(input.characters.count) == false
+            return length.validate(input.characters.count as AnyObject) == false
             }, assertion: { (system: DNRuleSystem) -> Void in
                 system.assert(fact: fact, grade: 1.0, message: "\(fact) \(AppValidationError.LengthMessage) \(length.targetLength)")
         }))
     }
     
-    class func addRegXRule(inout ruleSystem: DNRuleSystem, forFact fact: String, regX: RegX){
-        ruleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+    class func addRegXRule(_ ruleSystem: inout DNRuleSystem, forFact fact: String, regX: RegX){
+        let _ = ruleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
             let input = system.state(fact) as! String
-            return regX.validate(input) == false
+            return regX.validate(input as AnyObject) == false
             }, assertion: { (system) -> Void in
                 system.assert(fact: fact, grade: 1.0, message: "\(fact) \(AppValidationError.PatternMessage)")
         }))
@@ -76,19 +76,19 @@ class AppRuleSystem: NSObject {
     class func MobileNumber() -> DNRuleSystem {
         let rules = DNRuleSystem()
         //Length Validation
-        rules.addRule(DNRule(condition: { (system) -> Bool in
+        let _ = rules.addRule(DNRule(condition: { (system) -> Bool in
             let input = system.state(Fact.MobileNumber) as! String
-            let length = Length(length: AppValidationConstants.MobileNumberMinLength, relation: RelationalOperator.MinOrEqual)
-            let result = length.validate(input.characters.count) == false
+            let length = Length(length: AppValidationConstants.MobileNumberMinLength, relation: RelationalOperator.minOrEqual)
+            let result = length.validate(input.characters.count as AnyObject) == false
             return result
             }, assertion: { (system) in
                 system.assert(fact: Fact.MobileNumber, grade: 1.0, message: "\(Fact.MobileNumber) \(AppValidationError.LengthMessage) \(AppValidationConstants.MobileNumberMinLength)")
         }))
         //Format RegX Validation
-        rules.addRule(DNRule(condition: { (system) -> Bool in
+        let _ = rules.addRule(DNRule(condition: { (system) -> Bool in
             let input = system.state(Fact.MobileNumber) as! String
             let regX = RegX(pattern: AppValidationConstants.MobileNumberRegX)
-            let result = regX.validate(input) == false
+            let result = regX.validate(input as AnyObject) == false
             return result
             }, assertion: { (system) in
                 system.assert(fact: Fact.MobileNumber, grade: 1.0, message: "\(AppValidationError.MobileNumberInvalidMessage)")
@@ -98,14 +98,14 @@ class AppRuleSystem: NSObject {
     
     class func UserName() -> DNRuleSystem{
         let unRuleSystem = DNRuleSystem()
-        unRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+        let _ = unRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
             let input = system.state(Fact.UserName) as! String
-            let length = Length(length: AppValidationConstants.UserNameMinLength, relation: RelationalOperator.MaxOrEqual)
-            return length.validate(input.characters.count) == false
+            let length = Length(length: AppValidationConstants.UserNameMinLength, relation: RelationalOperator.maxOrEqual)
+            return length.validate(input.characters.count as AnyObject) == false
             }, assertion: { (system: DNRuleSystem) -> Void in
                 system.assert(fact: Fact.UserName, grade: 1.0, message: "\(Fact.UserName) \(AppValidationError.LengthMessage) \(AppValidationConstants.UserNameMinLength)")
         }))
-        unRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+        let _ = unRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
             //this field is required
             let input = system.state(Fact.UserName) as! String
             return (input.characters.count <= 0)
@@ -117,14 +117,14 @@ class AppRuleSystem: NSObject {
     
     class func Email() -> DNRuleSystem{
         let emailRuleSystem = DNRuleSystem()
-        emailRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+        let _ = emailRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
             let input = system.state(Fact.Email) as! String
             let regX = RegX(pattern: AppValidationConstants.EmailRegX2)
-            return regX.validate(input) == false
+            return regX.validate(input as AnyObject) == false
             }, assertion: { (system) -> Void in
                 system.assert(fact: Fact.Email, grade: 1.0, message: "")
         }))
-        emailRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+        let _ = emailRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
             //this field is required
             let input = system.state(Fact.Email) as! String
             return (input.characters.count <= 0)
@@ -136,21 +136,21 @@ class AppRuleSystem: NSObject {
     
     class func Password() -> DNRuleSystem{
         let passRuleSystem = DNRuleSystem()
-        passRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+        let _ = passRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
             let input = system.state(Fact.Password) as! String
-            let length = Length(length: AppValidationConstants.PasswordMinLength, relation: RelationalOperator.MaxOrEqual)
-            return length.validate(input.characters.count) == false
+            let length = Length(length: AppValidationConstants.PasswordMinLength, relation: RelationalOperator.maxOrEqual)
+            return length.validate(input.characters.count as AnyObject) == false
             }, assertion: { (system) -> Void in
                 system.assert(fact: Fact.Password, grade: 1.0, message: "\(Fact.Password) \(AppValidationError.LengthMessage) \(AppValidationConstants.PasswordMinLength)")
         }))
-        passRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+        let _ = passRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
             let input = system.state(Fact.Password) as! String
             let regX = RegX(pattern: AppValidationConstants.PasswordRegX2)
-            return regX.validate(input) == false
+            return regX.validate(input as AnyObject) == false
             }, assertion: { (system) -> Void in
                 system.assert(fact: Fact.Password, grade: 1.0, message: "\(Fact.Password) \(AppValidationError.PasswordInvalidMessage)")
         }))
-        passRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+        let _ = passRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
             //this field is required
             let input = system.state(Fact.Password) as! String
             return (input.characters.count <= 0)
@@ -160,8 +160,8 @@ class AppRuleSystem: NSObject {
         return passRuleSystem
     }
     
-    class func ConfirmPassword(inout existingRule: DNRuleSystem){
-        existingRule.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+    class func ConfirmPassword(_ existingRule: inout DNRuleSystem){
+        let _ = existingRule.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
             let password = system.state(Fact.Password) as! String
             if let confirm = system.state(Fact.PasswordConfirmation) as? String{
                 return (password != confirm)

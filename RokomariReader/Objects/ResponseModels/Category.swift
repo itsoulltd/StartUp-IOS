@@ -8,6 +8,6 @@
 
 import Foundation
 
-public class Category: EBookResource {
+open class Category: EBookResource {
     var parentId: NSInteger = 0
 }

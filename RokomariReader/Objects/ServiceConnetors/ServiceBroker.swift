@@ -7,9 +7,10 @@
 //
 
 import Foundation
-import SeliseToolKit
+import CoreDataStack
+import WebServiceKit
 
-public class RequestFactory: NSObject{
+open class ServiceBroker: NSObject{
     
     struct URLKeys {
         static let ActiveLive = "ActiveLive"
@@ -19,18 +20,18 @@ public class RequestFactory: NSObject{
         static let ReferrerKey = "Referer"
     }
     
-    private static var factoryCollection: [String : DNRequestFactory] = [String : DNRequestFactory]()
+    fileprivate static var factoryCollection: [String : RequestFactory] = [String : RequestFactory]()
     
-    public class func defaultFactory() -> DNRequestFactory{
-        return getFactory(forKey: "RequestList")
+    open class func defaultFactory() -> RequestFactory{
+        return getFactory(forKey: "RokomaryWebServices")
     }
     
-    public class func getFactory(forKey key: String) -> DNRequestFactory{
+    open class func getFactory(forKey key: String) -> RequestFactory{
         if let factory = factoryCollection[key]{
             return factory
         }
         else{
-            let factory = DNRequestFactory(configFileName: key)
+            let factory = RequestFactory(configFileName: key)
             factoryCollection[key] = factory
             return factory
         }

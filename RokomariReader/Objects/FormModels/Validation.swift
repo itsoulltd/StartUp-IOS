@@ -7,32 +7,32 @@
 //
 
 import Foundation
-import SeliseToolKit
+import CoreDataStack
 
 protocol FormValidator {
-    func addRule(rule: DNRule, forKey key: String) -> Void
-    func validate(key: String, forValue value: AnyObject?) -> (invalid:Bool, reasons:[String])
+    func addRule(_ rule: DNRule, forKey key: String) -> Void
+    func validate(_ key: String, forValue value: AnyObject?) -> (invalid:Bool, reasons:[String])
 }
 
-public class BaseForm: DNObject, FormValidator{
+open class BaseForm: NGObject, FormValidator{
     
-    private var engineMapper: [String:DNRuleSystem] = [String:DNRuleSystem]()
-    func addRule(rule: DNRule, forKey key: String) -> Void{
+    fileprivate var engineMapper: [String:DNRuleSystem] = [String:DNRuleSystem]()
+    func addRule(_ rule: DNRule, forKey key: String) -> Void{
         var engine = engineMapper[key]
         if engine == nil {
-            engine = DNRuleSystem(strategy: RuleEvaluationStrategy.ForwardChaining)
+            engine = DNRuleSystem(strategy: RuleEvaluationStrategy.forwardChaining)
         }
-        engine?.addRule(rule)
+        let _ = engine?.addRule(rule)
         engineMapper[key] = engine
     }
     
-    func validate(key: String, forValue value: AnyObject?) -> (invalid:Bool, reasons:[String]) {
+    func validate(_ key: String, forValue value: AnyObject?) -> (invalid:Bool, reasons:[String]) {
         if let engin = engineMapper[key] {
             if let val = value{
                 engin.setState(key, value: val)
             }else{
-                if let val = valueForKeyPath(key){
-                    engin.setState(key, value: val)
+                if let val = self.value(forKeyPath: key){
+                    engin.setState(key, value: val as AnyObject)
                 }
             }
             engin.resetSystem()

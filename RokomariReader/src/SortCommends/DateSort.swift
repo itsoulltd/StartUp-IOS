@@ -7,24 +7,24 @@
 //
 
 import Foundation
-import SeliseToolKit
+import CoreDataStack
 
 class DateSort: SortCommend {
     
-    override func sort(inout inMemory collection: [DNObjectProtocol], forKeyPath keyPath: String? = nil, order: NSComparisonResult = NSComparisonResult.OrderedAscending) -> [DNObjectProtocol] {
+    override func sort(inMemory collection: inout [NGObjectProtocol], forKeyPath keyPath: String? = nil, order: ComparisonResult = ComparisonResult.orderedAscending) -> [NGObjectProtocol] {
         self.order = order
-        collection.sortInPlace { (first, second) -> Bool in
+        collection.sort { (first, second) -> Bool in
             //Now make comparison.
-            return self.compare(first, second: second, forKeyPath: keyPath)
+            return self.compare(first as! NSObject, second: second, forKeyPath: keyPath)
         }
         return collection
     }
     
-    override func sort(collection: [DNObjectProtocol], forKeyPath keyPath: String? = nil, order: NSComparisonResult = NSComparisonResult.OrderedAscending) -> [DNObjectProtocol] {
+    override func sort(_ collection: [NGObjectProtocol], forKeyPath keyPath: String? = nil, order: ComparisonResult = ComparisonResult.orderedAscending) -> [NGObjectProtocol] {
         self.order = order
-        let sorted = collection.sort { (first, second) -> Bool in
+        let sorted = collection.sorted { (first, second) -> Bool in
             //Now make comparison.
-            return self.compare(first, second: second, forKeyPath: keyPath)
+            return self.compare(first as! NSObject, second: second, forKeyPath: keyPath)
         }
         return sorted
     }
@@ -33,10 +33,10 @@ class DateSort: SortCommend {
         return true
     }
     
-    override func date(fromString stringValue: String?) -> NSDate? {
-        let formatter: NSDateFormatter = NSDateFormatter()
+    override func date(fromString stringValue: String?) -> Date? {
+        let formatter: Foundation.DateFormatter = Foundation.DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy HH:mm:ss a"
-        return formatter.dateFromString(stringValue!)
+        return formatter.date(from: stringValue!)
     }
     
 }

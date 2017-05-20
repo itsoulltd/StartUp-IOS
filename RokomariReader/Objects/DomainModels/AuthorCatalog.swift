@@ -7,18 +7,20 @@
 //
 
 import Foundation
-import SeliseToolKit
+import CoreDataStack
+import CoreNetworkStack
+import WebServiceKit
 
-public class AuthorCatalog: DNObject{
+open class AuthorCatalog: NGObject{
     var authorResults: [Query: [Author]] = [Query: [Author]]()
     
-    private var authorTransac: TransactionStack?
-    public func authors(query: Query, onCompletion: (([Author]) -> Void)) -> Void{
-        var request: DNRequest?
+    fileprivate var authorTransac: TransactionStack?
+    open func authors(_ query: Query, onCompletion: @escaping (([Author]) -> Void)) -> Void{
+        var request: HttpWebRequest?
         if query is SearchQuery {
-            request = RequestFactory.defaultFactory().request(forKey: "SearchAuthors")
+            request = ServiceBroker.defaultFactory().request(forKey: "SearchAuthors")
         }else{
-            request = RequestFactory.defaultFactory().request(forKey: "GetAllAuthors")
+            request = ServiceBroker.defaultFactory().request(forKey: "GetAllAuthors")
         }
         
         guard let req = request else{
@@ -36,7 +38,7 @@ public class AuthorCatalog: DNObject{
         
         req.addAuth()
         req.payLoad = query
-        let process = TransactionProcess(request: req, parserType: Author.self)
+        let process = Transaction(request: req, parserType: Author.self)
         authorTransac?.push(process)
         authorTransac?.commit()
     }

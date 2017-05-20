@@ -7,18 +7,18 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
 
 class LoginForm: BaseForm {
     var password: NSString?
     var username: NSString?
     var rememberMe: NSNumber = false
     
-    override func serializeValue(value: AnyObject!, forKey key: String!) -> AnyObject! {
+    override func serializeValue(_ value: Any!, forKey key: String!) -> Any! {
         if key == "rememberMe" {
-            return rememberMe.boolValue ? "true" : "false"
+            return rememberMe.boolValue ? "true" : "false" as AnyObject!
         }else{
-            return super.serializeValue(value, forKey: key)
+            return super.serializeValue(value, forKey: key) as AnyObject!
         }
     }
 }

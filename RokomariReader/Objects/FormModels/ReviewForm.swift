@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import SeliseToolKit
+import CoreDataStack
 
-public class ReviewForm: BaseForm{
+open class ReviewForm: BaseForm{
     var detail: NSString?
     var ebookId: NSNumber?
     var id: NSNumber?

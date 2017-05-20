@@ -36,22 +36,22 @@ class RegistrationTVC: UITableViewController {
     
     func setUpUI()
     {
-        self.tableView.separatorColor = UIColor.clearColor()
+        self.tableView.separatorColor = UIColor.clear
         
         self.emailContainerView.layer.cornerRadius = 2.0
-        self.emailContainerView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.emailContainerView.layer.borderColor = UIColor.lightGray.cgColor
         self.emailContainerView.layer.borderWidth = 1.0
         
         self.passwordContainerView.layer.cornerRadius = 2.0
-        self.passwordContainerView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.passwordContainerView.layer.borderColor = UIColor.lightGray.cgColor
         self.passwordContainerView.layer.borderWidth = 1.0
         
         self.fullNameContainerView.layer.cornerRadius = 2.0
-        self.fullNameContainerView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.fullNameContainerView.layer.borderColor = UIColor.lightGray.cgColor
         self.fullNameContainerView.layer.borderWidth = 1.0
         
         self.phoneContainerView.layer.cornerRadius = 2.0
-        self.phoneContainerView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.phoneContainerView.layer.borderColor = UIColor.lightGray.cgColor
         self.phoneContainerView.layer.borderWidth = 1.0
         
         self.signUpButton.layer.cornerRadius = 2.0
@@ -65,32 +65,32 @@ class RegistrationTVC: UITableViewController {
     
     
     
-    @IBAction func signInButtonAction(sender: UIButton) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func signInButtonAction(_ sender: UIButton) {
+        let _ = self.navigationController?.popViewController(animated: true)
     }
     
     
-    @IBAction func facebookButtonAction(sender: AnyObject) {
+    @IBAction func facebookButtonAction(_ sender: AnyObject) {
         print("facebook button tapped")
         
     }
     
-    @IBAction func gmailButtonAction(sender: AnyObject) {
+    @IBAction func gmailButtonAction(_ sender: AnyObject) {
         print("gmial button tapped")
         
     }
     
-    @IBAction func signUpButtonAction(sender: AnyObject) {
+    @IBAction func signUpButtonAction(_ sender: AnyObject) {
         print("signup button tapped")
         
     }
     //
     
-    @IBAction func maleSwitchAction(sender: AnyObject) {
+    @IBAction func maleSwitchAction(_ sender: AnyObject) {
         print("male switch pressed")
     }
     
-    @IBAction func femaleSwitchAction(sender: AnyObject) {
+    @IBAction func femaleSwitchAction(_ sender: AnyObject) {
         print("female switch pressed")
     }
     

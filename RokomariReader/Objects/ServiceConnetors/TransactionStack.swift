@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
 
 class TransactionStack: NSObject, RequestProcessorDelegate {
     
     private var processor: RequestProcessor!
-    private var callBack: ((received: [DNObjectProtocol]?) -> Void)?
+    private var callBack: ((received: [NGObjectProtocol]?) -> Void)?
     
-    required init(callBack: ((received: [DNObjectProtocol]?) -> Void)?) {
+    required init(callBack: ((received: [NGObjectProtocol]?) -> Void)?) {
         super.init()
         self.callBack = callBack
         self.processor = RequestProcessor(delegate: self, errorResponse: Response.self)
@@ -28,14 +28,14 @@ class TransactionStack: NSObject, RequestProcessorDelegate {
         self.processor.start()
     }
     
-    func processingDidFinished(processor: RequestProcessor, finalResponse: [DNObjectProtocol]?) {
+    func processingDidFinished(processor: RequestProcessor, finalResponse: [NGObjectProtocol]?) {
         guard let callBack = self.callBack else{
             return
         }
         callBack(received: finalResponse)
     }
     
-    func processingDidFailed(processor: RequestProcessor, failedResponse: DNObjectProtocol) {
+    func processingDidFailed(processor: RequestProcessor, failedResponse: NGObjectProtocol) {
         guard let callBack = self.callBack else{
             return
         }

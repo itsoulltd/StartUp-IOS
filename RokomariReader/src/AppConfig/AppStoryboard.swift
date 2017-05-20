@@ -15,8 +15,8 @@ enum LanguageISOId: String{
 }
 
 enum LanguageCode: Int{
-    case English = 1
-    case Arabic = 2
+    case english = 1
+    case arabic = 2
 }
 
 class AppStoryboard: NSObject {
@@ -27,17 +27,17 @@ class AppStoryboard: NSObject {
     
     convenience init(storyboard name: String) {
         self.init()
-        storyboard(name)
+        let _ = storyboard(name)
     }
     
-    private var mainStoryboard: UIStoryboard!
+    fileprivate var mainStoryboard: UIStoryboard!
     
     deinit{
-        print("deinit -> \(NSStringFromClass(self.dynamicType))")
+        print("deinit -> \(NSStringFromClass(type(of: self)))")
     }
     
-    final func messageLogger(funcName: String, message: String){
-        print("\(NSStringFromClass(self.dynamicType)) \(funcName) :: \(message)")
+    final func messageLogger(_ funcName: String, message: String){
+        print("\(NSStringFromClass(type(of: self))) \(funcName) :: \(message)")
     }
     
     final func resolveLanguageCode() -> Int{
@@ -45,26 +45,26 @@ class AppStoryboard: NSObject {
         var langCode: Int = 0
         switch(AppInfo().languageID()){
         case LanguageISOId.Arabic.rawValue:
-            langCode = LanguageCode.Arabic.rawValue
+            langCode = LanguageCode.arabic.rawValue
             break
         case LanguageISOId.English.rawValue:
-            langCode = LanguageCode.English.rawValue
+            langCode = LanguageCode.english.rawValue
             break
         default:
-            langCode = LanguageCode.English.rawValue
+            langCode = LanguageCode.english.rawValue
         }
         return langCode
     }
     
-    final func resolveClassName(type: AnyClass) -> String{
-        let fullClassName: NSString = NSStringFromClass(type.self)
+    final func resolveClassName(_ type: AnyClass) -> String{
+        let fullClassName: NSString = NSStringFromClass(type.self) as NSString
         let moduleName = AppInfo().stringValue(forKey: AppInfo.ConstentKeys.BundleNameKey)!
         let moduleWithSeparetor = NSString(format: "%@.", moduleName)
-        let className = fullClassName.stringByReplacingOccurrencesOfString(moduleWithSeparetor as String, withString: "")
+        let className = fullClassName.replacingOccurrences(of: moduleWithSeparetor as String, with: "")
         return className
     }
     
-    final func resolveStoryboardID(type: AnyClass) -> String{
+    final func resolveStoryboardID(_ type: AnyClass) -> String{
         let storyboardID = resolveClassName(type)
         return storyboardID
     }
@@ -72,22 +72,22 @@ class AppStoryboard: NSObject {
     final func initialViewController() -> UIViewController{
         let selectedStoryboard = storyboard()!
         let initial = selectedStoryboard.instantiateInitialViewController() as UIViewController!
-        return initial
+        return initial!
     }
     
     final func resolveViewController(fromType type: AnyClass) -> UIViewController{
         let storyboardID = resolveStoryboardID(type)
-        let viewController = storyboard()?.instantiateViewControllerWithIdentifier(storyboardID) as UIViewController!
-        return viewController
+        let viewController = storyboard()?.instantiateViewController(withIdentifier: storyboardID) as UIViewController!
+        return viewController!
     }
     
-    final func replaceRootViewController(viewController: UIViewController){
-        let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+    final func replaceRootViewController(_ viewController: UIViewController){
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         appDelegate.window?.rootViewController = viewController
     }
     
-    final func replaceNavigationStack(controllers:[UIViewController], animated: Bool = true){
-        let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+    final func replaceNavigationStack(_ controllers:[UIViewController], animated: Bool = true){
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         if let activeViewController = appDelegate.window?.rootViewController{
             if activeViewController is UINavigationController{
                 (activeViewController as! UINavigationController).setViewControllers(controllers, animated: animated)
@@ -100,8 +100,8 @@ class AppStoryboard: NSObject {
         }
     }
     
-    final func replaceNavigationStackLast(viewController: UIViewController, animated: Bool = true){
-        let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+    final func replaceNavigationStackLast(_ viewController: UIViewController, animated: Bool = true){
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         var navStack: [UIViewController]?
         var navController: UINavigationController?
         if let activeViewController = appDelegate.window?.rootViewController{
@@ -119,40 +119,40 @@ class AppStoryboard: NSObject {
         if let navStack = navStack{
             let newSet = NSMutableArray(capacity: navStack.count)
             for viewController in navStack as [UIViewController]{
-                newSet.addObject(viewController)
+                newSet.add(viewController)
                 print("Retain In PushStack :: \(viewController.description)")
             }
             newSet.removeLastObject()
-            newSet.addObject(viewController)
+            newSet.add(viewController)
             navController?.setViewControllers(newSet.objectEnumerator().allObjects as! [UIViewController], animated: animated)
         }
     }
     
-    final func showViewController(viewController: UIViewController, sender: AnyObject?){
+    final func showViewController(_ viewController: UIViewController, sender: AnyObject?){
         if let activeViewController = visibleViewController(){
             if #available(iOS 8.0, *){
-                activeViewController.showViewController(viewController, sender: sender)
+                activeViewController.show(viewController, sender: sender)
             }
             else{
                 if let nav = activeViewController.navigationController{
                     nav.pushViewController(viewController, animated: true)
                 }else{
-                    activeViewController.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                    activeViewController.presentViewController(viewController, animated: true, completion: nil)
+                    activeViewController.modalPresentationStyle = UIModalPresentationStyle.currentContext
+                    activeViewController.present(viewController, animated: true, completion: nil)
                 }
             }
         }
     }
     
-    final func showModalViewController(viewController: UIViewController, sender: AnyObject?){
+    final func showModalViewController(_ viewController: UIViewController, sender: AnyObject?){
         if let activeViewController = visibleViewController(){
-            activeViewController.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-            activeViewController.presentViewController(viewController, animated: true, completion: nil)
+            activeViewController.modalPresentationStyle = UIModalPresentationStyle.currentContext
+            activeViewController.present(viewController, animated: true, completion: nil)
         }
     }
     
     final func visibleViewController() -> UIViewController?{
-        let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         if let activeViewController = appDelegate.window?.rootViewController{
             if activeViewController is UINavigationController{
                 if let visibleViewController = (activeViewController as! UINavigationController).visibleViewController{
@@ -171,7 +171,7 @@ class AppStoryboard: NSObject {
         return nil
     }
     
-    final func storyboard(name: String? = nil) -> UIStoryboard?{
+    final func storyboard(_ name: String? = nil) -> UIStoryboard?{
         if mainStoryboard == nil{
             let info = AppInfo()
             if let name = name{

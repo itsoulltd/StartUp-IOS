@@ -8,55 +8,55 @@
 
 import Foundation
 import UIKit
-import SeliseToolKit
+import CoreDataStack
 
 struct StaticColorBank {
     
-    static var viewBackgroundColor = UIColor.whiteColor()
-    static var evenCellColor = UIColor.whiteColor()
-    static var oddCellColor = ColorBank.colorFromHexString("#fafafa")
-    static var HoxroBrandColor = ColorBank.colorFromHexString("#00457e")
-    static var HoxroNavBarColor = ColorBank.colorFromHexString("#4285f4")
+    static var viewBackgroundColor = UIColor.white
+    static var evenCellColor = UIColor.white
+    static var oddCellColor = ColorBank.color(fromHexString: "#fafafa")
+    static var HoxroBrandColor = ColorBank.color(fromHexString: "#00457e")
+    static var HoxroNavBarColor = ColorBank.color(fromHexString: "#4285f4")
     
-    static var buttonColor = ColorBank.colorFromHexString("#00457e")
-    static var buttonDisabledTitleColor = ColorBank.colorFromHexString("#5ed9c1")
-    static var buttonTitleColor = UIColor.whiteColor()
+    static var buttonColor = ColorBank.color(fromHexString: "#00457e")
+    static var buttonDisabledTitleColor = ColorBank.color(fromHexString: "#5ed9c1")
+    static var buttonTitleColor = UIColor.white
     
-    static var titleColor = UIColor.whiteColor() //ColorBank.colorFromHexString("#00457e")
-    static var textColorOnWhiteBG = ColorBank.colorFromHexString("#707070")
-    static var textBoxBorderColor = ColorBank.colorFromHexString("#707070")
-    static var textBoxErrorBorderColor = ColorBank.colorFromHexString("#d71743")
-    static var timerDisplayColor = UIColor.whiteColor()//ColorBank.colorFromHexString("#60254c")
-    static var timerDisplayBGColor = ColorBank.colorFromHexString("#677381")//UIColor.whiteColor()
-    static var recorderViewBGColor = UIColor.whiteColor()
+    static var titleColor = UIColor.white //ColorBank.colorFromHexString("#00457e")
+    static var textColorOnWhiteBG = ColorBank.color(fromHexString: "#707070")
+    static var textBoxBorderColor = ColorBank.color(fromHexString: "#707070")
+    static var textBoxErrorBorderColor = ColorBank.color(fromHexString: "#d71743")
+    static var timerDisplayColor = UIColor.white//ColorBank.colorFromHexString("#60254c")
+    static var timerDisplayBGColor = ColorBank.color(fromHexString: "#677381")//UIColor.whiteColor()
+    static var recorderViewBGColor = UIColor.white
     //static var viewBackgroundColor = ColorBank.colorFromHexString("#d9dcdd")
     
-    static var seekBarColor = ColorBank.colorFromHexString("#e39924")
-    static var seekBarTintColor = ColorBank.colorFromHexString("#1f253d")
-    static var seekBarViewColor = ColorBank.colorFromHexString("#394264")
+    static var seekBarColor = ColorBank.color(fromHexString: "#e39924")
+    static var seekBarTintColor = ColorBank.color(fromHexString: "#1f253d")
+    static var seekBarViewColor = ColorBank.color(fromHexString: "#394264")
     
     static var playerViewColor = seekBarTintColor
-    static var playerTitleColor = UIColor.blackColor().colorWithAlphaComponent(0.60)
-    static var progressBGColor = ColorBank.colorFromHexString("#d1d1d1")
-    static var progressColor = ColorBank.colorFromHexString("#60254c")
-    static var progressCacnelColor = UIColor.redColor()
+    static var playerTitleColor = UIColor.black.withAlphaComponent(0.60)
+    static var progressBGColor = ColorBank.color(fromHexString: "#d1d1d1")
+    static var progressColor = ColorBank.color(fromHexString: "#60254c")
+    static var progressCacnelColor = UIColor.red
     
-    static var tabItemTitleColor = UIColor.whiteColor()
-    static var tabItemTitleSelectColor = ColorBank.colorFromHexString("#0aa89e")
+    static var tabItemTitleColor = UIColor.white
+    static var tabItemTitleSelectColor = ColorBank.color(fromHexString: "#0aa89e")
     
-    static var tabBarTintColor = ColorBank.colorFromHexString("#411432")
-    static var tabBarItemTintColor = ColorBank.colorFromHexString("#0aa89e")
+    static var tabBarTintColor = ColorBank.color(fromHexString: "#411432")
+    static var tabBarItemTintColor = ColorBank.color(fromHexString: "#0aa89e")
     
     static var navBarTintColor = HoxroNavBarColor //ColorBank.colorFromHexString("#4A2251")
-    static var navBarItemTintColor = UIColor.whiteColor() //ColorBank.colorFromHexString("#0aa89e")
+    static var navBarItemTintColor = UIColor.white //ColorBank.colorFromHexString("#0aa89e")
     
-    static var renameCellActionColor = ColorBank.colorFromHexString("#1abc9c")
-    static var deleteCellActionColor = UIColor.orangeColor()
+    static var renameCellActionColor = ColorBank.color(fromHexString: "#1abc9c")
+    static var deleteCellActionColor = UIColor.orange
 }
 
-public class AppAppearance: NSObject{
+open class AppAppearance: NSObject{
     
-    public class func initAppearance(){
+    open class func initAppearance(){
         NavigationBar.Color()
         NavigationBar.ItemTintColor()
         NavigationBar.Title()
@@ -67,32 +67,32 @@ public class AppAppearance: NSObject{
     }
 }
 
-public class SearchBar: NSObject{
+open class SearchBar: NSObject{
     
-    class func Color(bar: UISearchBar){
-        bar.searchBarStyle = UISearchBarStyle.Prominent
+    class func Color(_ bar: UISearchBar){
+        bar.searchBarStyle = UISearchBarStyle.prominent
         bar.barTintColor = StaticColorBank.HoxroBrandColor
-        bar.tintColor = UIColor.whiteColor()
+        bar.tintColor = UIColor.white
     }
     
-    class func ChangeTextAppearance(bar: UISearchBar, text: String = ""){
+    class func ChangeTextAppearance(_ bar: UISearchBar, text: String = ""){
         bar.placeholder = text
-        UILabel.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = StaticColorBank.HoxroBrandColor
-        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = StaticColorBank.HoxroBrandColor
+        UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = StaticColorBank.HoxroBrandColor
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = StaticColorBank.HoxroBrandColor
     }
     
-    private class func getAttributes(text: String, color: UIColor) -> NSAttributedString{
+    fileprivate class func getAttributes(_ text: String, color: UIColor) -> NSAttributedString{
         let attribute = NSMutableAttributedString(string: text)
-        let range = (text as NSString).rangeOfString(text, options: NSStringCompareOptions.CaseInsensitiveSearch)
+        let range = (text as NSString).range(of: text, options: NSString.CompareOptions.caseInsensitive)
         attribute.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
         return attribute
     }
 }
 
-public class NavigationBar: NSObject{
+open class NavigationBar: NSObject{
     
     class func Color(){
-        UINavigationBar.appearance().translucent = false
+        UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().barTintColor = StaticColorBank.navBarTintColor
     }
     
@@ -107,117 +107,117 @@ public class NavigationBar: NSObject{
     
 }
 
-public class TabBar: NSObject{
+open class TabBar: NSObject{
     
     class func Color(){
-        UITabBar.appearance().translucent = false
+        UITabBar.appearance().isTranslucent = false
         UITabBar.appearance().barTintColor = StaticColorBank.tabBarTintColor
         UITabBar.appearance().backgroundImage = UIImage(catalog: AssetCatalog.tabBarBackground)
     }
     
     class func TintColor(){
         UITabBar.appearance().tintColor = StaticColorBank.tabBarItemTintColor
-        let tabIndicator = UIImage(catalog: AssetCatalog.tabBarSelectionIndicator)?.imageWithRenderingMode(.AlwaysTemplate)
-        let tabResizableIndicator = tabIndicator?.resizableImageWithCapInsets(UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
+        let tabIndicator = UIImage(catalog: AssetCatalog.tabBarSelectionIndicator)?.withRenderingMode(.alwaysTemplate)
+        let tabResizableIndicator = tabIndicator?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 2.0, bottom: 0, right: 2.0))
         UITabBar.appearance().selectionIndicatorImage = tabResizableIndicator
     }
     
     class func ItemsTitleColor(){
         UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: -4.0)
-        UITabBarItem.appearance().setTitleTextAttributes([ NSFontAttributeName: FontConfig.defaultFont(style: FontStyle.Bold, size: 11.0), NSForegroundColorAttributeName: StaticColorBank.tabItemTitleColor], forState: UIControlState.Normal)
-        UITabBarItem.appearance().setTitleTextAttributes([ NSFontAttributeName: FontConfig.defaultFont(style: FontStyle.Bold, size: 11.0),NSForegroundColorAttributeName: StaticColorBank.tabItemTitleSelectColor], forState: UIControlState.Selected)
+        UITabBarItem.appearance().setTitleTextAttributes([ NSFontAttributeName: FontConfig.defaultFont(style: FontStyle.Bold, size: 11.0), NSForegroundColorAttributeName: StaticColorBank.tabItemTitleColor], for: UIControlState())
+        UITabBarItem.appearance().setTitleTextAttributes([ NSFontAttributeName: FontConfig.defaultFont(style: FontStyle.Bold, size: 11.0),NSForegroundColorAttributeName: StaticColorBank.tabItemTitleSelectColor!], for: UIControlState.selected)
     }
 }
 
-public class Slider: NSObject{
+open class Slider: NSObject{
     
     class func Appearance(activateOn classTypes: [AnyObject.Type]? = nil){
-        let minImg = UIImage(catalog: AssetCatalog.sliderMin).resizableImageWithCapInsets(UIEdgeInsetsMake(0, 5, 0, 0))
-        let maxImg = UIImage(catalog: AssetCatalog.sliderMax).resizableImageWithCapInsets(UIEdgeInsetsMake(0, 5, 0, 0))
+        let minImg = UIImage(catalog: AssetCatalog.sliderMin).resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 0))
+        let maxImg = UIImage(catalog: AssetCatalog.sliderMax).resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 0))
         let thumb = UIImage(catalog: AssetCatalog.sliderThumbNail)
         if classTypes == nil{
-            UISlider.appearance().setMaximumTrackImage(maxImg, forState: UIControlState.Normal)
-            UISlider.appearance().setMinimumTrackImage(minImg, forState: UIControlState.Normal)
-            UISlider.appearance().setThumbImage(thumb, forState: UIControlState.Normal)
-            UISlider.appearance().setThumbImage(thumb, forState: UIControlState.Highlighted)
+            UISlider.appearance().setMaximumTrackImage(maxImg, for: UIControlState())
+            UISlider.appearance().setMinimumTrackImage(minImg, for: UIControlState())
+            UISlider.appearance().setThumbImage(thumb, for: UIControlState())
+            UISlider.appearance().setThumbImage(thumb, for: UIControlState.highlighted)
         }
         else{
-            UISlider.appearanceWhenContainedInInstancesOfClasses(classTypes!).setMaximumTrackImage(maxImg, forState: UIControlState.Normal)
-            UISlider.appearanceWhenContainedInInstancesOfClasses(classTypes!).setMinimumTrackImage(minImg, forState: UIControlState.Normal)
-            UISlider.appearanceWhenContainedInInstancesOfClasses(classTypes!).setThumbImage(thumb, forState: UIControlState.Normal)
-            UISlider.appearanceWhenContainedInInstancesOfClasses(classTypes!).setThumbImage(thumb, forState: UIControlState.Highlighted)
+            UISlider.appearance(whenContainedInInstancesOf: classTypes! as! [UIAppearanceContainer.Type]).setMaximumTrackImage(maxImg, for: UIControlState())
+            UISlider.appearance(whenContainedInInstancesOf: classTypes! as! [UIAppearanceContainer.Type]).setMinimumTrackImage(minImg, for: UIControlState())
+            UISlider.appearance(whenContainedInInstancesOf: classTypes! as! [UIAppearanceContainer.Type]).setThumbImage(thumb, for: UIControlState())
+            UISlider.appearance(whenContainedInInstancesOf: classTypes! as! [UIAppearanceContainer.Type]).setThumbImage(thumb, for: UIControlState.highlighted)
         }
     }
     
 }
 
-public class SegmentControl: NSObject{
+open class SegmentControl: NSObject{
     
     class func Appearance(activateOn classTypes: [AnyObject.Type]? = nil){
         if classTypes == nil{
             UISegmentedControl.appearance().tintColor = StaticColorBank.buttonColor
         }
         else{
-            UISegmentedControl.appearanceWhenContainedInInstancesOfClasses(classTypes!).tintColor = StaticColorBank.buttonColor
+            UISegmentedControl.appearance(whenContainedInInstancesOf: classTypes! as! [UIAppearanceContainer.Type]).tintColor = StaticColorBank.buttonColor
         }
     }
     
 }
 
-public class Button: NSObject{
+open class Button: NSObject{
     
-    class func Appearance(sender: UIButton){
+    class func Appearance(_ sender: UIButton){
         View.Carv(sender)
         sender.backgroundColor = StaticColorBank.buttonColor
         sender.tintColor = StaticColorBank.buttonColor
-        sender.setTitleColor(StaticColorBank.buttonTitleColor, forState: UIControlState.Normal)
-        sender.setTitleColor(StaticColorBank.buttonTitleColor, forState: UIControlState.Selected)
+        sender.setTitleColor(StaticColorBank.buttonTitleColor, for: UIControlState())
+        sender.setTitleColor(StaticColorBank.buttonTitleColor, for: UIControlState.selected)
     }
     
-    class func DeleteAppearance(sender: UIButton){
+    class func DeleteAppearance(_ sender: UIButton){
         View.Carv(sender)
-        sender.backgroundColor = UIColor.redColor()
+        sender.backgroundColor = UIColor.red
         sender.tintColor = StaticColorBank.buttonColor
-        sender.setTitleColor(StaticColorBank.buttonTitleColor, forState: UIControlState.Normal)
-        sender.setTitleColor(StaticColorBank.buttonTitleColor, forState: UIControlState.Selected)
+        sender.setTitleColor(StaticColorBank.buttonTitleColor, for: UIControlState())
+        sender.setTitleColor(StaticColorBank.buttonTitleColor, for: UIControlState.selected)
     }
     
-    class func TitleAppearance(sender: UIButton){
+    class func TitleAppearance(_ sender: UIButton){
         //TODO:
     }
     
 }
 
-public class View: NSObject{
+open class View: NSObject{
     
-    class func Carv(sender: UIView, by value: CGFloat = 2.5){
+    class func Carv(_ sender: UIView, by value: CGFloat = 2.5){
         let layer = sender.layer
         layer.masksToBounds = true
         layer.cornerRadius = value
     }
     
-    class func Border(sender: UIView, color: UIColor, width: CGFloat = 1.5){
+    class func Border(_ sender: UIView, color: UIColor, width: CGFloat = 1.5){
         let layer = sender.layer
-        layer.borderColor = color.CGColor
+        layer.borderColor = color.cgColor
         layer.borderWidth = width
     }
     
     @available(iOS 8.0, *)
-    class func createVisualEffect(frame: CGRect, style: UIBlurEffectStyle = UIBlurEffectStyle.Dark) -> UIVisualEffectView{
+    class func createVisualEffect(_ frame: CGRect, style: UIBlurEffectStyle = UIBlurEffectStyle.dark) -> UIVisualEffectView{
         let blurEfect = UIBlurEffect(style: style)
         let visualEffectView = UIVisualEffectView(effect: blurEfect)
-        visualEffectView.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
+        visualEffectView.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth]
         visualEffectView.frame = frame
         return visualEffectView
     }
 }
 
-public class Text: NSObject{
+open class Text: NSObject{
     
-    class func dynamicSize(text: NSString, font: UIFont, maxSize: CGSize? = nil) -> CGSize{
+    class func dynamicSize(_ text: NSString, font: UIFont, maxSize: CGSize? = nil) -> CGSize{
         let availableSize: CGSize = (maxSize != nil) ? maxSize! : CGSize(width: CGFloat(320.0), height: CGFloat(MAXFLOAT))
-        let size: CGSize = text.boundingRectWithSize(availableSize
-            , options: NSStringDrawingOptions.UsesLineFragmentOrigin
+        let size: CGSize = text.boundingRect(with: availableSize
+            , options: NSStringDrawingOptions.usesLineFragmentOrigin
             , attributes: [NSFontAttributeName: font]
             , context: nil).size
         return size

@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class SimulatorUtility: NSObject{
+open class SimulatorUtility: NSObject{
     
-    public class var running: Bool{
+    open class var running: Bool{
         return TARGET_OS_SIMULATOR != 0 // Use this line in Xcode 7 or newer
     }
     

@@ -7,24 +7,24 @@
 //
 
 import Foundation
-import SeliseToolKit
+import CoreDataStack
 
 protocol SortCommendProtocol: NSObjectProtocol{
-    static func restoreSharedCommend(defaultSortType sortType: DNObject.Type) -> SortCommend
+    static func restoreSharedCommend(defaultSortType sortType: NGObject.Type) -> SortCommend
     static func restoreCommend(byKey key: String) -> SortCommend?
-    static func storeSharedCommend(commend: SortCommend) -> Void
-    static func storeCommend(commend: SortCommend, byKey key: String) -> Void
-    func sort(inout inMemory collection: [DNObjectProtocol], forKeyPath keyPath: String?, order: NSComparisonResult) -> [DNObjectProtocol]
-    func sort(collection: [DNObjectProtocol], forKeyPath keyPath: String?, order: NSComparisonResult) -> [DNObjectProtocol]
-    func compare(first: AnyObject, second: AnyObject, forKeyPath keyPath: String?) -> Bool
+    static func storeSharedCommend(_ commend: SortCommend) -> Void
+    static func storeCommend(_ commend: SortCommend, byKey key: String) -> Void
+    func sort(inMemory collection: inout [NGObjectProtocol], forKeyPath keyPath: String?, order: ComparisonResult) -> [NGObjectProtocol]
+    func sort(_ collection: [NGObjectProtocol], forKeyPath keyPath: String?, order: ComparisonResult) -> [NGObjectProtocol]
+    func compare(_ first: NSObject, second: NSObject, forKeyPath keyPath: String?) -> Bool
     func isDateType(forKeyPath keyPath: String?) -> Bool
-    func date(fromString stringValue: String?) -> NSDate?
-    func preferredSortOrder() -> NSComparisonResult
+    func date(fromString stringValue: String?) -> Date?
+    func preferredSortOrder() -> ComparisonResult
 }
 
-class SortCommend: DNObject, SortCommendProtocol {
+class SortCommend: NGObject, SortCommendProtocol {
     
-    class func restoreSharedCommend(defaultSortType sortType: DNObject.Type = SortCommend.self) -> SortCommend{
+    class func restoreSharedCommend(defaultSortType sortType: NGObject.Type = SortCommend.self) -> SortCommend{
         if let savedObject = SortCommend.restoreCommend(byKey: "SharedCommendKey"){
             return savedObject
         }
@@ -33,41 +33,41 @@ class SortCommend: DNObject, SortCommendProtocol {
     }
     
     class func restoreCommend(byKey key: String) -> SortCommend?{
-        if let savedObject = NSUserDefaults.standardUserDefaults().objectForKey(key) as? NSData{
-            let unarchived = NSKeyedUnarchiver.unarchiveObjectWithData(savedObject) as? SortCommend
+        if let savedObject = UserDefaults.standard.object(forKey: key) as? Data{
+            let unarchived = NSKeyedUnarchiver.unarchiveObject(with: savedObject) as? SortCommend
             return unarchived
         }
         return nil
     }
     
-    class func storeSharedCommend(commend: SortCommend) -> Void{
+    class func storeSharedCommend(_ commend: SortCommend) -> Void{
         SortCommend.storeCommend(commend, byKey: "SharedCommendKey")
     }
     
-    class func storeCommend(commend: SortCommend, byKey key: String) -> Void{
-        let archived = NSKeyedArchiver.archivedDataWithRootObject(commend)
-        NSUserDefaults.standardUserDefaults().setObject(archived, forKey: key)
-        NSUserDefaults.standardUserDefaults().synchronize()
+    class func storeCommend(_ commend: SortCommend, byKey key: String) -> Void{
+        let archived = NSKeyedArchiver.archivedData(withRootObject: commend)
+        UserDefaults.standard.set(archived, forKey: key)
+        UserDefaults.standard.synchronize()
     }
     
-    func sort(inout inMemory collection: [DNObjectProtocol], forKeyPath keyPath: String?, order: NSComparisonResult = NSComparisonResult.OrderedAscending) -> [DNObjectProtocol]{
+    func sort(inMemory collection: inout [NGObjectProtocol], forKeyPath keyPath: String?, order: ComparisonResult = ComparisonResult.orderedAscending) -> [NGObjectProtocol]{
         self.order = order
-        collection.sortInPlace { (first, second) -> Bool in
-            return self.compare(first, second: second, forKeyPath: keyPath)
+        collection.sort { (first, second) -> Bool in
+            return self.compare(first as! NSObject, second: second as! NSObject, forKeyPath: keyPath)
         }
         return collection
     }
     
-    func sort(collection: [DNObjectProtocol], forKeyPath keyPath: String?, order: NSComparisonResult = NSComparisonResult.OrderedAscending) -> [DNObjectProtocol]{
+    func sort(_ collection: [NGObjectProtocol], forKeyPath keyPath: String?, order: ComparisonResult = ComparisonResult.orderedAscending) -> [NGObjectProtocol]{
         self.order = order
-        let sorted = collection.sort { (first, second) -> Bool in
-            return self.compare(first, second: second, forKeyPath: keyPath)
+        let sorted = collection.sorted { (first, second) -> Bool in
+            return self.compare(first as! NSObject, second: second as! NSObject, forKeyPath: keyPath)
         }
         return sorted
     }
     
-    var order: NSComparisonResult = NSComparisonResult.OrderedAscending
-    func preferredSortOrder() -> NSComparisonResult {
+    var order: ComparisonResult = ComparisonResult.orderedAscending
+    func preferredSortOrder() -> ComparisonResult {
         return order
     }
     
@@ -75,14 +75,14 @@ class SortCommend: DNObject, SortCommendProtocol {
         return false
     }
     
-    func date(fromString stringValue: String?) -> NSDate? {
+    func date(fromString stringValue: String?) -> Date? {
         return nil
     }
     
-    func compare(first: AnyObject, second: AnyObject, forKeyPath keyPath: String?) -> Bool{
+    func compare(_ first: NSObject, second: NSObject, forKeyPath keyPath: String?) -> Bool{
         if isDateType(forKeyPath: keyPath){
-            if let firstDate = getDate(fromValue: first.valueForKeyPath(keyPath!)!){
-                if let secondDate = getDate(fromValue: second.valueForKeyPath(keyPath!)!){
+            if let firstDate = getDate(fromValue: first.value(forKeyPath: keyPath!)! as AnyObject){
+                if let secondDate = getDate(fromValue: second.value(forKeyPath: keyPath!)! as AnyObject){
                     let comparison = firstDate.compare(secondDate)
                     //ByDefault Date is Descending Order
                     return comparison == self.preferredSortOrder()
@@ -91,17 +91,17 @@ class SortCommend: DNObject, SortCommendProtocol {
             return false
         }
         else{
-            let firstValue: AnyObject? = first.valueForKeyPath(keyPath!)
-            let secondValue: AnyObject? = second.valueForKeyPath(keyPath!)
+            let firstValue: AnyObject? = first.value(forKeyPath: keyPath!) as AnyObject?
+            let secondValue: AnyObject? = second.value(forKeyPath: keyPath!) as AnyObject?
             if let firstString = getString(fromValue: firstValue!){
                 if let secondString = getString(fromValue: secondValue!){
                     if firstValue is NSNumber{
                         //ByDefault Number is Ascending Order
-                        return firstString.compare(secondString as String, options: NSStringCompareOptions.NumericSearch) == self.preferredSortOrder()
+                        return firstString.compare(secondString as String, options: NSString.CompareOptions.numeric) == self.preferredSortOrder()
                     }
                     else{
                         //ByDefault String is Ascending Order
-                        return firstString.compare(secondString as String, options: NSStringCompareOptions.LiteralSearch) == self.preferredSortOrder()
+                        return firstString.compare(secondString as String, options: NSString.CompareOptions.literal) == self.preferredSortOrder()
                     }
                 }
             }
@@ -109,18 +109,18 @@ class SortCommend: DNObject, SortCommendProtocol {
         }
     }
     
-    private func getDate(fromValue value: AnyObject) -> NSDate?{
-        if value is NSDate{
-            return value as? NSDate
+    fileprivate func getDate(fromValue value: AnyObject) -> Date?{
+        if value is Date{
+            return value as? Date
         }
         else{
             return date(fromString: value as? String)
         }
     }
     
-    private func getString(fromValue value: AnyObject) -> NSString?{
+    fileprivate func getString(fromValue value: AnyObject) -> NSString?{
         if value is NSNumber{
-            return (value as? NSNumber)?.stringValue
+            return (value as? NSNumber)?.stringValue as NSString?
         }
         else if value is String{
             return value as? NSString

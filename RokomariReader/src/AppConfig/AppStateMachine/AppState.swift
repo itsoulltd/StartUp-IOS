@@ -10,7 +10,7 @@ import UIKit
 import GameplayKit
 
 @available(iOS 9.0, *)
-public class AppState: GKState {
+open class AppState: GKState {
     
     public struct Facts{
         static let IsRemembered = "isRemembered"
@@ -25,12 +25,12 @@ public class AppState: GKState {
     }
 
     var appStoryboard: AppStoryboard{
-        let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         return appDelegate.appStoryboard
     }
     
     var window: UIWindow?{
-        let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         return appDelegate.window
     }
     

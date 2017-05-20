@@ -28,20 +28,20 @@ class MegaGridTvc: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return model!.count
     }
 
     
-    override func tableView(tableView: UITableView,
-                            willDisplayCell cell: UITableViewCell,
-                                            forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            willDisplay cell: UITableViewCell,
+                                            forRowAt indexPath: IndexPath) {
         
         guard let tableViewCell = cell as? CustomTableViewCell else { return }
         
@@ -49,45 +49,45 @@ class MegaGridTvc: UITableViewController {
         tableViewCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
     }
     
-    override func tableView(tableView: UITableView,
-                            didEndDisplayingCell cell: UITableViewCell,
-                                                 forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            didEndDisplaying cell: UITableViewCell,
+                                                 forRowAt indexPath: IndexPath) {
         
         guard let tableViewCell = cell as? CustomTableViewCell else { return }
         
         storedOffsets[indexPath.row] = tableViewCell.collectionViewOffset
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         if indexPath.row == 0
         {
-            let customCell = tableView.dequeueReusableCellWithIdentifier("SecondCell", forIndexPath: indexPath)
+            let customCell = tableView.dequeueReusableCell(withIdentifier: "SecondCell", for: indexPath)
             // Configure the cell...
             return customCell
             //ThirdCell
         }
         else if indexPath.row == 1
         {
-            let customCell = tableView.dequeueReusableCellWithIdentifier("ThirdCell", forIndexPath: indexPath)
+            let customCell = tableView.dequeueReusableCell(withIdentifier: "ThirdCell", for: indexPath)
             // Configure the cell...
             return customCell
             //ThirdCell
         }
         else
         {
-            let customCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+            let customCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
             // Configure the cell...
             return customCell
         }
         
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected row: \(indexPath.row)")
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.row == 0
         {
@@ -117,33 +117,33 @@ class MegaGridTvc: UITableViewController {
 
 extension MegaGridTvc: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         
         return model![collectionView.tag].count
     }
     
-    func collectionView(collectionView: UICollectionView,
-                        cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView.tag == 0
         {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell",
-                                                                             forIndexPath: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell",
+                                                                             for: indexPath)
             cell.backgroundColor = model![collectionView.tag][indexPath.item]
             return cell
         }
         else if collectionView.tag == 1
         {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell",
-                                                                             forIndexPath: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell",
+                                                                             for: indexPath)
             cell.backgroundColor = model![collectionView.tag][indexPath.item]
             return cell
         }
         else
         {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell",
-                                                                             forIndexPath: indexPath) as! PopularCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell",
+                                                                             for: indexPath) as! PopularCollectionViewCell
             cell.bookTitleLbl.text = "Book No \(indexPath.row)"
             cell.bookSubtitleLbl.text = "Book Description"
             cell.backgroundColor = model![collectionView.tag][indexPath.item]
@@ -152,7 +152,7 @@ extension MegaGridTvc: UICollectionViewDelegate, UICollectionViewDataSource {
         
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         print("row no: \(collectionView.tag) and item no: \(indexPath.item)")
     }

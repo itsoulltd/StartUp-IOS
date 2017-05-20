@@ -21,7 +21,7 @@ class FontConfig: NSObject {
     
     class var fontSizeRatio: CGFloat{
         get{
-            if UIScreen.mainScreen().scale >= 3.0 {
+            if UIScreen.main.scale >= 3.0 {
                 return CGFloat(1.4)
             }
             else{
@@ -30,7 +30,7 @@ class FontConfig: NSObject {
         }
     }
     
-    private struct StaticFontFamilyName  {
+    fileprivate struct StaticFontFamilyName  {
         
         static var Helvetica = "Helvetica"
         static var Lato = "Lato"
@@ -49,12 +49,12 @@ class FontConfig: NSObject {
         return evaluateFontName(StaticFontFamilyName.Exo, fontStyle: fontStyle)
     }
     
-    private final class func evaluateFontName(name: String, fontStyle: FontStyle) -> String{
-        let fontName = (name as NSString).stringByReplacingOccurrencesOfString(" ", withString: "") + fontStyle.rawValue
+    fileprivate final class func evaluateFontName(_ name: String, fontStyle: FontStyle) -> String{
+        let fontName = (name as NSString).replacingOccurrences(of: " ", with: "") + fontStyle.rawValue
         //safty checking for available font style
-        let fontStyles: NSArray = UIFont.fontNamesForFamilyName(name) as NSArray
+        let fontStyles: NSArray = UIFont.fontNames(forFamilyName: name) as NSArray
         if fontStyles.count > 0{
-            let isExist: Bool = fontStyles.containsObject(fontName)
+            let isExist: Bool = fontStyles.contains(fontName)
             var finalFontName: String = fontName
             if !isExist{
                 finalFontName = fontStyles.firstObject as! String!

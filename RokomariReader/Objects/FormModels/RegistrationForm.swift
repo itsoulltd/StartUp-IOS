@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
 
 /*{
     "activated": true,
@@ -27,7 +27,7 @@ import SeliseToolKit
     "password": "string"
 }*/
 
-public class RegistrationForm: BaseForm {
+open class RegistrationForm: BaseForm {
     var email :NSString?
     var password :NSString?
     var passwordConfirmation :NSString?

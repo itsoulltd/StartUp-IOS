@@ -7,19 +7,21 @@
 //
 
 import Foundation
-import SeliseToolKit
+import CoreDataStack
+import CoreNetworkStack
+import WebServiceKit
 
-public class PublisherCatalog: DNObject{
+open class PublisherCatalog: NGObject{
     
     var publisherResults: [Query: [Publisher]] = [Query: [Publisher]]()
     
-    private var publisherTransac: TransactionStack?
-    public func publishers(query: Query, onCompletion: (([Publisher]) -> Void)) -> Void{
-        var request: DNRequest?
+    fileprivate var publisherTransac: TransactionStack?
+    open func publishers(_ query: Query, onCompletion: @escaping (([Publisher]) -> Void)) -> Void{
+        var request: HttpWebRequest?
         if query is SearchQuery {
-            request = RequestFactory.defaultFactory().request(forKey: "SearchPublishers")
+            request = ServiceBroker.defaultFactory().request(forKey: "SearchPublishers")
         }else{
-            request = RequestFactory.defaultFactory().request(forKey: "GetAllPublishers")
+            request = ServiceBroker.defaultFactory().request(forKey: "GetAllPublishers")
         }
         
         guard let req = request else{
@@ -37,7 +39,7 @@ public class PublisherCatalog: DNObject{
         
         req.addAuth()
         req.payLoad = query
-        let process = TransactionProcess(request: req, parserType: Publisher.self)
+        let process = Transaction(request: req, parserType: Publisher.self)
         publisherTransac?.push(process)
         publisherTransac?.commit()
     }

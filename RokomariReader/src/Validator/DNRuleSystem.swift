@@ -9,47 +9,47 @@
 import Foundation
 
 public enum RuleEvaluationStrategy: Int{
-    case ForwardChaining = 0
-    case BackwardChaining = 1
-    case Progressive = 2
-    case OrderedProgressive = 3
+    case forwardChaining = 0
+    case backwardChaining = 1
+    case progressive = 2
+    case orderedProgressive = 3
 }
 
-public class DNRuleSystem: NSObject {
+open class DNRuleSystem: NSObject {
     
     public struct DNRuleSystemKeys{
         static let Progress = "progressKey"
     }
     
-    private var stateTable: [String : AnyObject] = [String : AnyObject]()
-    private var rules: [DNRuleProtocol] = [DNRuleProtocol]()
-    private var strategy: ResolutionStrategyProtocol!
-    private var factTable: NSMutableDictionary {
+    fileprivate var stateTable: [String : AnyObject] = [String : AnyObject]()
+    fileprivate var rules: [DNRuleProtocol] = [DNRuleProtocol]()
+    fileprivate var strategy: ResolutionStrategyProtocol!
+    fileprivate var factTable: NSMutableDictionary {
         return strategy.factTable
     }
     
-    public init(strategy: RuleEvaluationStrategy = .ForwardChaining){
+    public init(strategy: RuleEvaluationStrategy = .forwardChaining){
         super.init()
         setStrategy(strategy)
     }
 
-    public func resetSystem(){
+    open func resetSystem(){
         //TODO: Remove Working Memory
         strategy.reset()
     }
     
-    public func evaluateSystem(){
+    open func evaluateSystem(){
         self.strategy?.execute(self, rules: rules)
     }
     
-    private func setStrategy(strategy: RuleEvaluationStrategy){
-        if strategy == RuleEvaluationStrategy.BackwardChaining{
+    fileprivate func setStrategy(_ strategy: RuleEvaluationStrategy){
+        if strategy == RuleEvaluationStrategy.backwardChaining{
             self.strategy = BackwardChaining()
         }
-        else if strategy == RuleEvaluationStrategy.Progressive{
+        else if strategy == RuleEvaluationStrategy.progressive{
             self.strategy = Progressive()
         }
-        else if strategy == RuleEvaluationStrategy.OrderedProgressive{
+        else if strategy == RuleEvaluationStrategy.orderedProgressive{
             self.strategy = OrderedProgressive()
         }
         else{
@@ -57,64 +57,64 @@ public class DNRuleSystem: NSObject {
         }
     }
     
-    public func setState(key: String, value: AnyObject){
+    open func setState(_ key: String, value: AnyObject){
         stateTable[key] = value
     }
     
-    public func state(key: String) -> AnyObject?{
+    open func state(_ key: String) -> AnyObject?{
         return stateTable[key]
     }
     
-    public func progress() -> Double{
+    open func progress() -> Double{
         return gradeFor(fact: DNRuleSystemKeys.Progress) * 100
     }
     
-    public func gradeFor(fact fact: String) -> Double{
-        if let grade = factTable.objectForKey(fact) as? NSNumber{
+    open func gradeFor(fact: String) -> Double{
+        if let grade = factTable.object(forKey: fact) as? NSNumber{
             return grade.doubleValue
         }
         return 0.0
     }
     
-    public func messagesFor(fact fact: String) -> [String]{
-        let messages = strategy.messageBox.objectForKey(fact)
+    open func messagesFor(fact: String) -> [String]{
+        let messages = strategy.messageBox.object(forKey: fact)
         return (messages != nil) ? messages as! [String] : [String]()
     }
     
-    public func satisfied(fact fact: String) -> Bool{
+    open func satisfied(fact: String) -> Bool{
         return gradeFor(fact: fact) == Double(1.0)
     }
     
-    public func assert(fact fact: String, grade: NSNumber = NSNumber(double: 1.0), message: String? = nil){
-        let vGrade = (grade.doubleValue >= 1.0) ? NSNumber(double: 1.0) : grade
-        factTable.setObject(vGrade, forKey: fact)
+    open func assert(fact: String, grade: NSNumber = NSNumber(value: 1.0 as Double), message: String? = nil){
+        let vGrade = (grade.doubleValue >= 1.0) ? NSNumber(value: 1.0 as Double) : grade
+        factTable.setObject(vGrade, forKey: fact as NSCopying)
         strategy.assert(message: message, forFact: fact)
     }
     
-    public func retreat(fact fact: String){
-        factTable.removeObjectForKey(fact)
+    open func retreat(fact: String){
+        factTable.removeObject(forKey: fact)
     }
     
-    public func addRules(from array: [DNRuleProtocol]){
+    open func addRules(from array: [DNRuleProtocol]){
         for rule in array{
-            addRule(rule)
+            let _ = addRule(rule)
         }
     }
     
-    public func addRule(rule: DNRuleProtocol) -> DNRuleSystem{
+    open func addRule(_ rule: DNRuleProtocol) -> DNRuleSystem{
         rule.system = self
         rules.append(rule)
         return self
     }
     
-    public func copyRules() -> [DNRuleProtocol]{
+    open func copyRules() -> [DNRuleProtocol]{
         var cRules = [DNRuleProtocol]()
-        cRules.appendContentsOf(rules)
+        cRules.append(contentsOf: rules)
         return cRules
     }
     
-    public func removeRule(at index: Int) -> DNRuleProtocol{
-        let rule = rules.removeAtIndex(index) as DNRuleProtocol
+    open func removeRule(at index: Int) -> DNRuleProtocol{
+        let rule = rules.remove(at: index) as DNRuleProtocol
         return rule
     }
     

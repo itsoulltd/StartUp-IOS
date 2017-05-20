@@ -7,14 +7,16 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
+import CoreNetworkStack
+import WebServiceKit
 
-enum UserError: ErrorType {
-    case Unauthrize
-    case ServiceNotFound
+enum UserError: Error {
+    case unauthrize
+    case serviceNotFound
 }
 
-class User: DNObject {
+class User: NGObject {
     
     lazy var management: UserManagement = UserManagement(profileType: UserProfile.self)
     var profile: UserProfile? {
@@ -23,13 +25,13 @@ class User: DNObject {
     
     var transaction: TransactionStack?
     
-    func login(form: LoginForm, onCompletion: (AfterLogin?) -> Void) {
-        if let request = RequestFactory.defaultFactory().request(forKey: "SignIn") as? DNXRequest{
+    func login(_ form: LoginForm, onCompletion: @escaping (AfterLogin?) -> Void) {
+        if let request = ServiceBroker.defaultFactory().request(forKey: "SignIn") as? DNXRequest{
             request.payLoad = form
             if transaction == nil {
                 transaction = TransactionStack(callBack: {[weak self] (received) in
                     if let loginResponse = received?.first as? AfterLogin{
-                        self?.management.loginWithToken(loginResponse.id_token as! String, email: form.username as! String, password: form.password as! String, remembered: form.rememberMe.boolValue)
+                        let _ = self?.management.loginWithToken(loginResponse.id_token as! String, email: form.username as! String, password: form.password as! String, remembered: form.rememberMe.boolValue)
                         let profile = UserProfile()
                         profile.userName = form.username
                         //TODO:
@@ -37,23 +39,23 @@ class User: DNObject {
                         onCompletion(loginResponse)
                     }else{
                         if let ponse = received?.first as? Response{
-                            print(ponse.errorMessage)
+                            print(ponse.errorMessage!)
                         }
                         onCompletion(nil)
                     }
                     self?.transaction = nil
                 })
             }
-            let process = TransactionProcess(request: request, parserType: AfterLogin.self)
+            let process = Transaction(request: request, parserType: AfterLogin.self)
             transaction?.push(process)
             transaction?.commit()
         }
     }
     
-    private var helpTrans: TransactionStack?
-    func rokomaryHelp(contactUs: ContactUsForm, onComplete: ((ContactUs?) -> Void)) -> Void{
+    fileprivate var helpTrans: TransactionStack?
+    func rokomaryHelp(_ contactUs: ContactUsForm, onComplete: @escaping ((ContactUs?) -> Void)) -> Void{
         
-        guard let request = RequestFactory.defaultFactory().request(forKey: "ContactUs") else{
+        guard let request = ServiceBroker.defaultFactory().request(forKey: "ContactUs") else{
             fatalError("ContactUs not found")
         }
         
@@ -68,7 +70,7 @@ class User: DNObject {
             onComplete(contactUsRes)
         })
         
-        let process = TransactionProcess(request: request, parserType: ContactUs.self)
+        let process = Transaction(request: request, parserType: ContactUs.self)
         self.helpTrans?.push(process)
         self.helpTrans?.commit()
     }

@@ -7,15 +7,15 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
 
-class OAuth: DNObject {
+class OAuth: NGObject {
     
-    let tokenIdentifier: String = "\(NSBundle.mainBundle().bundleIdentifier!).user_token"
+    let tokenIdentifier: String = "\(Bundle.main.bundleIdentifier!).user_token"
    
     var token: String?{
         get{
-            return KeychainWrapper.keychainStringFromMatchingIdentifier(tokenIdentifier)
+            return KeychainWrapper.keychainStringFrom(matchingIdentifier: tokenIdentifier)
         }
         set{
             KeychainWrapper.createKeychainValue(newValue, forIdentifier: tokenIdentifier)
@@ -23,7 +23,7 @@ class OAuth: DNObject {
     }
     var secretKey: String?
     
-    override func updateValue(value: AnyObject!, forKey key: String!) {
+    override func updateValue(_ value: Any!, forKey key: String!) {
         if key == "token"{
             token = value as? String
         }
@@ -37,8 +37,8 @@ class OAuth: DNObject {
     
     func removeToken(){
         //just remove token from keyChain
-        if let _ = KeychainWrapper.keychainStringFromMatchingIdentifier(tokenIdentifier){
-            KeychainWrapper.deleteItemFromKeychainWithIdentifier(tokenIdentifier)
+        if let _ = KeychainWrapper.keychainStringFrom(matchingIdentifier: tokenIdentifier){
+            KeychainWrapper.deleteItemFromKeychain(withIdentifier: tokenIdentifier)
         }
     }
 }

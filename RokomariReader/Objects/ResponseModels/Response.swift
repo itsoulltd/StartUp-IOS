@@ -7,7 +7,9 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
+import CoreNetworkStack
+import WebServiceKit
 
 /*{
     "message": "error.validation",
@@ -26,66 +28,10 @@ import SeliseToolKit
     ]
 }*/
 
-public class Response: DNObject {
+extension Response{
     
-    required override public init(){
-        super.init()
-    }
-    
-    required override public init!(info: [NSObject : AnyObject]!) {
-        super.init(info: info)
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    var id: NSObject = NSUUID().UUIDString
-    var failed: Bool{
-        return (code.rawValue == HttpStatusCode.OK.rawValue || code.rawValue == HttpStatusCode.Created.rawValue) ? true : false
-    }
-    var code: HttpStatusCode = HttpStatusCode.NotFound {
-        didSet{
-            if code.rawValue == HttpStatusCode.Unauthorized.rawValue  {
-                NSNotificationCenter.defaultCenter().postNotificationName(Notifications.UserLogout, object: nil)
-            }
-        }
-    }
-    var errorMessage: NSString?
-    var message: NSString?
-    var description_rokomari: NSString?
-    var fieldErrors: [FieldError] = [FieldError]()
-    
-    func handleHttpResponse(response: NSURLResponse?, error: NSError?){
-        if let res = response as? NSHTTPURLResponse{
-            code = HttpStatusCode(rawValue: res.statusCode)!
-        }
-        if let err = error {
-            errorMessage = err.debugDescription
-        }
-    }
-    
-    override public func updateValue(value: AnyObject!, forKey key: String!) {
-        if key == "description" {
-            description_rokomari = value as? NSString
-        }
-        else if key == "fieldErrors"{
-            if value is NSArray {
-                let vals = value as! [[String:AnyObject]]
-                for item in vals {
-                    fieldErrors.append(FieldError(info: item))
-                }
-            }
-        }
-        else{
-            super.updateValue(value, forKey: key)
-        }
-    }
 }
 
-
-class FieldError: DNObject {
-    var objectName: NSString?
-    var field: NSString?
-    var message: NSString?
+extension FieldError{
+    
 }

@@ -15,9 +15,9 @@ extension UIImage{
         self.init(named: catalog.rawValue)
     }
     
-    func resize(size:CGSize, at scale:CGFloat) -> UIImage{
+    func resize(_ size:CGSize, at scale:CGFloat) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        drawInRect(CGRectMake(0, 0, size.width, size.height))
+        draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let normalizedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return normalizedImage!

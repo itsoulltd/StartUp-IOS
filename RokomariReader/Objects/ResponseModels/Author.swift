@@ -8,6 +8,6 @@
 
 import Foundation
 
-public class Author: EBookResource {
+open class Author: EBookResource {
     var detail: NSString?
 }

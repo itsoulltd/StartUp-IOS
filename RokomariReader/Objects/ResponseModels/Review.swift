@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Review: NameResource{
+open class Review: NameResource{
     var title: NSString?
     var detail: NSString?
     weak var ebook: Book?

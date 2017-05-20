@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import WebServiceKit
 
 class AfterLogin: Response {
     var id_token: NSString?

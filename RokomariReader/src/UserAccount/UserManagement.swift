@@ -8,48 +8,48 @@
 
 import UIKit
 import Foundation
-import SeliseToolKit
+import CoreDataStack
 
 class UserManagement: NSObject {
     
-    var profile: DNObjectProtocol?{
+    var profile: NGObjectProtocol?{
         get{
-            guard let data = NSUserDefaults.standardUserDefaults().dataForKey("userProfileKey") else{
+            guard let data = UserDefaults.standard.data(forKey: "userProfileKey") else{
                 return nil
             }
-            let unarchived = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String:AnyObject]
+            let unarchived = NSKeyedUnarchiver.unarchiveObject(with: data) as? [String:AnyObject]
             let inferred = self.profileType.init()
-            inferred.updateWithInfo(unarchived)
+            inferred.update(withInfo: unarchived)
             return inferred
         }
         set{
             let infos: [String:AnyObject] = newValue?.serializeIntoInfo() as! [String:AnyObject]
-            let archived = NSKeyedArchiver.archivedDataWithRootObject(infos)
-            NSUserDefaults.standardUserDefaults().setObject(archived, forKey: "userProfileKey")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            let archived = NSKeyedArchiver.archivedData(withRootObject: infos)
+            UserDefaults.standard.set(archived, forKey: "userProfileKey")
+            UserDefaults.standard.synchronize()
         }
     }
     
     func deleteProfile(){
         if self.profile != nil {
-            NSUserDefaults.standardUserDefaults().removeObjectForKey("userProfileKey")
+            UserDefaults.standard.removeObject(forKey: "userProfileKey")
         }
     }
     
-    func updateProfile(value: AnyObject, forKey key: String, synch: Bool = false){
+    func updateProfile(_ value: AnyObject, forKey key: String, synch: Bool = false){
         guard let xProfile = profile else{
             return
         }
         xProfile.updateValue(value, forKey: key)
         if synch {
             let infos: [String:AnyObject] = xProfile.serializeIntoInfo() as! [String:AnyObject]
-            let archived = NSKeyedArchiver.archivedDataWithRootObject(infos)
-            NSUserDefaults.standardUserDefaults().setObject(archived, forKey: "userProfileKey")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            let archived = NSKeyedArchiver.archivedData(withRootObject: infos)
+            UserDefaults.standard.set(archived, forKey: "userProfileKey")
+            UserDefaults.standard.synchronize()
         }
     }
     
-    private var profileType: DNObject.Type = DNObject.self
+    fileprivate var profileType: NGObject.Type = NGObject.self
     var oauth: OAuth = OAuth()
     var credential: Credential = Credential()
     
@@ -68,21 +68,21 @@ class UserManagement: NSObject {
         }
     }
     
-    convenience init(profileType: DNObject.Type) {
+    convenience init(profileType: NGObject.Type) {
         self.init()
         self.profileType = profileType
     }
     
-    func logout(passwordOnly:Bool = false){
+    func logout(_ passwordOnly:Bool = false){
         loggedIn = false
         oauth.removeToken()
         credential.removeCredential(passwordOnly)
         deleteProfile()
     }
     
-    func loginWithToken(token: String, email: String, password: String, remembered: Bool = false) -> Bool{
+    func loginWithToken(_ token: String, email: String, password: String, remembered: Bool = false) -> Bool{
         oauth.token = token
-        credential.updateWithInfo(["email":email,"password":password])
+        credential.update(withInfo: ["email":email,"password":password])
         credential.isRemembered = remembered
         loggedIn = true
         return loggedIn

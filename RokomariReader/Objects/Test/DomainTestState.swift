@@ -8,18 +8,18 @@
 
 import Foundation
 import GameplayKit
-import SeliseToolKit
+import CoreDataStack
 
 @available(iOS 9.0, *)
 class DomainTestState: AppState {
     
     var testRun: DomainTestCases = DomainTestCases()
     
-    override func isValidNextState(stateClass: AnyClass) -> Bool {
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return true
     }
     
-    override func didEnterWithPreviousState(previousState: GKState?) {
+    override func didEnter(from previousState: GKState?) {
         testRun.runTest()
     }
 }

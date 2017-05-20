@@ -31,7 +31,7 @@ class AppInfo: NSObject {
     
     func stringValue(forKey key: String) -> String?{
         var result: String?
-        if let value = NSBundle.mainBundle().infoDictionary![key] as? String{
+        if let value = Bundle.main.infoDictionary![key] as? String{
             result = value
         }
         return result
@@ -39,7 +39,7 @@ class AppInfo: NSObject {
     
     func booleanValue(forKey key: String) -> Bool?{
         var result: Bool?
-        if let value = NSBundle.mainBundle().infoDictionary![key] as? NSNumber{
+        if let value = Bundle.main.infoDictionary![key] as? NSNumber{
             result = value.boolValue
         }
         return result
@@ -47,7 +47,7 @@ class AppInfo: NSObject {
     
     func numberValue(forKey key: String) -> NSNumber?{
         var result: NSNumber?
-        if let value = NSBundle.mainBundle().infoDictionary![key] as? NSNumber{
+        if let value = Bundle.main.infoDictionary![key] as? NSNumber{
             result = value
         }
         return result
@@ -55,7 +55,7 @@ class AppInfo: NSObject {
     
     func integerValue(forKey key: String) -> Int?{
         let result: NSNumber? = numberValue(forKey: key)
-        return result?.integerValue
+        return result?.intValue
     }
     
     func doubleValue(forKey key: String) -> Double?{
@@ -66,7 +66,7 @@ class AppInfo: NSObject {
     func deviceSupported(forKey key: String) -> Bool{
         //
         var result: Bool = false
-        if let list = NSBundle.mainBundle().infoDictionary![ConstentKeys.DeviceFamilyKey] as? Array<Int>{
+        if let list = Bundle.main.infoDictionary![ConstentKeys.DeviceFamilyKey] as? Array<Int>{
             for value in list{
                 result = deviceSupportCheck(value, key: key)
                 if result{
@@ -74,13 +74,13 @@ class AppInfo: NSObject {
                 }
             }
         }
-        else if let value = NSBundle.mainBundle().infoDictionary![ConstentKeys.DeviceFamilyKey] as? Int{
+        else if let value = Bundle.main.infoDictionary![ConstentKeys.DeviceFamilyKey] as? Int{
             result = deviceSupportCheck(value, key: key)
         }
         return result
     }
     
-    private func deviceSupportCheck(value: Int, key: String) -> Bool{
+    fileprivate func deviceSupportCheck(_ value: Int, key: String) -> Bool{
         //
         var result = false
         switch(key){
@@ -95,7 +95,7 @@ class AppInfo: NSObject {
         return result
     }
     
-    func mainStoryboard(storyboardName: String? = nil) -> UIStoryboard?{
+    func mainStoryboard(_ storyboardName: String? = nil) -> UIStoryboard?{
         if let name = storyboardName{
             let storyboard = UIStoryboard(name: name, bundle: nil)
             return storyboard
@@ -107,7 +107,7 @@ class AppInfo: NSObject {
     
     func appIcon() -> UIImage?{
         //
-        if let iconNames = NSBundle.mainBundle().infoDictionary![ConstentKeys.AppIconNamesKey] as? [String]{
+        if let iconNames = Bundle.main.infoDictionary![ConstentKeys.AppIconNamesKey] as? [String]{
             if let iconName = iconNames.first{
                 let icon = UIImage(named: iconName)
                 return icon
@@ -117,13 +117,13 @@ class AppInfo: NSObject {
     }
     
     func languageID() -> String{
-        return NSLocale.preferredLanguages().first as String!
+        return Locale.preferredLanguages.first as String!
     }
     
-    func languageDisplayName() -> String?{
-        let langID = languageID()
-        return NSLocale.systemLocale().displayNameForKey(NSLocaleLanguageCode, value: langID)
-    }
+//    func languageDisplayName() -> String?{
+//        let langID = languageID()
+//        return (Locale.system as NSLocale).displayName(forKey: NSLocale.Key.languageCode, value: langID)
+//    }
     
     func appVersionUpdated() -> Bool{
         return appUpdated(ConstentKeys.VersionNameKey, savedKey: "VersionTrackerKey")
@@ -133,18 +133,18 @@ class AppInfo: NSObject {
         return appUpdated(ConstentKeys.BuildVersionNameKey, savedKey: "BuildTrackerKey")
     }
     
-    private func appUpdated(constantKey: String, savedKey: String) -> Bool{
-        let userDefault = NSUserDefaults.standardUserDefaults()
+    fileprivate func appUpdated(_ constantKey: String, savedKey: String) -> Bool{
+        let userDefault = UserDefaults.standard
         guard let currentVersion = stringValue(forKey: constantKey) else{
             return false
         }
-        if let version =  userDefault.stringForKey(savedKey){
-            let updated = version.containsString(currentVersion) //true means didn't updated.
-            userDefault.setObject(currentVersion, forKey: savedKey)
+        if let version =  userDefault.string(forKey: savedKey){
+            let updated = version.contains(currentVersion) //true means didn't updated.
+            userDefault.set(currentVersion, forKey: savedKey)
             userDefault.synchronize()
             return !updated
         }else{
-            userDefault.setObject(currentVersion, forKey: savedKey)
+            userDefault.set(currentVersion, forKey: savedKey)
             userDefault.synchronize()
             return true
         }
@@ -152,22 +152,22 @@ class AppInfo: NSObject {
     
     //MARK: Just Lagecy
     
-    lazy private var mainStoryboardName: String? = {
-        var storyboardName: String? = NSBundle.mainBundle().infoDictionary![ConstentKeys.MainStoryboardNameKey] as? String
+    lazy fileprivate var mainStoryboardName: String? = {
+        var storyboardName: String? = Bundle.main.infoDictionary![ConstentKeys.MainStoryboardNameKey] as? String
         return storyboardName
     }()
     
-    lazy private var iTuneFileShareEnabled: Bool = {
+    lazy fileprivate var iTuneFileShareEnabled: Bool = {
         var result = false
-        if let fileShareEnabled = NSBundle.mainBundle().infoDictionary![ConstentKeys.FileSharingEnabledKey] as? NSNumber{
+        if let fileShareEnabled = Bundle.main.infoDictionary![ConstentKeys.FileSharingEnabledKey] as? NSNumber{
             return fileShareEnabled.boolValue
         }
         return result
     }()
     
-    lazy private var bundleName: String? = {
+    lazy fileprivate var bundleName: String? = {
         var result: String?
-        if let bundleStr = NSBundle.mainBundle().infoDictionary![ConstentKeys.BundleNameKey] as? String{
+        if let bundleStr = Bundle.main.infoDictionary![ConstentKeys.BundleNameKey] as? String{
             result = bundleStr
         }
         return result

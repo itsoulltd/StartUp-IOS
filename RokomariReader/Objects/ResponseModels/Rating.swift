@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class Rating: NameResource {
+open class Rating: NameResource {
     weak var ebook: Book?
     var value: NSNumber?
     var customer: NSString?

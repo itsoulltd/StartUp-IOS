@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SeliseToolKit
+import CoreDataStack
 
 @objc
 protocol GenericSynchDelegate{
@@ -25,7 +25,7 @@ protocol ProgressListener{
 }
 
 @objc(ContentProgressDelegateImpl)
-public class ContentProgressDelegateImpl: DNObject, ContentProgressDelegate {
+public class ContentProgressDelegateImpl: NGObject, ContentProgressDelegate {
     
     weak var listener: ProgressListener?
     
@@ -55,7 +55,7 @@ public class ContentProgressDelegateImpl: DNObject, ContentProgressDelegate {
     }
 }
 
-class SynchConfiguration: DNObject {
+class SynchConfiguration: NGObject {
     //Hello I do not Have Properties 😜, but have keys
     struct Keys {
         static let MaxTryCount = "maxTryCount"
@@ -75,7 +75,7 @@ class SynchConfiguration: DNObject {
 }
 
 @objc(Tracker)
-public class Tracker: DNObject {
+public class Tracker: NGObject {
     
     var guid: NSString!
     var orderIndex: NSNumber!
