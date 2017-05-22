@@ -34,8 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CSDebugLog.setTrackingModeOn(false)
         CNDebugLog.setDebugModeOn(false)
         CNDebugLog.setTrackingModeOn(false)
-    //    AppStateMatchine.SharedMatchine().loadStates([DomainTestState()])
-    //    AppStateMatchine.SharedMatchine().move(to: DomainTestState.self)
+        AppStateMatchine.SharedMatchine().loadStates([DomainTestState()])
+        AppStateMatchine.SharedMatchine().move(to: DomainTestState.self)
         return true
     }
 

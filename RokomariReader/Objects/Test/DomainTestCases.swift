@@ -19,16 +19,53 @@ class DomainTestCases: NSObject {
     var browser: BookLibrary = BookLibrary()
     var authorCatalog = AuthorCatalog()
     var publisherCatalog = PublisherCatalog()
+    var items: [NGObjectProtocol] = {
+        var items = [NGObjectProtocol]()
+        items.append(NGObject(info: ["name":"towhid","age":32,"dob":DateManager .sharedInstance().day(after: 54)]))
+        items.append(NGObject(info: ["name":"Sohana","age":23,"dob":DateManager .sharedInstance().day(after: 23)]))
+        items.append(NGObject(info: ["name":"Tanvir","age":28,"dob":DateManager .sharedInstance().day(after: 12)]))
+        items.append(NGObject(info: ["name":"Sumaiya","age":19,"dob":DateManager .sharedInstance().day(after: 19)]))
+        items.append(NGObject(info: ["name":"Maruf","age":32,"dob":DateManager .sharedInstance().day(after: 20)]))
+        items.append(NGObject(info: ["name":"Tushin","age":14,"dob":DateManager .sharedInstance().day(after: 20)]))
+        return items
+    }()
     
     func runTest(){
         print("Test Is Running")
-        login()
+        //login()
         //fetchAllBooks()
         //searchBooks()
         //fetchAllPublisher()
         //fetchAllAuthors()
         //fetchAllCategory()
         //rokomaryHelp()
+        //sortTest(by:"name", commend: AlphabeticalSort())
+        //sortTest(by:"age", commend: NumericSort())
+        //sortTest(by:"dob", commend: DateSort())
+        //groupBy()
+    }
+    
+    func groupBy() -> Void {
+        let dic = NGObject.groupBy("age", onCollection: items as! [NGObject])
+        for (key, value) in dic as! [AnyHashable:NSArray] {
+            print("\(key) : \n")
+            for val in value as! [NGObject] {
+                print(val.serializeIntoInfo())
+            }
+        }
+    }
+    
+    func sortTest(by keyPath: String, commend: SortCommend){
+        print("-------------------------------------------------")
+        for item in items {
+            print(item.serializeIntoInfo())
+        }
+        print("After Sort:")
+        let sortedItems = commend.sort(items, forKeyPath: keyPath, order: ComparisonResult.orderedAscending)
+        for item in sortedItems {
+            print(item.serializeIntoInfo())
+        }
+        print("-------------------------------------------------")
     }
     
     func login(){
