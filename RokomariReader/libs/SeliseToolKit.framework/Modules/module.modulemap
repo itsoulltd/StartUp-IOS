@@ -1,6 +1,0 @@
-framework module SeliseToolKit {
-  umbrella header "SeliseToolKit.h"
-
-  export *
-  module * { export * }
-}

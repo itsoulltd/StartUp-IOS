@@ -30,7 +30,7 @@ extension NGObject { //Search
 
 extension NGObject{ //GroupBy and others
     
-    /*class func groupBy(_ key: String, onCollection source: [NGObject]) -> NSDictionary?{
+    class func groupBy(_ key: String, onCollection source: [NGObject]) -> NSDictionary?{
         //Checking NGObject, NSArray or NSDictionary or NSSet
         if let firstValue = source.first?.value(forKey: key), firstValue is NGObject || firstValue is NSArray || firstValue is NSDictionary || firstValue is NSSet {
             print("NGObject or NSArray or NSDictionary or NSSet NOT Supported as Group Value Type");
@@ -58,7 +58,7 @@ extension NGObject{ //GroupBy and others
             mutable.add(nextItem)
         }
         return result
-    }*/
+    }
     
     fileprivate class func hasSameValue(_ a: NSCopying, b: NSCopying) -> Bool{
         if (a is NSString && b is NSString) {

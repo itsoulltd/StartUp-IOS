@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreDataStack
+import CoreNetworkStack
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     @objc func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        CSDebugLog.setDebugModeOn(false)
+        CSDebugLog.setTrackingModeOn(false)
+        CNDebugLog.setDebugModeOn(false)
+        CNDebugLog.setTrackingModeOn(false)
     //    AppStateMatchine.SharedMatchine().loadStates([DomainTestState()])
     //    AppStateMatchine.SharedMatchine().move(to: DomainTestState.self)
         return true

@@ -27,7 +27,7 @@
     static DateManager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        manager = [[DateManager alloc] initWithParseFormat:@"yyyy-MM-dd HH:mm:ss"];
+        manager = [[DateManager alloc] initWithParseFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
     });
     return manager;
 }
