@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import RokomariReader
+//@testable import RokomariReader
 
 class RokomariReaderTests: XCTestCase {
     

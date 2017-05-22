@@ -15,7 +15,7 @@ class DateSort: SortCommend {
         self.order = order
         collection.sort { (first, second) -> Bool in
             //Now make comparison.
-            return self.compare(first as! NSObject, second: second, forKeyPath: keyPath)
+            return self.compare(first as! NSObject, second: second as! NSObject, forKeyPath: keyPath)
         }
         return collection
     }
@@ -24,7 +24,7 @@ class DateSort: SortCommend {
         self.order = order
         let sorted = collection.sorted { (first, second) -> Bool in
             //Now make comparison.
-            return self.compare(first as! NSObject, second: second, forKeyPath: keyPath)
+            return self.compare(first as! NSObject, second: second as! NSObject, forKeyPath: keyPath)
         }
         return sorted
     }

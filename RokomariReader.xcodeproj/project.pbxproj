@@ -78,6 +78,10 @@
 		2669AB5F1ED03EA500B632E5 /* ColorBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 2669AB5D1ED03EA500B632E5 /* ColorBank.m */; };
 		2669AB601ED03EA500B632E5 /* ColorList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2669AB5E1ED03EA500B632E5 /* ColorList.plist */; };
 		2669AB631ED0C79200B632E5 /* DateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2669AB621ED0C79200B632E5 /* DateManager.m */; };
+		26A847901ED352E50079AD4A /* SortCommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8478F1ED352E50079AD4A /* SortCommend.swift */; };
+		26A847921ED35AC10079AD4A /* AlphabeticalSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A847911ED35AC10079AD4A /* AlphabeticalSort.swift */; };
+		26A847941ED35B000079AD4A /* NumericSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A847931ED35B000079AD4A /* NumericSort.swift */; };
+		26A847961ED35B340079AD4A /* DateSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A847951ED35B340079AD4A /* DateSort.swift */; };
 		26A945281DE9221100A3A38F /* BookLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A945271DE9221100A3A38F /* BookLibrary.swift */; };
 		26BC8CA11DFA690500DE01BF /* EBookResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC8CA01DFA690500DE01BF /* EBookResource.swift */; };
 		26BC8CA31DFA69A300DE01BF /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BC8CA21DFA69A300DE01BF /* Category.swift */; };
@@ -217,6 +221,10 @@
 		2669AB5E1ED03EA500B632E5 /* ColorList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ColorList.plist; sourceTree = "<group>"; };
 		2669AB611ED0C79200B632E5 /* DateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateManager.h; sourceTree = "<group>"; };
 		2669AB621ED0C79200B632E5 /* DateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateManager.m; sourceTree = "<group>"; };
+		26A8478F1ED352E50079AD4A /* SortCommend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortCommend.swift; sourceTree = "<group>"; };
+		26A847911ED35AC10079AD4A /* AlphabeticalSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphabeticalSort.swift; sourceTree = "<group>"; };
+		26A847931ED35B000079AD4A /* NumericSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericSort.swift; sourceTree = "<group>"; };
+		26A847951ED35B340079AD4A /* DateSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSort.swift; sourceTree = "<group>"; };
 		26A945271DE9221100A3A38F /* BookLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookLibrary.swift; sourceTree = "<group>"; };
 		26BC8CA01DFA690500DE01BF /* EBookResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBookResource.swift; sourceTree = "<group>"; };
 		26BC8CA21DFA69A300DE01BF /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -297,6 +305,10 @@
 		260BB6CE1DC12ECB008472C2 /* SortCommends */ = {
 			isa = PBXGroup;
 			children = (
+				26A847951ED35B340079AD4A /* DateSort.swift */,
+				26A847931ED35B000079AD4A /* NumericSort.swift */,
+				26A847911ED35AC10079AD4A /* AlphabeticalSort.swift */,
+				26A8478F1ED352E50079AD4A /* SortCommend.swift */,
 			);
 			path = SortCommends;
 			sourceTree = "<group>";
@@ -807,6 +819,7 @@
 				26DBF0161DBE979100BB6030 /* ViewController.swift in Sources */,
 				260BB70B1DC1A532008472C2 /* RegistrationForm.swift in Sources */,
 				261D8AE31DBFDB34004E2577 /* RNDecryptor.m in Sources */,
+				26A847941ED35B000079AD4A /* NumericSort.swift in Sources */,
 				260BB6FF1DC1A38E008472C2 /* Credential.swift in Sources */,
 				261D8ACD1DBF0368004E2577 /* UIImage+Rokomari.swift in Sources */,
 				261D8AE81DBFDB69004E2577 /* TRVSMonitor.m in Sources */,
@@ -850,6 +863,7 @@
 				260BB7221DC1A8BF008472C2 /* AppAppearance.swift in Sources */,
 				26257C5F1DC59529008D6C88 /* Response.swift in Sources */,
 				260BB7251DC1A8C0008472C2 /* DiskUtility.swift in Sources */,
+				26A847921ED35AC10079AD4A /* AlphabeticalSort.swift in Sources */,
 				264D2C861DF3298900617EEA /* AuthorCatalog.swift in Sources */,
 				264D2C7E1DF269BC00617EEA /* NameResource.swift in Sources */,
 				26BC8CA11DFA690500DE01BF /* EBookResource.swift in Sources */,
@@ -860,9 +874,11 @@
 				264D2C901DF33DF200617EEA /* Rating.swift in Sources */,
 				264D2C821DF2DE9100617EEA /* ContactUs.swift in Sources */,
 				261D8AF31DBFE236004E2577 /* XMLReader.m in Sources */,
+				26A847901ED352E50079AD4A /* SortCommend.swift in Sources */,
 				261D8AEE1DBFE1E7004E2577 /* KeychainWrapper.m in Sources */,
 				2606688F1DC47A8700C76045 /* DNXRequest.swift in Sources */,
 				CE9D8EE21E43A16800FAE669 /* MegaGridTvc.swift in Sources */,
+				26A847961ED35B340079AD4A /* DateSort.swift in Sources */,
 				264D2C841DF3002A00617EEA /* ContactUsForm.swift in Sources */,
 				264D2C8E1DF33D6200617EEA /* RatingForm.swift in Sources */,
 				2606689F1DC5230400C76045 /* AppStateMatchine.swift in Sources */,
