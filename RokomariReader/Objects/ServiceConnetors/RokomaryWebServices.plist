@@ -15,7 +15,16 @@
 	<key>ForgotPassword</key>
 	<dict>
 		<key>routePath</key>
-		<string></string>
+		<string>api/account/reset_password/init</string>
+		<key>httpMethod</key>
+		<string>Post</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+	<key>ChangePassword</key>
+	<dict>
+		<key>routePath</key>
+		<string>api/account/change_password</string>
 		<key>httpMethod</key>
 		<string>Post</string>
 		<key>contentType</key>
@@ -36,6 +45,15 @@
 		<string>api/authenticate</string>
 		<key>httpMethod</key>
 		<string>Post</string>
+		<key>contentType</key>
+		<string>Json</string>
+	</dict>
+	<key>IsSignedIn</key>
+	<dict>
+		<key>routePath</key>
+		<string>api/authenticate</string>
+		<key>httpMethod</key>
+		<string>Get</string>
 		<key>contentType</key>
 		<string>Json</string>
 	</dict>

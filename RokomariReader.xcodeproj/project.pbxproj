@@ -33,7 +33,6 @@
 		260BB70C1DC1A532008472C2 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BB70A1DC1A532008472C2 /* UserProfile.swift */; };
 		260BB7111DC1A720008472C2 /* RokomariReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 260BB70F1DC1A720008472C2 /* RokomariReader.xcdatamodeld */; };
 		260BB7131DC1A743008472C2 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BB7121DC1A743008472C2 /* LoginForm.swift */; };
-		260BB7151DC1A753008472C2 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BB7141DC1A753008472C2 /* ForgotPassword.swift */; };
 		260BB71B1DC1A883008472C2 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BB7191DC1A883008472C2 /* AppInfo.swift */; };
 		260BB71C1DC1A883008472C2 /* AppStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BB71A1DC1A883008472C2 /* AppStoryboard.swift */; };
 		260BB7221DC1A8BF008472C2 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260BB71D1DC1A8BF008472C2 /* AppAppearance.swift */; };
@@ -169,7 +168,6 @@
 		260BB70A1DC1A532008472C2 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		260BB7101DC1A720008472C2 /* RokomariReader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RokomariReader.xcdatamodel; sourceTree = "<group>"; };
 		260BB7121DC1A743008472C2 /* LoginForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
-		260BB7141DC1A753008472C2 /* ForgotPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		260BB7191DC1A883008472C2 /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		260BB71A1DC1A883008472C2 /* AppStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoryboard.swift; sourceTree = "<group>"; };
 		260BB71D1DC1A8BF008472C2 /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
@@ -384,7 +382,6 @@
 				260BB7091DC1A531008472C2 /* RegistrationForm.swift */,
 				260BB70A1DC1A532008472C2 /* UserProfile.swift */,
 				260BB7121DC1A743008472C2 /* LoginForm.swift */,
-				260BB7141DC1A753008472C2 /* ForgotPassword.swift */,
 				2650BCF11DE0B60B00DAEDBA /* Query.swift */,
 				264D2C791DF1D1B600617EEA /* Validation.swift */,
 				264D2C831DF3002A00617EEA /* ContactUsForm.swift */,
@@ -873,7 +870,6 @@
 				26BC8CA11DFA690500DE01BF /* EBookResource.swift in Sources */,
 				260BB7111DC1A720008472C2 /* RokomariReader.xcdatamodeld in Sources */,
 				260BB7051DC1A38E008472C2 /* DNRuleSystem.swift in Sources */,
-				260BB7151DC1A753008472C2 /* ForgotPassword.swift in Sources */,
 				260BB6F81DC1A38E008472C2 /* FontConfig.swift in Sources */,
 				264D2C901DF33DF200617EEA /* Rating.swift in Sources */,
 				264D2C821DF2DE9100617EEA /* ContactUs.swift in Sources */,

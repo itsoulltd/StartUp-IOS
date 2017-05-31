@@ -32,7 +32,7 @@ class DomainTestCases: NSObject {
     
     func runTest(){
         print("Test Is Running")
-        //login()
+        login()
         //fetchAllBooks()
         //searchBooks()
         //fetchAllPublisher()
@@ -70,13 +70,17 @@ class DomainTestCases: NSObject {
     
     func login(){
         let model = LoginForm()
-        model.password = "towhid"
-        model.username = "towhid"
+        model.password = "admin"
+        model.username = "admin"
         user.login(model) { (response) in
             print(response?.id_token! as Any)
             self.monitor.signal()
         }
         monitor.wait()
+        
+//        user.isSignedIn { (yes) in
+//            print("\(yes)")
+//        }
     }
     
     func fetchAllBooks(){

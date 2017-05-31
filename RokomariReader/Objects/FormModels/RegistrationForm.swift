@@ -10,27 +10,21 @@ import UIKit
 import CoreDataStack
 
 /*{
-    "activated": true,
-    "authorities": [
-    "string"
-    ],
-    "createdBy": "string",
-    "createdDate": "2016-10-29T17:08:28.548Z",
+    "dateOfBirth": "2017-05-29T21:37:29.561Z",
     "email": "string",
-    "firstName": "string",
-    "id": 0,
-    "langKey": "string",
-    "lastModifiedBy": "string",
-    "lastModifiedDate": "2016-10-29T17:08:28.548Z",
-    "lastName": "string",
-    "login": "string",
-    "password": "string"
+    "gender": "MALE",
+    "name": "string",
+    "password": "string",
+    "phone": "string",
+    "reTypePassword": "string"
 }*/
 
 open class RegistrationForm: BaseForm {
     var email :NSString?
     var password :NSString?
-    var passwordConfirmation :NSString?
-    var firstName :NSString?
-    var lastName :NSString?
+    var reTypePassword :NSString?
+    var name :NSString?
+    var dateOfBirth :NSString?
+    var gender: NSString?
+    var phone: NSString?
 }
