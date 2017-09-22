@@ -3,7 +3,7 @@
 //  CoreDataStack
 //
 //  Created by Towhidul Islam on 12/15/16.
-//  Copyright © 2016 KITE GAMES STUDIO. All rights reserved.
+//  Copyright © 2016 Towhidul Islam. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

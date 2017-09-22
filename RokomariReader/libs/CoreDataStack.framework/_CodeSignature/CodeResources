@@ -46,7 +46,7 @@
 		</data>
 		<key>Headers/NSArray+FilterAndSorting.h</key>
 		<data>
-		YMPCdAr+CQJqsziJXXfje6gQGLo=
+		syLFhjjA9Sdtx31Fe6P3GDUt9mI=
 		</data>
 		<key>Headers/PropertyList.h</key>
 		<data>
@@ -62,7 +62,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		AQHyIkcHk8/eCFZ4JZDytoK7b+o=
+		YgjSxYG0+j2I1pE1K2u1bZnccvI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -185,11 +185,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			YMPCdAr+CQJqsziJXXfje6gQGLo=
+			syLFhjjA9Sdtx31Fe6P3GDUt9mI=
 			</data>
 			<key>hash2</key>
 			<data>
-			2FEO2xKa9+mZOEhaqhmVUTFSMG6ybW854X3Owinl79A=
+			6SjiChKtezMDpOZXxNspIBNXVV1Wik9xTgL+ybIxMto=
 			</data>
 		</dict>
 		<key>Headers/PropertyList.h</key>
@@ -255,6 +255,11 @@
 			<key>weight</key>
 			<real>1100</real>
 		</dict>
+		<key>^Base\.lproj/</key>
+		<dict>
+			<key>weight</key>
+			<real>1010</real>
+		</dict>
 		<key>^version.plist$</key>
 		<true/>
 	</dict>
@@ -299,6 +304,11 @@
 			<true/>
 			<key>weight</key>
 			<real>1100</real>
+		</dict>
+		<key>^Base\.lproj/</key>
+		<dict>
+			<key>weight</key>
+			<real>1010</real>
 		</dict>
 		<key>^Info\.plist$</key>
 		<dict>

@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/FileSystemSDK-Swift.h</key>
 		<data>
-		IZyGuoGekAl0+xceaHnSzHrhxEc=
+		F+vRgW1n5ziHBqnqC+Vcl8g3p2w=
 		</data>
 		<key>Headers/FileSystemSDK.h</key>
 		<data>
@@ -14,27 +14,27 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		mqOUTNP0piv++UTVhqiM6v/AnYM=
+		/2tGZL13yBYVbIMC2WRuhQPeZcE=
 		</data>
 		<key>Modules/FileSystemSDK.swiftmodule/arm.swiftdoc</key>
 		<data>
-		Q9afS6y1/cdoEt2LVyYiDRvzMmI=
+		6wKegiGO6RnrRjchADyU2v06L58=
 		</data>
 		<key>Modules/FileSystemSDK.swiftmodule/arm.swiftmodule</key>
 		<data>
-		Vu13wIpGvjiTskhW51xinKc+fOQ=
+		OU2Gl+ys9j8I9nAGMkCfKRx+TfA=
 		</data>
 		<key>Modules/FileSystemSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		qIMd68jhyMFuE2EF/8DOpi5iQiE=
+		D0DVTmmh1Lqfk0wDYLwm0bFPYiA=
 		</data>
 		<key>Modules/FileSystemSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		+1g7WViJoCyLF0lvWk7asAmomIw=
+		DU/OnvQsTIHpGd0MA1DKpoGLzoE=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		Um/sHFXl2kPlGivka4Z+Q4tPx4s=
+		odz738AGC5ygDY9mrVqz0mFJmiY=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -43,11 +43,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			IZyGuoGekAl0+xceaHnSzHrhxEc=
+			F+vRgW1n5ziHBqnqC+Vcl8g3p2w=
 			</data>
 			<key>hash2</key>
 			<data>
-			/p2sQvx4OJd7WXvC12Cn+JZ5GqorcmAJLrPfFRWCblg=
+			0bARZSosV64TdnYQVGItm4KMDGzxc18pPKDCvU/NyZs=
 			</data>
 		</dict>
 		<key>Headers/FileSystemSDK.h</key>
@@ -65,55 +65,55 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Q9afS6y1/cdoEt2LVyYiDRvzMmI=
+			6wKegiGO6RnrRjchADyU2v06L58=
 			</data>
 			<key>hash2</key>
 			<data>
-			LOvc3slKXXZq7Vc3fTeEosBIYKeiAPcrjrP7fhu+gcA=
+			UnmovAyM6YuWK/vaxxMOg13Jwgc7WzFKgeAHp5R34Hc=
 			</data>
 		</dict>
 		<key>Modules/FileSystemSDK.swiftmodule/arm.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Vu13wIpGvjiTskhW51xinKc+fOQ=
+			OU2Gl+ys9j8I9nAGMkCfKRx+TfA=
 			</data>
 			<key>hash2</key>
 			<data>
-			zYFU01jDWBSNgyA1ESUA5saLgxcZA/sDCt4FW3lrxnA=
+			9+GDtYsKNa7/2cx/OfZ3qxaMdJBI0lMwV4mGiszywBU=
 			</data>
 		</dict>
 		<key>Modules/FileSystemSDK.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			qIMd68jhyMFuE2EF/8DOpi5iQiE=
+			D0DVTmmh1Lqfk0wDYLwm0bFPYiA=
 			</data>
 			<key>hash2</key>
 			<data>
-			5EG0On7Y/zbFzeS0UUaWIQjFwSPeaAK6PYQ6HEytbVg=
+			gpHyDBm1RhfZB8HITqqS2jP2Tq7QsY6zuHx02rw2nF4=
 			</data>
 		</dict>
 		<key>Modules/FileSystemSDK.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			+1g7WViJoCyLF0lvWk7asAmomIw=
+			DU/OnvQsTIHpGd0MA1DKpoGLzoE=
 			</data>
 			<key>hash2</key>
 			<data>
-			iPIl/tvG+dTwpKl4r6P3mSpm+BBvn/HqdtTfNqQk04c=
+			V1W2ZYEy0iBjMSyVONXaaqpXi12QOrtA0P52mTybV3Q=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Um/sHFXl2kPlGivka4Z+Q4tPx4s=
+			odz738AGC5ygDY9mrVqz0mFJmiY=
 			</data>
 			<key>hash2</key>
 			<data>
-			9VR+SHx1E11BquQqFgwrq+mWhcWFQYfPQG/X7fvG3V4=
+			f+FibiX2uyKmRJE2qMuTIaKCricMqbN3+LILXdhyZTo=
 			</data>
 		</dict>
 	</dict>
@@ -134,6 +134,11 @@
 			<true/>
 			<key>weight</key>
 			<real>1100</real>
+		</dict>
+		<key>^Base\.lproj/</key>
+		<dict>
+			<key>weight</key>
+			<real>1010</real>
 		</dict>
 		<key>^version.plist$</key>
 		<true/>
@@ -179,6 +184,11 @@
 			<true/>
 			<key>weight</key>
 			<real>1100</real>
+		</dict>
+		<key>^Base\.lproj/</key>
+		<dict>
+			<key>weight</key>
+			<real>1010</real>
 		</dict>
 		<key>^Info\.plist$</key>
 		<dict>

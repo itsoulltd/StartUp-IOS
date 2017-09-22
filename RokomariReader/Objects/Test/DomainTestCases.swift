@@ -78,9 +78,9 @@ class DomainTestCases: NSObject {
         }
         monitor.wait()
         
-//        user.isSignedIn { (yes) in
-//            print("\(yes)")
-//        }
+        user.isSignedIn { (yes) in
+            print("\(yes)")
+        }
     }
     
     func fetchAllBooks(){
