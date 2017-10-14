@@ -9,6 +9,7 @@
 import Foundation
 import CoreDataStack
 
+@objcMembers
 open class ReviewForm: BaseForm{
     var detail: NSString?
     var ebookId: NSNumber?

@@ -24,7 +24,7 @@ extension HttpWebRequest{
     }
     
     func addAuth(){
-        let userMan = UserManagement(profileType: UserProfile.self)
+        let userMan = AppRouter.shared().getAccount()
         guard let accessToken = userMan.oauth.token else{
             print("token is empty")
             return

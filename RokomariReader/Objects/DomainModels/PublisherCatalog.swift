@@ -13,7 +13,7 @@ import WebServiceKit
 
 open class PublisherCatalog: NGObject{
     
-    var publisherResults: [Query: [Publisher]] = [Query: [Publisher]]()
+    @objc var publisherResults: [Query: [Publisher]] = [Query: [Publisher]]()
     
     fileprivate var publisherTransac: TransactionStack?
     open func publishers(_ query: Query, onCompletion: @escaping (([Publisher]) -> Void)) -> Void{

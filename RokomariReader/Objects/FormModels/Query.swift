@@ -9,12 +9,14 @@
 import UIKit
 import CoreDataStack
 
+@objcMembers
 open class Query: BaseForm {
     var page: NSNumber = 0
     var size: NSNumber = 20
     var sort: NSArray?
 }
 
+@objcMembers
 open class SearchQuery: Query {
     var query: NSString?
     

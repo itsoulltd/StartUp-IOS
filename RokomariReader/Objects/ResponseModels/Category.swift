@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 open class Category: EBookResource {
     var parentId: NSInteger = 0
 }

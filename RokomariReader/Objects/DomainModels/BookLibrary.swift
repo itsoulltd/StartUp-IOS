@@ -13,10 +13,10 @@ import WebServiceKit
 
 open class BookLibrary: NGObject {
     
-    var searchResult: [SearchQuery:[Book]] = [SearchQuery:[Book]]()
-    var fetchResult: [Query:[Book]] = [Query:[Book]]()
+    @objc var searchResult: [SearchQuery:[Book]] = [SearchQuery:[Book]]()
+    @objc var fetchResult: [Query:[Book]] = [Query:[Book]]()
     
-    var categoryResults: [Query: [Category]] = [Query: [Category]]()
+    @objc var categoryResults: [Query: [Category]] = [Query: [Category]]()
     
     fileprivate var searchBooks: TransactionStack?
     open func search(_ query: SearchQuery, onCompletion: @escaping (([Book]) -> Void)) -> Void {

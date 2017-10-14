@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import WebServiceKit
 
 enum LanguageISOId: String{
     case English = "en"
@@ -15,48 +16,126 @@ enum LanguageISOId: String{
 }
 
 enum LanguageCode: Int{
-    case english = 1
-    case arabic = 2
+    case English = 1
+    case Arabic = 2
 }
 
-class AppStoryboard: NSObject {
+enum StoryboardNames: String {
+    case Main = "Main"
+    case LaunchScreen = "LaunchScreen"
+}
+
+class AppRouter: NSObject {
     
-    override init() {
+    private override init() {
         super.init()
+        registerSignoutObserver()
+        registerUnauthorizedObserver()
     }
     
-    convenience init(storyboard name: String) {
-        self.init()
-        let _ = storyboard(name)
+    private struct SharedInstance {
+        static let router = AppRouter()
     }
     
-    fileprivate var mainStoryboard: UIStoryboard!
+    class func shared() -> AppRouter{
+        return SharedInstance.router
+    }
+    
+    public func start() {
+        print("isRemembered : \(getAccount().credential.isRemembered), isLoggin : \(getAccount().loggedIn)")//
+        if getAccount().loggedIn == false {
+            let rootViewController = resolveViewController(fromType: LoginTVC.self)
+            let nav = UINavigationController(rootViewController: rootViewController)
+            replaceRootViewController(nav)
+        }else{
+            let rootViewController = resolveViewController(fromType: MegaGridTvc.self)
+            let nav = UINavigationController(rootViewController: rootViewController)
+            replaceRootViewController(nav)
+        }
+    }
+    
+    public func show(fromType type: AnyClass, boardName: StoryboardNames = .Main) {
+        let viewController = resolveViewController(fromType: type, boardName: boardName)
+        showViewController(viewController, sender: nil)
+    }
+    
+    public func show(fromStoryboardId stid: String, boardName: StoryboardNames = .Main) {
+        let viewController = resolveViewController(fromStoryboardId: stid, boardName: boardName)
+        showViewController(viewController, sender: nil)
+    }
+    
+    private var mainStoryboard: UIStoryboard!
+    private var storyboards: [String: UIStoryboard?] = [String: UIStoryboard?]()
+    
+    final func storyboard(name: StoryboardNames) -> UIStoryboard{
+        guard let hasBoard = storyboards[name.rawValue] as? UIStoryboard else{
+            let info = AppInfo()
+            if name == .Main {
+                let main = info.mainStoryboard()
+                if main != nil{
+                    storyboards[name.rawValue] = main
+                }
+                return main!
+            }else{
+                let board = info.mainStoryboard(name.rawValue)
+                if board != nil{
+                    storyboards[name.rawValue] = board
+                }
+                return board!
+            }
+        }
+        return hasBoard
+    }
     
     deinit{
         print("deinit -> \(NSStringFromClass(type(of: self)))")
     }
     
-    final func messageLogger(_ funcName: String, message: String){
+    private var userAccount = UserManagement(profileType: UserProfile.self)
+    public func getAccount() -> UserManagement{
+        return userAccount
+    }
+    
+    private var signoutObserver: AnyObject?
+    public func registerSignoutObserver() -> Void{
+        if signoutObserver == nil{
+            signoutObserver = NotificationCenter.default.addObserver(forName: NotificationKeys.UserSignOutNotification, object: nil, queue: OperationQueue.main, using: { (notification: Notification!) -> Void in
+                self.userAccount.logout()
+                self.start()
+            })
+        }
+    }
+    
+    private var unauthorizedObserver: AnyObject?
+    public func registerUnauthorizedObserver() -> Void{
+        if unauthorizedObserver == nil{
+            unauthorizedObserver = NotificationCenter.default.addObserver(forName: Response.HttpStatusUnauthorizedAccessNotification, object: nil, queue: OperationQueue.main, using: { (notification: Notification!) -> Void in
+                self.userAccount.logout()
+                self.start()
+            })
+        }
+    }
+    
+    final func messageLogger(funcName: String, message: String){
         print("\(NSStringFromClass(type(of: self))) \(funcName) :: \(message)")
     }
     
     final func resolveLanguageCode() -> Int{
-        //
         var langCode: Int = 0
         switch(AppInfo().languageID()){
         case LanguageISOId.Arabic.rawValue:
-            langCode = LanguageCode.arabic.rawValue
+            langCode = LanguageCode.Arabic.rawValue
             break
         case LanguageISOId.English.rawValue:
-            langCode = LanguageCode.english.rawValue
+            langCode = LanguageCode.English.rawValue
             break
         default:
-            langCode = LanguageCode.english.rawValue
+            langCode = LanguageCode.English.rawValue
         }
         return langCode
     }
     
-    final func resolveClassName(_ type: AnyClass) -> String{
+    final func resolveClassName(type: AnyClass) -> String{
         let fullClassName: NSString = NSStringFromClass(type.self) as NSString
         let moduleName = AppInfo().stringValue(forKey: AppInfo.ConstentKeys.BundleNameKey)!
         let moduleWithSeparetor = NSString(format: "%@.", moduleName)
@@ -64,20 +143,24 @@ class AppStoryboard: NSObject {
         return className
     }
     
-    final func resolveStoryboardID(_ type: AnyClass) -> String{
-        let storyboardID = resolveClassName(type)
+    final func resolveStoryboardID(type: AnyClass) -> String{
+        let storyboardID = resolveClassName(type: type)
         return storyboardID
     }
     
-    final func initialViewController() -> UIViewController{
-        let selectedStoryboard = storyboard()!
+    final func initialViewController(_ boardName: StoryboardNames = .Main) -> UIViewController{
+        let selectedStoryboard = storyboard(name: boardName)
         let initial = selectedStoryboard.instantiateInitialViewController() as UIViewController!
         return initial!
     }
     
-    final func resolveViewController(fromType type: AnyClass) -> UIViewController{
-        let storyboardID = resolveStoryboardID(type)
-        let viewController = storyboard()?.instantiateViewController(withIdentifier: storyboardID) as UIViewController!
+    final func resolveViewController(fromType type: AnyClass, boardName: StoryboardNames = .Main) -> UIViewController{
+        let storyboardID = resolveStoryboardID(type: type)
+        return resolveViewController(fromStoryboardId: storyboardID, boardName: boardName)
+    }
+    
+    final func resolveViewController(fromStoryboardId storyboardID: String, boardName: StoryboardNames = .Main) -> UIViewController{
+        let viewController = storyboard(name: boardName).instantiateViewController(withIdentifier: storyboardID) as UIViewController!
         return viewController!
     }
     
@@ -159,7 +242,7 @@ class AppStoryboard: NSObject {
                     return visibleViewController
                 }
             }
-            if activeViewController is UITabBarController{
+            else if activeViewController is UITabBarController{
                 if let visibleViewController = (activeViewController as! UITabBarController).selectedViewController{
                     return visibleViewController
                 }
@@ -169,19 +252,6 @@ class AppStoryboard: NSObject {
             }
         }
         return nil
-    }
-    
-    final func storyboard(_ name: String? = nil) -> UIStoryboard?{
-        if mainStoryboard == nil{
-            let info = AppInfo()
-            if let name = name{
-                self.mainStoryboard = info.mainStoryboard(name)
-            }
-            else{
-                self.mainStoryboard = info.mainStoryboard()
-            }
-        }
-        return mainStoryboard
     }
     
 }

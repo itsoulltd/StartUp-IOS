@@ -9,6 +9,7 @@
 import Foundation
 import WebServiceKit
 
+@objcMembers
 class AfterLogin: Response {
     var id_token: NSString?
 }

@@ -3,19 +3,24 @@
 //  StartupProjectSampleA
 //
 //  Created by Towhid on 10/7/15.
-//  Copyright © 2016 Rokomari (https://www.rokomari.com/policy). All rights reserved.
+//  Copyright © 2015 Towhid (Selise.ch). All rights reserved.
 //
 
 import Foundation
+import CoreDataStack
+import CoreNetworkStack
+import WebServiceKit
 
+@objc(ResolutionStrategyProtocol)
 public protocol ResolutionStrategyProtocol : NSObjectProtocol{
     var factTable: NSMutableDictionary {get} //Is our Working Memory
     var messageBox: NSMutableDictionary {get} //Simple Log keeping.
     func assert(message: String?, forFact fact: String)
-    func execute(_ system: DNRuleSystem, rules: [DNRuleProtocol]) -> Void
+    func execute(_ system: NGRuleSystem, rules: [NGRuleProtocol]) -> Void
     func reset() -> Void
 }
 
+@objc(ForwardChaining)
 open class ForwardChaining: NSObject, ResolutionStrategyProtocol{
     
     fileprivate var _factTable: NSMutableDictionary = NSMutableDictionary(capacity: 7)
@@ -29,7 +34,7 @@ open class ForwardChaining: NSObject, ResolutionStrategyProtocol{
         return _factMessageTable
     }
     
-    open func execute(_ system: DNRuleSystem, rules: [DNRuleProtocol]) {
+    open func execute(_ system: NGRuleSystem, rules: [NGRuleProtocol]) {
         //evaluate
         let total = rules.count
         var confirmCount = 0
@@ -40,7 +45,7 @@ open class ForwardChaining: NSObject, ResolutionStrategyProtocol{
             }
         }
         let fraction = Double(confirmCount) / Double(total)
-        system.assert(fact: DNRuleSystem.DNRuleSystemKeys.Progress, grade: NSNumber(value: fraction))
+        system.assert(NGRuleSystem.NGRuleSystemKeys.Progress, grade: NSNumber(value: fraction))
     }
     
     open func reset() {
@@ -62,33 +67,35 @@ open class ForwardChaining: NSObject, ResolutionStrategyProtocol{
     
 }
 
+@objc(BackwardChaining)
 open class BackwardChaining: ForwardChaining{
     
-    open override func execute(_ system: DNRuleSystem, rules: [DNRuleProtocol]) {
+    open override func execute(_ system: NGRuleSystem, rules: [NGRuleProtocol]) {
         //TODO: implement BackwardChaining
         super.execute(system, rules: rules)
     }
     
 }
 
+@objc(Progressive)
 open class Progressive: ForwardChaining{
     
-    fileprivate var confirmRules: Set<DNRule> = Set<DNRule>()
+    fileprivate var confirmRules: Set<NGRule> = Set<NGRule>()
     
     func isOrderd() -> Bool{
         return false
     }
     
-    open override func execute(_ system: DNRuleSystem, rules: [DNRuleProtocol]) {
+    open override func execute(_ system: NGRuleSystem, rules: [NGRuleProtocol]) {
         //evaluate
         for rule in rules{
-            if confirmRules.contains(rule as! DNRule) == false{
+            if confirmRules.contains(rule as! NGRule) == false{
                 let result = rule.validate()
                 if (isOrderd() == true && result == false){
                     break
                 }
                 if result == true{
-                    confirmRules.insert(rule as! DNRule)
+                    confirmRules.insert(rule as! NGRule)
                     rule.executeAssertion()
                 }
             }
@@ -96,7 +103,7 @@ open class Progressive: ForwardChaining{
         let total = rules.count
         let confirmCount = confirmRules.count
         let fraction = Double(confirmCount) / Double(total)
-        system.assert(fact: DNRuleSystem.DNRuleSystemKeys.Progress, grade: NSNumber(value: fraction))
+        system.assert(NGRuleSystem.NGRuleSystemKeys.Progress, grade: NSNumber(value: fraction))
     }
     
     open override func reset() {
@@ -108,6 +115,7 @@ open class Progressive: ForwardChaining{
     
 }
 
+@objc(OrderedProgressive)
 open class OrderedProgressive: Progressive{
     
     override func isOrderd() -> Bool {

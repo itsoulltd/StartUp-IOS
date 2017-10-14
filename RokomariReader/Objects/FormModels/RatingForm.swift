@@ -9,6 +9,7 @@
 import UIKit
 import CoreDataStack
 
+@objcMembers
 class RatingForm: BaseForm {
     var ebookId: NSNumber?
     var id: NSNumber?

@@ -12,7 +12,7 @@ import CoreNetworkStack
 import WebServiceKit
 
 open class AuthorCatalog: NGObject{
-    var authorResults: [Query: [Author]] = [Query: [Author]]()
+    @objc var authorResults: [Query: [Author]] = [Query: [Author]]()
     
     fileprivate var authorTransac: TransactionStack?
     open func authors(_ query: Query, onCompletion: @escaping (([Author]) -> Void)) -> Void{

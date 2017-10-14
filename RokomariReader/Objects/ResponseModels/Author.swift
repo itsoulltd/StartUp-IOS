@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 open class Author: EBookResource {
     var detail: NSString?
 }

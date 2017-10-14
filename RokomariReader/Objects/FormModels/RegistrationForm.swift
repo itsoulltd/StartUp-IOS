@@ -19,6 +19,7 @@ import CoreDataStack
     "reTypePassword": "string"
 }*/
 
+@objcMembers
 open class RegistrationForm: BaseForm {
     var email :NSString?
     var password :NSString?

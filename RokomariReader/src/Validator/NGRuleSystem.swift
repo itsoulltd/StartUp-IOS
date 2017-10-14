@@ -1,9 +1,9 @@
 //
-//  DNRuleSystem.swift
+//  NGRuleSystem.swift
 //  StartupProjectSampleA
 //
 //  Created by Towhid on 10/6/15.
-//  Copyright © 2016 Rokomari (https://www.rokomari.com/policy). All rights reserved.
+//  Copyright © 2015 Towhid (Selise.ch). All rights reserved.
 //
 
 import Foundation
@@ -15,14 +15,15 @@ public enum RuleEvaluationStrategy: Int{
     case orderedProgressive = 3
 }
 
-open class DNRuleSystem: NSObject {
+@objc(NGRuleSystem)
+open class NGRuleSystem: NSObject {
     
-    public struct DNRuleSystemKeys{
+    public struct NGRuleSystemKeys{
         static let Progress = "progressKey"
     }
     
     fileprivate var stateTable: [String : AnyObject] = [String : AnyObject]()
-    fileprivate var rules: [DNRuleProtocol] = [DNRuleProtocol]()
+    fileprivate var rules: [NGRuleProtocol] = [NGRuleProtocol]()
     fileprivate var strategy: ResolutionStrategyProtocol!
     fileprivate var factTable: NSMutableDictionary {
         return strategy.factTable
@@ -66,55 +67,55 @@ open class DNRuleSystem: NSObject {
     }
     
     open func progress() -> Double{
-        return gradeFor(fact: DNRuleSystemKeys.Progress) * 100
+        return gradeFor(NGRuleSystemKeys.Progress) * 100
     }
     
-    open func gradeFor(fact: String) -> Double{
+    open func gradeFor(_ fact: String) -> Double{
         if let grade = factTable.object(forKey: fact) as? NSNumber{
             return grade.doubleValue
         }
         return 0.0
     }
     
-    open func messagesFor(fact: String) -> [String]{
+    open func messagesFor(_ fact: String) -> [String]{
         let messages = strategy.messageBox.object(forKey: fact)
         return (messages != nil) ? messages as! [String] : [String]()
     }
     
-    open func satisfied(fact: String) -> Bool{
-        return gradeFor(fact: fact) == Double(1.0)
+    open func satisfied(_ fact: String) -> Bool{
+        return gradeFor(fact) == Double(1.0)
     }
     
-    open func assert(fact: String, grade: NSNumber = NSNumber(value: 1.0 as Double), message: String? = nil){
+    open func assert(_ fact: String, grade: NSNumber = NSNumber(value: 1.0 as Double), message: String? = nil){
         let vGrade = (grade.doubleValue >= 1.0) ? NSNumber(value: 1.0 as Double) : grade
         factTable.setObject(vGrade, forKey: fact as NSCopying)
         strategy.assert(message: message, forFact: fact)
     }
     
-    open func retreat(fact: String){
+    open func retreat(_ fact: String){
         factTable.removeObject(forKey: fact)
     }
     
-    open func addRules(from array: [DNRuleProtocol]){
+    open func addRules(from array: [NGRuleProtocol]){
         for rule in array{
             let _ = addRule(rule)
         }
     }
     
-    open func addRule(_ rule: DNRuleProtocol) -> DNRuleSystem{
+    open func addRule(_ rule: NGRuleProtocol) -> NGRuleSystem{
         rule.system = self
         rules.append(rule)
         return self
     }
     
-    open func copyRules() -> [DNRuleProtocol]{
-        var cRules = [DNRuleProtocol]()
+    open func copyRules() -> [NGRuleProtocol]{
+        var cRules = [NGRuleProtocol]()
         cRules.append(contentsOf: rules)
         return cRules
     }
     
-    open func removeRule(at index: Int) -> DNRuleProtocol{
-        let rule = rules.remove(at: index) as DNRuleProtocol
+    open func removeRule(at index: Int) -> NGRuleProtocol{
+        let rule = rules.remove(at: index) as NGRuleProtocol
         return rule
     }
     

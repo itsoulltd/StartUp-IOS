@@ -13,7 +13,7 @@ import WebServiceKit
 
 class DomainTestCases: NSObject {
 
-    var userManagement: UserManagement = UserManagement(profileType: UserProfile.self)
+    var userManagement: UserManagement = AppRouter.shared().getAccount()
     var monitor: TRVSMonitor = TRVSMonitor(expectedSignalCount: 1)
     var user = User()
     var browser: BookLibrary = BookLibrary()

@@ -9,12 +9,18 @@
 import UIKit
 import CoreDataStack
 
+@objcMembers
 class UserProfile: BaseForm {
     var userName: NSString?
     var firstName: NSString?
     var lastName: NSString?
+    var email: NSString?
     var name: String {
-        return "\(firstName) \(lastName)"
+        guard let fn = firstName,
+        let ln = lastName else {
+            return ""
+        }
+        return "\(fn) \(ln)"
     }
     var age: NSNumber?
     var dob: Date?

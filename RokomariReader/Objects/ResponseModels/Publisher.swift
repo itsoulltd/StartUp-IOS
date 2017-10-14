@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 open class Publisher: EBookResource {
     var detail: NSString?
 }

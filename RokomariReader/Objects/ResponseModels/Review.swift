@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 open class Review: NameResource{
     var title: NSString?
     var detail: NSString?

@@ -18,15 +18,14 @@ open class AppState: GKState {
     }
     
     public struct SharedResource{
-        static var ruleSystem: DNRuleSystem = {
-            let system = DNRuleSystem()
+        static var ruleSystem: NGRuleSystem = {
+            let system = NGRuleSystem()
             return system
         }()
     }
 
-    var appStoryboard: AppStoryboard{
-        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
-        return appDelegate.appStoryboard
+    var appStoryboard: AppRouter{
+        return AppRouter.shared()
     }
     
     var window: UIWindow?{

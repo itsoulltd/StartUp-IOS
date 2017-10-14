@@ -8,6 +8,7 @@
 
 import UIKit
 
+@objcMembers
 open class Rating: NameResource {
     weak var ebook: Book?
     var value: NSNumber?

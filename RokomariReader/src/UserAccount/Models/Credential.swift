@@ -9,6 +9,7 @@
 import UIKit
 import CoreDataStack
 
+@objcMembers
 class Credential: NGObject {
     
     let emailIdentifier: String = "\(Bundle.main.bundleIdentifier!).user_email"

@@ -3,17 +3,17 @@
 //  MymoUpload
 //
 //  Created by Towhid Islam on 9/19/14.
-//  Copyright (c) 2016 Rokomari (https://www.rokomari.com/policy). All rights reserved.
+//  Copyright (c) 2014 Towhid (Selise.ch). All rights reserved.
 //
 
 import Foundation
 
+@objc(Validation)
 public protocol Validation: NSObjectProtocol{
     func validate(_ value: AnyObject) -> Bool
 }
 
 public enum RelationalOperator: Int {
-    
     case equal
     case min
     case minOrEqual
@@ -25,6 +25,7 @@ public enum RelationalOperator: Int {
 * LogicalExpression is abstruct base class, Don't instantiate this Class
 */
 
+@objc(Equal)
 open class Equal: NSObject, Validation {
     
     fileprivate let baseValue: AnyObject!
@@ -39,6 +40,7 @@ open class Equal: NSObject, Validation {
     }
 }
 
+@objc(EqualDate)
 open class EqualDate: Equal {
     
     override open func validate(_ value: AnyObject) -> Bool {
@@ -51,6 +53,7 @@ open class EqualDate: Equal {
     }
 }
 
+@objc(Greater)
 open class Greater: Equal {
     
     override open func validate(_ value: AnyObject) -> Bool {
@@ -59,6 +62,7 @@ open class Greater: Equal {
     }
 }
 
+@objc(GreaterDate)
 open class GreaterDate: Greater {
     
     override open func validate(_ value: AnyObject) -> Bool {
@@ -71,6 +75,7 @@ open class GreaterDate: Greater {
     }
 }
 
+@objc(Smaller)
 open class Smaller: Greater {
     
     override open func validate(_ value: AnyObject) -> Bool {
@@ -79,6 +84,7 @@ open class Smaller: Greater {
     }
 }
 
+@objc(SmallerDate)
 open class SmallerDate: Smaller {
     
     override open func validate(_ value: AnyObject) -> Bool {
@@ -91,6 +97,7 @@ open class SmallerDate: Smaller {
     }
 }
 
+@objc(Logical)
 open class Logical: NSObject, Validation {
     
     var left: Validation
@@ -107,6 +114,7 @@ open class Logical: NSObject, Validation {
     }
 }
 
+@objc(And)
 open class And: Logical {
     
     override open func validate(_ value: AnyObject) -> Bool {
@@ -114,7 +122,7 @@ open class And: Logical {
         return result
     }
 }
-
+@objc(Or)
 open class Or: Logical {
     
     override open func validate(_ value: AnyObject) -> Bool {
@@ -122,7 +130,7 @@ open class Or: Logical {
         return result
     }
 }
-
+@objc(Xor)
 open class Xor: Logical {
     
     override open func validate(_ value: AnyObject) -> Bool {
@@ -130,7 +138,7 @@ open class Xor: Logical {
         return result
     }
 }
-
+@objc(Nor)
 open class Nor: Logical {
     
     override open func validate(_ value: AnyObject) -> Bool {
@@ -138,7 +146,7 @@ open class Nor: Logical {
         return result
     }
 }
-
+@objc(Length)
 open class Length: NSObject, Validation {
     
     fileprivate var validLength: Int
@@ -189,7 +197,7 @@ open class Length: NSObject, Validation {
     }
     
 }
-
+@objc(RegX)
 open class RegX: NSObject, Validation {
     
     fileprivate var regxString: String

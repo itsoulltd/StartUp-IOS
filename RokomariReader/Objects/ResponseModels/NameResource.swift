@@ -18,6 +18,7 @@ public enum ResourceStatus: NSString{
     case unknown = "unknown"
 }
 
+@objcMembers
 open class NameResource: Response {
     var createdDate: NSString?
     var lastModifiedBy: NSString?

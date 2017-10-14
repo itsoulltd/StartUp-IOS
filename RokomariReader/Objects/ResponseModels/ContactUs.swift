@@ -9,6 +9,7 @@
 import Foundation
 import WebServiceKit
 
+@objcMembers
 open class ContactUs: Response{
     var createdDate: NSString?
     var lastModifiedBy: NSString?

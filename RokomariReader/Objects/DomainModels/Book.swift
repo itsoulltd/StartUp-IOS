@@ -20,6 +20,7 @@ public enum FileSourceType: NSString{
     case gif = "gif"
 }
 
+@objcMembers
 open class FileSource: NameResource{
     weak var ebook: Book?
     var file: NSString?
@@ -30,26 +31,26 @@ open class FileSource: NameResource{
 }
 
 open class Book: Response {
-    var authors: [Author] = [Author]()
-    var categories: [Category] = [Category]()
-    var detail_bangla: NSString?
-    var detail_english: NSString?
-    var discount: NSNumber?
-    var edition: NSNumber?
-    var image_url: NSString?
-    var isbn: NSString?
-    var name_bangla: NSString?
-    var name_english: NSString?
-    var number_of_pages: NSNumber?
-    var price_list: NSNumber?
-    var price_sales: NSNumber?
-    var publisher: Publisher?
-    var rokomari_id: NSNumber?
+    @objc var authors: [Author] = [Author]()
+    @objc var categories: [Category] = [Category]()
+    @objc var detail_bangla: NSString?
+    @objc var detail_english: NSString?
+    @objc var discount: NSNumber?
+    @objc var edition: NSNumber?
+    @objc var image_url: NSString?
+    @objc var isbn: NSString?
+    @objc var name_bangla: NSString?
+    @objc var name_english: NSString?
+    @objc var number_of_pages: NSNumber?
+    @objc var price_list: NSNumber?
+    @objc var price_sales: NSNumber?
+    @objc var publisher: Publisher?
+    @objc var rokomari_id: NSNumber?
     var status: ResourceStatus = .unknown
     
-    var avarageRating: NSNumber?
-    var reviews: [Review] = [Review]()
-    var rating: [Rating] = [Rating]()
+    @objc var avarageRating: NSNumber?
+    @objc var reviews: [Review] = [Review]()
+    @objc var rating: [Rating] = [Rating]()
     
     fileprivate var savedFolder = Folder(name: "Saved", searchDirectoryType: FileManager.SearchPathDirectory.documentDirectory)
     var file: File?

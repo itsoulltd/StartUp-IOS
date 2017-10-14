@@ -43,6 +43,7 @@ open class Banners: NGObject{
     
 }
 
+@objcMembers
 open class Banner: NameResource{
     var image: NSString?
     var link: NSString?
@@ -52,6 +53,7 @@ open class Banner: NameResource{
     
 }
 
+@objcMembers
 open class BannerQuery: Query{
     var type: NSString?
     var status: NameResource?

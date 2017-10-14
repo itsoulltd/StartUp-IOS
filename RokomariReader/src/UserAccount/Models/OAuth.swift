@@ -9,6 +9,7 @@
 import UIKit
 import CoreDataStack
 
+@objcMembers
 class OAuth: NGObject {
     
     let tokenIdentifier: String = "\(Bundle.main.bundleIdentifier!).user_token"

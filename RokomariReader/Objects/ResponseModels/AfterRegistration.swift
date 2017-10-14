@@ -9,6 +9,7 @@
 import Foundation
 import WebServiceKit
 
+@objcMembers
 class AfterRegistration: Response {
 
 }

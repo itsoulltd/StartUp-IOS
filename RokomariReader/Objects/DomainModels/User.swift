@@ -18,7 +18,7 @@ enum UserError: Error {
 
 class User: NGObject {
     
-    lazy var management: UserManagement = UserManagement(profileType: UserProfile.self)
+    lazy var management: UserManagement = AppRouter.shared().getAccount()
     var profile: UserProfile? {
         return management.profile as? UserProfile
     }
@@ -52,16 +52,16 @@ class User: NGObject {
         request.payLoad = form
         transaction = TransactionStack(callBack: {[weak self] (received) in
             if let loginResponse = received?.first as? AfterLogin{
-                let _ = self?.management.loginWithToken(loginResponse.id_token as! String, email: form.username as! String, password: form.password as! String, remembered: form.rememberMe.boolValue)
+                let _ = self?.management.loginWithToken(loginResponse.id_token! as String
+                    , email: form.username! as String
+                    , password: form.password! as String
+                    , remembered: form.rememberMe.boolValue)
                 let profile = UserProfile()
                 profile.userName = form.username
                 //TODO:
                 self?.management.profile = profile
                 onCompletion(loginResponse)
             }else{
-                if let ponse = received?.first as? Response{
-                    print(ponse.errorMessage!)
-                }
                 onCompletion(nil)
             }
         })

@@ -23,7 +23,7 @@ public enum ContactUsStatus: NSString{
  "status": "responded",
  "subject": "Hi there!"
  }*/
-
+@objcMembers
 open class ContactUsForm: BaseForm{
     
     var status: NSString = ContactUsStatus.responded.rawValue

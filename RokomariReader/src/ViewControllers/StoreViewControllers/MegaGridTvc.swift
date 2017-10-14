@@ -19,11 +19,22 @@ class MegaGridTvc: UITableViewController {
         model = generateRandomData()
         
         self.title = "My Grid"
+        
+        if let _ = self.navigationController{
+            let logout = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.done, target: self, action: #selector(MegaGridTvc.cancelAction(sender:)))
+            self.navigationItem.rightBarButtonItems = [logout]
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: Actions
+    
+    @objc public func cancelAction(sender: Any) {
+        NotificationCenter.default.post(name: NotificationKeys.UserSignOutNotification, object: nil)
     }
 
     // MARK: - Table view data source

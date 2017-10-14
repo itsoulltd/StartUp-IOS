@@ -9,6 +9,7 @@
 import UIKit
 import CoreDataStack
 
+@objcMembers
 class LoginForm: BaseForm {
     var password: NSString?
     var username: NSString?
@@ -23,6 +24,7 @@ class LoginForm: BaseForm {
     }
 }
 
+@objcMembers
 class ChangePassForm: BaseForm {
     var oldPassword: NSString?
     var password: NSString?

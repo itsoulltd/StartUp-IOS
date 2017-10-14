@@ -3,172 +3,151 @@
 //  HoxroCaseTracker
 //
 //  Created by Towhid Islam on 10/7/16.
-//  Copyright © 2016 Rokomari (https://www.rokomari.com/policy). All rights reserved.
+//  Copyright © 2016 Hoxro Limited, 207 Regent Street, London, W1B 3HN London. All rights reserved.
 //
 
 import UIKit
 import CoreDataStack
-
-struct AppValidationConstants {
-    static let UserNameMinLength = 1
-    static let PasswordMinLength = 5
-    static let PasswordRegX = "((?=.*\\d)(?=.*[A-Za-z]).{6,20})"
-    static let PasswordRegX2 = "^.*(?=.{8,})(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!*@#$%^&+=]).*$"
-    static let EmailRegX = "[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}"
-    static let EmailRegX2 = "\\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\\Z"
-    static let EmailMinLength = 7
-    static let MobileNumberMinLength = 12
-    static let MobileNumberRegX = ""
-}
-
-struct AppValidationError {
-    static let RequiredMessage = NSLocalizedString("is a required field", comment: "")
-    static let PatternMessage = NSLocalizedString("is invalid", comment: "")
-    static let EmailInvalidMessage = NSLocalizedString("is invalid", comment: "")
-    static let LengthMessage = NSLocalizedString("input length at least", comment: "")
-    static let PasswordInvalidMessage = NSLocalizedString("is invalid", comment: "")
-    static let PasswordMinLengthMessage = NSLocalizedString("minimum length is", comment: "")
-    static let PasswordMissmatchMessage = NSLocalizedString("mismatch", comment: "")
-    static let MobileNumberInvalidMessage = NSLocalizedString("is invalid", comment: "")
-}
+import CoreNetworkStack
+import WebServiceKit
 
 class AppRuleSystem: NSObject {
     
     struct Fact {
-        static let Email = "Email"
-        static let MobileNumber = "MobileNumber"
-        static let UserName = "UserName"
-        static let Password = "Password"
-        static let PasswordConfirmation = "Confirm Password"
+        static let EmailValue = "email"
+        static let PasswordValue = "password"
+        static let PasswordConfirmValue = "password_confirm"
+        static let FormTextInput = "FormFieldInput"
+        static let FormTextInputConfirm = "ConfirmFieldInput"
     }
 
-    class func allPassRuleSystem() -> DNRuleSystem{
-        return DNRuleSystem()
+    class func allPassRuleSystem() -> NGRuleSystem{
+        return NGRuleSystem()
     }
     
-    class func addRequiredRule(_ ruleSystem: inout DNRuleSystem, forFact fact: String){
-        let _ = ruleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+    class func addRequiredRule(_ ruleSystem: inout NGRuleSystem, forFact fact: String){
+        let _ = ruleSystem.addRule(NGRule(condition: { (system: NGRuleSystem) -> Bool in
             let input = system.state(fact) as! String
-            return (input.characters.count <= 0)
-            }, assertion: { (system: DNRuleSystem) -> Void in
-                system.assert(fact: fact, grade: 1.0, message: "\(fact) \(AppValidationError.RequiredMessage)")
+            return (input.count <= 0)
+            }, assertion: { (system: NGRuleSystem) -> Void in
+                system.assert ( Fact.FormTextInput, grade: 1.0, message: "\(fact) \(FormValidationError.RequiredMessage)")
         }))
     }
     
-    class func addLengthRule(_ ruleSystem: inout DNRuleSystem, forFact fact: String, length: Length){
-        let _ = ruleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+    class func addLengthRule(_ ruleSystem: inout NGRuleSystem, forFact fact: String, length: Length){
+        let _ = ruleSystem.addRule(NGRule(condition: { (system: NGRuleSystem) -> Bool in
             let input = system.state(fact) as! String
-            return length.validate(input.characters.count as AnyObject) == false
-            }, assertion: { (system: DNRuleSystem) -> Void in
-                system.assert(fact: fact, grade: 1.0, message: "\(fact) \(AppValidationError.LengthMessage) \(length.targetLength)")
+            return length.validate(input.count as AnyObject) == false
+            }, assertion: { (system: NGRuleSystem) -> Void in
+                system.assert ( Fact.FormTextInput, grade: 1.0, message: "\(fact) \(FormValidationError.LengthMessage) \(length.targetLength)")
         }))
     }
     
-    class func addRegXRule(_ ruleSystem: inout DNRuleSystem, forFact fact: String, regX: RegX){
-        let _ = ruleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+    class func addRegXRule(_ ruleSystem: inout NGRuleSystem, forFact fact: String, regX: RegX){
+        let _ = ruleSystem.addRule(NGRule(condition: { (system: NGRuleSystem) -> Bool in
             let input = system.state(fact) as! String
             return regX.validate(input as AnyObject) == false
             }, assertion: { (system) -> Void in
-                system.assert(fact: fact, grade: 1.0, message: "\(fact) \(AppValidationError.PatternMessage)")
+                system.assert ( Fact.FormTextInput, grade: 1.0, message: "\(fact) \(FormValidationError.PatternMessage)")
         }))
     }
     
-    class func MobileNumber() -> DNRuleSystem {
-        let rules = DNRuleSystem()
+    class func MobileNumber() -> NGRuleSystem {
+        let rules = NGRuleSystem()
         //Length Validation
-        let _ = rules.addRule(DNRule(condition: { (system) -> Bool in
-            let input = system.state(Fact.MobileNumber) as! String
-            let length = Length(length: AppValidationConstants.MobileNumberMinLength, relation: RelationalOperator.minOrEqual)
-            let result = length.validate(input.characters.count as AnyObject) == false
+        let _ = rules.addRule(NGRule(condition: { (system) -> Bool in
+            let input = system.state(Fact.FormTextInput) as! String
+            let length = Length(length: FormValidationConstants.MobileNumberMinLength, relation: RelationalOperator.minOrEqual)
+            let result = length.validate(input.count as AnyObject) == false
             return result
             }, assertion: { (system) in
-                system.assert(fact: Fact.MobileNumber, grade: 1.0, message: "\(Fact.MobileNumber) \(AppValidationError.LengthMessage) \(AppValidationConstants.MobileNumberMinLength)")
+                system.assert ( Fact.FormTextInput, grade: 1.0, message: "\(FormPropertyKeys.PhoneNumber) \(FormValidationError.LengthMessage) \(FormValidationConstants.MobileNumberMinLength)")
         }))
         //Format RegX Validation
-        let _ = rules.addRule(DNRule(condition: { (system) -> Bool in
-            let input = system.state(Fact.MobileNumber) as! String
-            let regX = RegX(pattern: AppValidationConstants.MobileNumberRegX)
+        let _ = rules.addRule(NGRule(condition: { (system) -> Bool in
+            let input = system.state(Fact.FormTextInput) as! String
+            let regX = RegX(pattern: FormValidationConstants.MobileNumberRegX)
             let result = regX.validate(input as AnyObject) == false
             return result
             }, assertion: { (system) in
-                system.assert(fact: Fact.MobileNumber, grade: 1.0, message: "\(AppValidationError.MobileNumberInvalidMessage)")
+                system.assert ( Fact.FormTextInput, grade: 1.0, message: "\(FormValidationError.MobileNumberInvalidMessage)")
         }))
         return rules
     }
     
-    class func UserName() -> DNRuleSystem{
-        let unRuleSystem = DNRuleSystem()
-        let _ = unRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
-            let input = system.state(Fact.UserName) as! String
-            let length = Length(length: AppValidationConstants.UserNameMinLength, relation: RelationalOperator.maxOrEqual)
-            return length.validate(input.characters.count as AnyObject) == false
-            }, assertion: { (system: DNRuleSystem) -> Void in
-                system.assert(fact: Fact.UserName, grade: 1.0, message: "\(Fact.UserName) \(AppValidationError.LengthMessage) \(AppValidationConstants.UserNameMinLength)")
+    class func UserName() -> NGRuleSystem{
+        let unRuleSystem = NGRuleSystem()
+        let _ = unRuleSystem.addRule(NGRule(condition: { (system: NGRuleSystem) -> Bool in
+            let input = system.state(Fact.FormTextInput) as! String
+            let length = Length(length: FormValidationConstants.UserNameMinLength, relation: RelationalOperator.maxOrEqual)
+            return length.validate(input.count as AnyObject) == false
+            }, assertion: { (system: NGRuleSystem) -> Void in
+                system.assert ( Fact.FormTextInput, grade: 1.0, message: "\(FormPropertyKeys.UserName) \(FormValidationError.LengthMessage) \(FormValidationConstants.UserNameMinLength)")
         }))
-        let _ = unRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+        let _ = unRuleSystem.addRule(NGRule(condition: { (system: NGRuleSystem) -> Bool in
             //this field is required
-            let input = system.state(Fact.UserName) as! String
-            return (input.characters.count <= 0)
-            }, assertion: { (system: DNRuleSystem) -> Void in
-                system.assert(fact: Fact.UserName, grade: 1.0, message: "\(Fact.UserName) \(AppValidationError.RequiredMessage)")
+            let input = system.state(Fact.FormTextInput) as! String
+            return (input.count <= 0)
+            }, assertion: { (system: NGRuleSystem) -> Void in
+                system.assert ( Fact.FormTextInput, grade: 1.0, message: "\(FormPropertyKeys.UserName) \(FormValidationError.RequiredMessage)")
         }))
         return unRuleSystem
     }
     
-    class func Email() -> DNRuleSystem{
-        let emailRuleSystem = DNRuleSystem()
-        let _ = emailRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
-            let input = system.state(Fact.Email) as! String
-            let regX = RegX(pattern: AppValidationConstants.EmailRegX2)
+    class func Email() -> NGRuleSystem{
+        let emailRuleSystem = NGRuleSystem()
+        let _ = emailRuleSystem.addRule(NGRule(condition: { (system: NGRuleSystem) -> Bool in
+            let input = system.state(Fact.EmailValue) as! String
+            let regX = RegX(pattern: FormValidationConstants.EmailRegX2)
             return regX.validate(input as AnyObject) == false
             }, assertion: { (system) -> Void in
-                system.assert(fact: Fact.Email, grade: 1.0, message: "")
+                system.assert ( Fact.EmailValue, grade: 1.0, message: "")
         }))
-        let _ = emailRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+        let _ = emailRuleSystem.addRule(NGRule(condition: { (system: NGRuleSystem) -> Bool in
             //this field is required
-            let input = system.state(Fact.Email) as! String
-            return (input.characters.count <= 0)
-            }, assertion: { (system: DNRuleSystem) -> Void in
-                system.assert(fact: Fact.Email, grade: 1.0, message: "")
+            let input = system.state(Fact.EmailValue) as! String
+            return (input.count <= 0)
+            }, assertion: { (system: NGRuleSystem) -> Void in
+                system.assert ( Fact.EmailValue, grade: 1.0, message: "")
         }))
         return emailRuleSystem
     }
     
-    class func Password() -> DNRuleSystem{
-        let passRuleSystem = DNRuleSystem()
-        let _ = passRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
-            let input = system.state(Fact.Password) as! String
-            let length = Length(length: AppValidationConstants.PasswordMinLength, relation: RelationalOperator.maxOrEqual)
-            return length.validate(input.characters.count as AnyObject) == false
+    class func Password() -> NGRuleSystem{
+        let passRuleSystem = NGRuleSystem()
+        let _ = passRuleSystem.addRule(NGRule(condition: { (system: NGRuleSystem) -> Bool in
+            let input = system.state(Fact.PasswordValue) as! String
+            let length = Length(length: FormValidationConstants.PasswordMinLength, relation: RelationalOperator.maxOrEqual)
+            return length.validate(input.count as AnyObject) == false
             }, assertion: { (system) -> Void in
-                system.assert(fact: Fact.Password, grade: 1.0, message: "\(Fact.Password) \(AppValidationError.LengthMessage) \(AppValidationConstants.PasswordMinLength)")
+                system.assert ( Fact.PasswordValue, grade: 1.0, message: "\(FormPropertyKeys.Password) \(FormValidationError.LengthMessage) \(FormValidationConstants.PasswordMinLength)")
         }))
-        let _ = passRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
-            let input = system.state(Fact.Password) as! String
-            let regX = RegX(pattern: AppValidationConstants.PasswordRegX2)
+        let _ = passRuleSystem.addRule(NGRule(condition: { (system: NGRuleSystem) -> Bool in
+            let input = system.state(Fact.PasswordValue) as! String
+            let regX = RegX(pattern: FormValidationConstants.PasswordRegX2)
             return regX.validate(input as AnyObject) == false
             }, assertion: { (system) -> Void in
-                system.assert(fact: Fact.Password, grade: 1.0, message: "\(Fact.Password) \(AppValidationError.PasswordInvalidMessage)")
+                system.assert ( Fact.PasswordValue, grade: 1.0, message: "\(FormPropertyKeys.Password) \(FormValidationError.PasswordInvalidMessage)")
         }))
-        let _ = passRuleSystem.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
+        let _ = passRuleSystem.addRule(NGRule(condition: { (system: NGRuleSystem) -> Bool in
             //this field is required
-            let input = system.state(Fact.Password) as! String
-            return (input.characters.count <= 0)
-            }, assertion: { (system: DNRuleSystem) -> Void in
-                system.assert(fact: Fact.Password, grade: 1.0, message: "\(Fact.Password) \(AppValidationError.RequiredMessage)")
+            let input = system.state(Fact.PasswordValue) as! String
+            return (input.count <= 0)
+            }, assertion: { (system: NGRuleSystem) -> Void in
+                system.assert ( Fact.PasswordValue, grade: 1.0, message: "\(FormPropertyKeys.Password) \(FormValidationError.RequiredMessage)")
         }))
         return passRuleSystem
     }
     
-    class func ConfirmPassword(_ existingRule: inout DNRuleSystem){
-        let _ = existingRule.addRule(DNRule(condition: { (system: DNRuleSystem) -> Bool in
-            let password = system.state(Fact.Password) as! String
-            if let confirm = system.state(Fact.PasswordConfirmation) as? String{
+    class func ConfirmPassword(_ existingRule: inout NGRuleSystem){
+        let _ = existingRule.addRule(NGRule(condition: { (system: NGRuleSystem) -> Bool in
+            let password = system.state(Fact.PasswordConfirmValue) as! String
+            if let confirm = system.state(Fact.FormTextInputConfirm) as? String{
                 return (password != confirm)
             }
             return true
-            }, assertion: { (system: DNRuleSystem) -> Void in
-                system.assert(fact: Fact.PasswordConfirmation, grade: 1.0, message: "\(Fact.PasswordConfirmation) \(AppValidationError.PasswordMissmatchMessage)")
+            }, assertion: { (system: NGRuleSystem) -> Void in
+                system.assert ( Fact.PasswordConfirmValue, grade: 1.0, message: "\(FormPropertyKeys.ConfirmPassword) \(FormValidationError.PasswordMissmatchMessage)")
         }))
     }
     
