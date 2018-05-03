@@ -84,7 +84,7 @@ open class SearchBar: NSObject{
     fileprivate class func getAttributes(_ text: String, color: UIColor) -> NSAttributedString{
         let attribute = NSMutableAttributedString(string: text)
         let range = (text as NSString).range(of: text, options: NSString.CompareOptions.caseInsensitive)
-        attribute.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
+        attribute.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
         return attribute
     }
 }
@@ -101,8 +101,8 @@ open class NavigationBar: NSObject{
     }
     
     class func Title(){
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:StaticColorBank.titleColor
-            , NSFontAttributeName: FontConfig.defaultFont(style: FontStyle.Medium, size: 15.0)]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor:StaticColorBank.titleColor
+            , NSAttributedStringKey.font: FontConfig.defaultFont(style: FontStyle.Medium, size: 15.0)]
     }
     
 }
@@ -124,8 +124,8 @@ open class TabBar: NSObject{
     
     class func ItemsTitleColor(){
         UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: -4.0)
-        UITabBarItem.appearance().setTitleTextAttributes([ NSFontAttributeName: FontConfig.defaultFont(style: FontStyle.Bold, size: 11.0), NSForegroundColorAttributeName: StaticColorBank.tabItemTitleColor], for: UIControlState())
-        UITabBarItem.appearance().setTitleTextAttributes([ NSFontAttributeName: FontConfig.defaultFont(style: FontStyle.Bold, size: 11.0),NSForegroundColorAttributeName: StaticColorBank.tabItemTitleSelectColor!], for: UIControlState.selected)
+        UITabBarItem.appearance().setTitleTextAttributes([ NSAttributedStringKey.font: FontConfig.defaultFont(style: FontStyle.Bold, size: 11.0), NSAttributedStringKey.foregroundColor: StaticColorBank.tabItemTitleColor], for: UIControlState())
+        UITabBarItem.appearance().setTitleTextAttributes([ NSAttributedStringKey.font: FontConfig.defaultFont(style: FontStyle.Bold, size: 11.0),NSAttributedStringKey.foregroundColor: StaticColorBank.tabItemTitleSelectColor!], for: UIControlState.selected)
     }
 }
 
@@ -218,7 +218,7 @@ open class Text: NSObject{
         let availableSize: CGSize = (maxSize != nil) ? maxSize! : CGSize(width: CGFloat(320.0), height: CGFloat(MAXFLOAT))
         let size: CGSize = text.boundingRect(with: availableSize
             , options: NSStringDrawingOptions.usesLineFragmentOrigin
-            , attributes: [NSFontAttributeName: font]
+            , attributes: [NSAttributedStringKey.font: font]
             , context: nil).size
         return size
     }
