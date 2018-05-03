@@ -5,9 +5,9 @@
 	<key>ActiveLive</key>
 	<false/>
 	<key>PingUrl</key>
-	<string>www.rokomari.com</string>
+	<string>www.startup.com</string>
 	<key>LiveUrl</key>
-	<string>http://rokomariservices.com/api</string>
+	<string>http://startup-service.com/api</string>
 	<key>StagingUrl</key>
 	<string>http://35.160.0.171:8080</string>
 	<key>Referer</key>
