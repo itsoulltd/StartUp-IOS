@@ -1,6 +1,6 @@
 //
 //  ForgetPasswordTVC.swift
-//  RokomariReader
+//  StartUp
 //
 //  Created by Saleh  on 31/1/17.
 //  Copyright © 2017 Rokomari (https://www.rokomari.com/policy). All rights reserved.

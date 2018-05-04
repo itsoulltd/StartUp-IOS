@@ -1,9 +1,9 @@
 //
 //  AppRuleSystem.swift
-//  HoxroCaseTracker
+//  StartUp
 //
 //  Created by Towhid Islam on 10/7/16.
-//  Copyright © 2016 Hoxro Limited, 207 Regent Street, London, W1B 3HN London. All rights reserved.
+//  Copyright © 2018 ITSoulLab (https://www.itsoullab.com). All rights reserved.
 //
 
 import UIKit

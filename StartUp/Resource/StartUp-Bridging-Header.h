@@ -1,9 +1,9 @@
 //
-//  RokomariReader-Bridging-Header.h
-//  RokomariReader
+//  StartUp-Bridging-Header.h
+//  StartUp
 //
 //  Created by Towhid Islam on 10/25/16.
-//  Copyright © 2016 Rokomari (https://www.rokomari.com/policy). All rights reserved.
+//  Copyright © 2018 ITSoulLab (https://www.itsoullab.com). All rights reserved.
 //
 
 #import "XMLReader.h"

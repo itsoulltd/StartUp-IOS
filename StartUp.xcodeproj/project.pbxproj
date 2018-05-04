@@ -750,7 +750,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/RokomariReader/libs",
 					"$(PROJECT_DIR)/StartUp/libs",
 				);
 				INFOPLIST_FILE = StartUp/Resource/Info.plist;
@@ -775,7 +774,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/RokomariReader/libs",
 					"$(PROJECT_DIR)/StartUp/libs",
 				);
 				INFOPLIST_FILE = StartUp/Resource/Info.plist;

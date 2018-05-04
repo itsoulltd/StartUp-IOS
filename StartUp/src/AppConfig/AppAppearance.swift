@@ -3,7 +3,7 @@
 //  Jamahook
 //
 //  Created by Towhid on 11/18/15.
-//  Copyright © 2016 Rokomari (https://www.rokomari.com/policy). All rights reserved.
+//  Copyright © 2018 ITSoulLab (https://www.itsoullab.com). All rights reserved.
 //
 
 import Foundation
@@ -15,8 +15,8 @@ struct StaticColorBank {
     static var viewBackgroundColor = UIColor.white
     static var evenCellColor = UIColor.white
     static var oddCellColor = ColorBank.color(fromHexString: "#fafafa")
-    static var HoxroBrandColor = ColorBank.color(fromHexString: "#00457e")
-    static var HoxroNavBarColor = ColorBank.color(fromHexString: "#4285f4")
+    static var BrandColor = ColorBank.color(fromHexString: "#00457e")
+    static var NavBarColor = ColorBank.color(fromHexString: "#4285f4")
     
     static var buttonColor = ColorBank.color(fromHexString: "#00457e")
     static var buttonDisabledTitleColor = ColorBank.color(fromHexString: "#5ed9c1")
@@ -47,7 +47,7 @@ struct StaticColorBank {
     static var tabBarTintColor = ColorBank.color(fromHexString: "#411432")
     static var tabBarItemTintColor = ColorBank.color(fromHexString: "#0aa89e")
     
-    static var navBarTintColor = HoxroNavBarColor //ColorBank.colorFromHexString("#4A2251")
+    static var navBarTintColor = NavBarColor //ColorBank.colorFromHexString("#4A2251")
     static var navBarItemTintColor = UIColor.white //ColorBank.colorFromHexString("#0aa89e")
     
     static var renameCellActionColor = ColorBank.color(fromHexString: "#1abc9c")
@@ -71,14 +71,14 @@ open class SearchBar: NSObject{
     
     class func Color(_ bar: UISearchBar){
         bar.searchBarStyle = UISearchBarStyle.prominent
-        bar.barTintColor = StaticColorBank.HoxroBrandColor
+        bar.barTintColor = StaticColorBank.BrandColor
         bar.tintColor = UIColor.white
     }
     
     class func ChangeTextAppearance(_ bar: UISearchBar, text: String = ""){
         bar.placeholder = text
-        UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = StaticColorBank.HoxroBrandColor
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = StaticColorBank.HoxroBrandColor
+        UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = StaticColorBank.BrandColor
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = StaticColorBank.BrandColor
     }
     
     fileprivate class func getAttributes(_ text: String, color: UIColor) -> NSAttributedString{

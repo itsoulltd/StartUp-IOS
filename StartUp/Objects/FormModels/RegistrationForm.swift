@@ -3,7 +3,7 @@
 //  MymoUpload
 //
 //  Created by Towhid on 9/11/14.
-//  Copyright (c) 2016 Rokomari (https://www.rokomari.com/policy). All rights reserved.
+//  Copyright © 2018 ITSoulLab (https://www.itsoullab.com). All rights reserved.
 //
 
 import UIKit

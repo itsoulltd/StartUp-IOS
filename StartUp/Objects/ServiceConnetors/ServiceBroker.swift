@@ -3,7 +3,7 @@
 //  StartupProjectSampleA
 //
 //  Created by Towhid on 1/25/16.
-//  Copyright © 2016 Rokomari (https://www.rokomari.com/policy). All rights reserved.
+//  Copyright © 2018 ITSoulLab (https://www.itsoullab.com). All rights reserved.
 //
 
 import Foundation
