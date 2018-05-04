@@ -3,7 +3,7 @@
 //  NGAppKit
 //
 //  Created by Towhid Islam on 11/16/17.
-//  Copyright © 2017 Towhid Islam. All rights reserved.
+//  Copyright © 2018 ITSoulLab(http://itsoullab.com). All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

@@ -3,7 +3,7 @@
 //  SampleAllProjects
 //
 //  Created by Towhidul Islam on 11/13/17.
-//  Copyright © 2017 KITE GAMES STUDIO. All rights reserved.
+//  Copyright © 2017 ITSoulLab. All rights reserved.
 //
 
 #import <CoreDataStack/CoreDataStack.h>
