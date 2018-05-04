@@ -90,7 +90,7 @@ class DomainTestCases: NSObject {
             "status": "responded",
             "subject": "Hi there!"])
         
-        self.user.rokomaryHelp(contactus!) { (res) in
+        self.user.contactUs(contactus!) { (res) in
             if let r = res{
                 print(r.serializeIntoInfo())
             }

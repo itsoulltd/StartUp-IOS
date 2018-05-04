@@ -35,7 +35,7 @@ extension HttpWebRequest{
     
 }
 
-open class DNXRequest: HttpWebRequest{
+open class WebRequest: HttpWebRequest{
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -55,7 +55,7 @@ open class DNXRequest: HttpWebRequest{
     
 }
 
-open class DNXFileUploadRequest: HttpFileRequest{
+open class FileUploadRequest: HttpFileRequest{
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

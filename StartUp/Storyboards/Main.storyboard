@@ -10,28 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="9ft-5W-MwL">
-            <objects>
-                <viewController storyboardIdentifier="ViewController" id="wAs-gb-Akf" customClass="ViewController" customModule="RokomariReader" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yOd-aI-wrg"/>
-                        <viewControllerLayoutGuide type="bottom" id="5v8-sM-5x5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="95k-Nc-u54">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3CA-V9-9TT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1286" y="387"/>
-        </scene>
         <!--Sign In-->
         <scene sceneID="MrA-Rj-Hel">
             <objects>
-                <tableViewController storyboardIdentifier="LoginTVC" title="Sign In" id="w0F-NO-dVD" customClass="LoginTVC" customModule="RokomariReader" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LoginTVC" title="Sign In" id="w0F-NO-dVD" customClass="LoginTVC" customModule="StartUp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="vzS-LV-raH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -304,7 +286,7 @@
         <!--Sign Up-->
         <scene sceneID="ixX-53-ny7">
             <objects>
-                <tableViewController storyboardIdentifier="RegistrationTVC" title="Sign Up" id="KdC-kQ-xah" customClass="RegistrationTVC" customModule="RokomariReader" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RegistrationTVC" title="Sign Up" id="KdC-kQ-xah" customClass="RegistrationTVC" customModule="StartUp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="QdK-Zp-iJD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -704,7 +686,7 @@
         <!--Forgot Pass!!-->
         <scene sceneID="rOH-Wd-6RN">
             <objects>
-                <tableViewController storyboardIdentifier="ForgetPasswordTVC" title="Forgot Pass!!" id="Z8Y-MN-M3F" customClass="ForgetPasswordTVC" customModule="RokomariReader" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ForgetPasswordTVC" title="Forgot Pass!!" id="Z8Y-MN-M3F" customClass="ForgetPasswordTVC" customModule="StartUp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="48n-fA-j4E">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -834,13 +816,13 @@
         <!--Store-->
         <scene sceneID="QyQ-kT-KOi">
             <objects>
-                <tableViewController storyboardIdentifier="MegaGridTvc" title="Store" id="7Kc-D6-VS1" customClass="MegaGridTvc" customModule="RokomariReader" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MegaGridTvc" title="Store" id="7Kc-D6-VS1" customClass="MegaGridTvc" customModule="StartUp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" id="dHw-ap-LVW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SecondCell" rowHeight="140" id="KnQ-pj-Og0" customClass="CustomTableViewCell" customModule="RokomariReader" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SecondCell" rowHeight="140" id="KnQ-pj-Og0" customClass="CustomTableViewCell" customModule="StartUp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="140"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KnQ-pj-Og0" id="3le-Ye-TUm">
@@ -884,7 +866,7 @@
                                     <outlet property="collectionView" destination="Yys-CN-PhA" id="Efb-nL-QOi"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ThirdCell" rowHeight="209" id="mLd-La-VJm" customClass="CustomTableViewCell" customModule="RokomariReader" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ThirdCell" rowHeight="209" id="mLd-La-VJm" customClass="CustomTableViewCell" customModule="StartUp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="168" width="600" height="209"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mLd-La-VJm" id="Z78-Lq-ROn">
@@ -1022,7 +1004,7 @@
                                     <outlet property="collectionView" destination="MuA-3K-aEd" id="V1u-py-nFT"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="250" id="349-It-Kcc" customClass="CustomTableViewCell" customModule="RokomariReader" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="250" id="349-It-Kcc" customClass="CustomTableViewCell" customModule="StartUp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="377" width="600" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="349-It-Kcc" id="JV0-AG-tm9">
@@ -1040,7 +1022,7 @@
                                                 <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="M8E-Ll-VXR" customClass="PopularCollectionViewCell" customModule="RokomariReader" customModuleProvider="target">
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="M8E-Ll-VXR" customClass="PopularCollectionViewCell" customModule="StartUp" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="4" width="177" height="225"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">

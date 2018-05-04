@@ -162,7 +162,7 @@ class LoginTVC: UITableViewController {
     
     @IBAction func forgetPasswordButtonAction(_ sender: AnyObject) {
         print("forget password button tapped")
-        AppRouter.shared().show(fromType: ForgetPasswordTVC.self)
+        ForgotPassRouter().route(from: self, withInfo: nil)
     }
     
     @IBAction func facebookButtonAction(_ sender: AnyObject) {
@@ -177,7 +177,7 @@ class LoginTVC: UITableViewController {
     
     @IBAction func signUpButtonAction(_ sender: AnyObject) {
         print("SignUp button tapped")
-        AppRouter.shared().show(fromType: RegistrationTVC.self)
+        RegistrationRouter().route(from: self, withInfo: nil)
     }
     
 }

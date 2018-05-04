@@ -17,15 +17,15 @@ extern NSString* _Nonnull const kRouteCount;
 NS_ASSUME_NONNULL_BEGIN
 @protocol RouterProtocol <UIViewControllerTransitioningDelegate, UINavigationControllerDelegate>
 @required
-- (void) routeFrom:(UIViewController*)viewController withInfo:(NGObject* _Nullable)info;
+- (void) routeFrom:(UIViewController* _Nullable)viewController withInfo:(NGObject* _Nullable)info;
 @optional
 - (NGObject*) updateRoutingCount:(NGObject*)info;
--(void) routeFrom:(UIViewController*)viewController withInfo:(NGObject* _Nullable)info animated:(BOOL) animate onCompletion:(void(^)(void)) completion;
+-(void) routeFrom:(UIViewController* _Nullable)viewController withInfo:(NGObject* _Nullable)info animated:(BOOL) animate onCompletion:(void(^)(void)) completion;
 @end
 
 @protocol UIRoutedViewControllerDelegate <NSObject>
 @optional
-- (void) routedViewController:(UIViewController*)routedVC viewDidAppear:(NGObject* _Nullable)info;
+- (void) routedViewController:(UIViewController* _Nullable)routedVC viewDidAppear:(NGObject* _Nullable)info;
 @end
 
 NS_ASSUME_NONNULL_END

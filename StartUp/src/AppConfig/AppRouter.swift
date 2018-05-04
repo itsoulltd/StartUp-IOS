@@ -43,30 +43,13 @@ class AppRouter: NSObject {
     }
     
     public func start() {
-        print("isRemembered : \(getAccount().credential.isRemembered), isLoggin : \(getAccount().loggedIn)")//
+        //print("isRemembered : \(getAccount().credential.isRemembered), isLoggin : \(getAccount().loggedIn)")//
         if getAccount().loggedIn == false {
-            let rootViewController = resolveViewController(fromType: LoginTVC.self)
-            let nav = UINavigationController(rootViewController: rootViewController)
-            replaceRootViewController(nav)
+            LoginRouter().route(from: nil, withInfo: nil)
         }else{
-            let rootViewController = resolveViewController(fromType: MegaGridTvc.self)
-            let nav = UINavigationController(rootViewController: rootViewController)
-            replaceRootViewController(nav)
+            MegaGridRouter().route(from: nil, withInfo: nil)
         }
     }
-    
-    public func show(fromType type: AnyClass, boardName: StoryboardNames = .Main) {
-        let viewController = resolveViewController(fromType: type, boardName: boardName)
-        showViewController(viewController, sender: nil)
-    }
-    
-    public func show(fromStoryboardId stid: String, boardName: StoryboardNames = .Main) {
-        let viewController = resolveViewController(fromStoryboardId: stid, boardName: boardName)
-        showViewController(viewController, sender: nil)
-    }
-    
-    private var mainStoryboard: UIStoryboard!
-    private var storyboards: [String: UIStoryboard?] = [String: UIStoryboard?]()
     
     deinit{
         print("deinit -> \(NSStringFromClass(type(of: self)))")
@@ -118,58 +101,6 @@ class AppRouter: NSObject {
             langCode = LanguageCode.English.rawValue
         }
         return langCode
-    }
-    
-    final func resolveStoryboardID(type: AnyClass) -> String{
-        let storyboardID = AppStoryboard.resolveClassName(type)!
-        return storyboardID
-    }
-    
-    final func initialViewController(_ boardName: StoryboardNames = .Main) -> UIViewController{
-        let story = AppStoryboard.load(boardName.rawValue)
-        return (story?.initialViewController())!
-    }
-    
-    final func resolveViewController(fromType type: AnyClass, boardName: StoryboardNames = .Main) -> UIViewController{
-        let storyboardID = resolveStoryboardID(type: type)
-        return resolveViewController(fromStoryboardId: storyboardID, boardName: boardName)
-    }
-    
-    final func resolveViewController(fromStoryboardId storyboardID: String, boardName: StoryboardNames = .Main) -> UIViewController{
-        let story = AppStoryboard.load(boardName.rawValue)
-        let viewController = story?.viewController(byStoryboardID: storyboardID)
-        return viewController!
-    }
-    
-    final func replaceRootViewController(_ viewController: UIViewController){
-        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
-        appDelegate.window?.rootViewController = viewController
-    }
-    
-    final func replaceNavigationStack(_ controllers:[UIViewController], animated: Bool = true){
-        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
-        if let activeViewController = appDelegate.window?.rootViewController{
-            if activeViewController is UINavigationController{
-                (activeViewController as! UINavigationController).setViewControllers(controllers, animated: animated)
-            }
-            else if activeViewController is UITabBarController{
-                if let visibleController = (activeViewController as! UITabBarController).selectedViewController as? UINavigationController{
-                    visibleController.setViewControllers(controllers, animated: animated)
-                }
-            }
-        }
-    }
-    
-    final func showViewController(_ viewController: UIViewController, sender: AnyObject?){
-        AppStoryboard.show(viewController, sender: sender)
-    }
-    
-    final func showModalViewController(_ viewController: UIViewController, sender: AnyObject?){
-        AppStoryboard.show(viewController, sender: sender)
-    }
-    
-    final func visibleViewController() -> UIViewController?{
-        return AppStoryboard.visibleViewController()
     }
     
 }

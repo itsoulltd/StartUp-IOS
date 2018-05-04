@@ -24,34 +24,34 @@ class User: NGObject {
         return management.profile as? UserProfile
     }
     
-    var signedIn: TransactionStack?
+    var signInCheckStack: TransactionStack?
     
     func isSignedIn(onCompletion: ((Bool) -> Void) ) -> Void {
         
-        if let request = ServiceBroker.defaultFactory().request(forKey: "IsSignedIn", classType: DNXRequest.self){
+        if let request = ServiceBroker.defaultFactory().request(forKey: "IsSignedIn", classType: WebRequest.self){
             request.addAuth()
-            signedIn = TransactionStack(callBack: { (objs) in
+            signInCheckStack = TransactionStack(callBack: { (objs) in
                 print(objs)
             })
             let transaction = Transaction(request: request, parserType: Response.self)
-            signedIn?.push(transaction)
-            signedIn?.commit()
+            signInCheckStack?.push(transaction)
+            signInCheckStack?.commit()
         }
         else{
             onCompletion(false)
         }
     }
     
-    var transaction: TransactionStack?
+    var loginStack: TransactionStack?
     
     func login(_ form: LoginForm, onCompletion: @escaping (AfterLogin?) -> Void) {
         
-        guard let request = ServiceBroker.defaultFactory().request(forKey: "SignIn", classType: DNXRequest.self) else{
+        guard let request = ServiceBroker.defaultFactory().request(forKey: "SignIn", classType: WebRequest.self) else{
             fatalError("Login not found")
         }
         
         request.payLoad = form
-        transaction = TransactionStack(callBack: {[weak self] (received) in
+        loginStack = TransactionStack(callBack: {[weak self] (received) in
             if let loginResponse = received?.first as? AfterLogin{
                 let _ = self?.management.loginWithToken(loginResponse.id_token! as String
                     , email: form.username! as String
@@ -67,21 +67,21 @@ class User: NGObject {
             }
         })
         let process = Transaction(request: request, parserType: AfterLogin.self)
-        transaction?.push(process)
-        transaction?.commit()
+        loginStack?.push(process)
+        loginStack?.commit()
     }
     
-    fileprivate var helpTrans: TransactionStack?
-    func rokomaryHelp(_ contactUs: ContactUsForm, onComplete: @escaping ((ContactUs?) -> Void)) -> Void{
+    fileprivate var contactUsStack: TransactionStack?
+    func contactUs(_ contactUs: ContactUsForm, onComplete: @escaping ((ContactUs?) -> Void)) -> Void{
         
-        guard let request = ServiceBroker.defaultFactory().request(forKey: "ContactUs", classType: DNXRequest.self) else{
+        guard let request = ServiceBroker.defaultFactory().request(forKey: "ContactUs", classType: WebRequest.self) else{
             fatalError("ContactUs not found")
         }
         
         request.addAuth()
         request.payLoad = contactUs
         
-        helpTrans = TransactionStack(callBack: { (received) in
+        contactUsStack = TransactionStack(callBack: { (received) in
             guard let contactUsRes = received?.first as? ContactUs else{
                 onComplete(nil)
                 return
@@ -90,11 +90,11 @@ class User: NGObject {
         })
         
         let process = Transaction(request: request, parserType: ContactUs.self)
-        self.helpTrans?.push(process)
-        self.helpTrans?.commit()
+        self.contactUsStack?.push(process)
+        self.contactUsStack?.commit()
     }
     
-    private var register: TransactionStack?
+    private var registrationStack: TransactionStack?
     
     func register(form: RegistrationForm, onCompletion: ((AfterRegistration?) -> Void)) -> Void {
         guard let request = ServiceBroker.defaultFactory().request(forKey: "SignUp") else {
@@ -102,15 +102,15 @@ class User: NGObject {
         }
         
         request.payLoad = form
-        register = TransactionStack(callBack: { (responses) in
+        registrationStack = TransactionStack(callBack: { (responses) in
             //TODO
         })
         let trans = Transaction(request: request, parserType: AfterRegistration.self)
-        register?.push(trans)
-        register?.commit()
+        registrationStack?.push(trans)
+        registrationStack?.commit()
     }
     
-    private var forgot: TransactionStack?
+    private var forgotPassStack: TransactionStack?
     
     func forgotPassword(email: String, onCompletion: ((Bool) -> Void)) -> Void {
         guard let request = ServiceBroker.defaultFactory().request(forKey: "ForgotPassword") else {
@@ -118,15 +118,15 @@ class User: NGObject {
         }
         
         request.payLoad = NGObject(info: ["email":email])
-        forgot = TransactionStack(callBack: { (responses) in
+        forgotPassStack = TransactionStack(callBack: { (responses) in
             //TODO
         })
         let trans = Transaction(request: request, parserType: Response.self)
-        forgot?.push(trans)
-        forgot?.commit()
+        forgotPassStack?.push(trans)
+        forgotPassStack?.commit()
     }
     
-    private var changePass: TransactionStack?
+    private var changePassStack: TransactionStack?
     
     func changePassword(form: ChangePassForm, onCompletion: ((Bool) -> Void)) -> Void {
         guard let request = ServiceBroker.defaultFactory().request(forKey: "ChangePassword") else {
@@ -134,12 +134,12 @@ class User: NGObject {
         }
         
         request.payLoad = form
-        changePass = TransactionStack(callBack: { (responses) in
+        changePassStack = TransactionStack(callBack: { (responses) in
             //TODO
         })
         let trans = Transaction(request: request, parserType: Response.self)
-        changePass?.push(trans)
-        changePass?.commit()
+        changePassStack?.push(trans)
+        changePassStack?.commit()
     }
     
 }
