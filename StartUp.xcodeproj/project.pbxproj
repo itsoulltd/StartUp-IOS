@@ -14,7 +14,6 @@
 		26250980209C406E008C162A /* MegaGridRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2625097F209C406E008C162A /* MegaGridRouter.swift */; };
 		269FEE3C209B917A004FA261 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 269FEDAB209B917A004FA261 /* Assets.xcassets */; };
 		269FEE3D209B917A004FA261 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269FEDAC209B917A004FA261 /* LaunchScreen.storyboard */; };
-		269FEE3E209B917A004FA261 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 269FEDAE209B917A004FA261 /* Info.plist */; };
 		269FEE43209B917A004FA261 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FEDB9209B917A004FA261 /* RNCryptor.m */; };
 		269FEE44209B917A004FA261 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FEDBB209B917A004FA261 /* RNCryptorEngine.m */; };
 		269FEE45209B917A004FA261 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FEDBD209B917A004FA261 /* RNDecryptor.m */; };
@@ -525,12 +524,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Rokomari (https://www.rokomari.com/policy)";
 				TargetAttributes = {
 					26DBF00F1DBE979000BB6030 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = M622GQ77LE;
+						DevelopmentTeam = YS4F7VX5G2;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -569,7 +568,6 @@
 				269FEE3D209B917A004FA261 /* LaunchScreen.storyboard in Resources */,
 				269FEE79209B917A004FA261 /* ColorList.plist in Resources */,
 				269FEE85209B917A004FA261 /* Lato-Bold.ttf in Resources */,
-				269FEE3E209B917A004FA261 /* Info.plist in Resources */,
 				269FEE87209B917A004FA261 /* Lato-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -756,16 +754,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: m.towhid.islam@gmail.com (N7T6MX3R7F)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = M622GQ77LE;
+				DEVELOPMENT_TEAM = YS4F7VX5G2;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/StartUp/libs",
 				);
 				INFOPLIST_FILE = StartUp/Resource/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swift.StartUp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -780,16 +778,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: m.towhid.islam@gmail.com (N7T6MX3R7F)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = M622GQ77LE;
+				DEVELOPMENT_TEAM = YS4F7VX5G2;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/StartUp/libs",
 				);
 				INFOPLIST_FILE = StartUp/Resource/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swift.StartUp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
