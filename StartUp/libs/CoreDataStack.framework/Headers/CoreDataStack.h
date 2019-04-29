@@ -2,8 +2,8 @@
 //  CoreDataStack.h
 //  CoreDataStack
 //
-//  Created by Towhid Islam on 12/31/16.
-//  Copyright © 2017 Next Generation Object Ltd. All rights reserved.
+//  Created by Towhid Islam on 9/23/17.
+//  Copyright © 2017 Towhid Islam. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -13,9 +13,6 @@ FOUNDATION_EXPORT double CoreDataStackVersionNumber;
 
 //! Project version string for CoreDataStack.
 FOUNDATION_EXPORT const unsigned char CoreDataStackVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <CoreDataStack/PublicHeader.h>
-
 
 #import <CoreDataStack/NGObjectProtocol.h>
 #import <CoreDataStack/NGManagedObjectProtocol.h>
@@ -35,3 +32,5 @@ FOUNDATION_EXPORT const unsigned char CoreDataStackVersionString[];
 
 #import <CoreDataStack/CSDebugLog.h>
 #import <CoreDataStack/CSExceptionLog.h>
+
+

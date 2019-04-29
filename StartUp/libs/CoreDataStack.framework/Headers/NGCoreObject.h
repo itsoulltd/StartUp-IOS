@@ -1,5 +1,5 @@
 //
-//  DNCoreObject.h
+//  NGCoreObject.h
 //  StartupProjectSampleA
 //
 //  Created by Towhid Islam on 4/12/15.

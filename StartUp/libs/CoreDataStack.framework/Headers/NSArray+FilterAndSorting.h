@@ -15,7 +15,7 @@
 #define kIsLess @"<"
 #define kNotEqual @"!="
 
-@interface NSArray (FilterAndSorting)
+@interface NSArray (NGFilterAndSorting)
 - (NSArray*) filterUsingClause:(NSString*)clause value:(id)value;
 - (NSArray*) filterWithType:(NSPredicateOperatorType)type keyPath:(NSString *)keyPath value:(id)value;
 - (NSArray*) sortWhenAssecding:(BOOL)isYes;
