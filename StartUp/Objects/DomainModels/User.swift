@@ -42,30 +42,32 @@ class User: NGObject {
         }
     }
     
-    var loginStack: TransactionStack?
-    
-    func login(_ form: LoginForm, onCompletion: @escaping (AfterLogin?) -> Void) {
-        
-        guard let request = ServiceBroker.defaultFactory().request(forKey: "SignIn", classType: WebRequest.self) else{
-            fatalError("Login not found")
-        }
-        
-        request.payLoad = form
-        loginStack = TransactionStack(callBack: {[weak self] (received) in
+    fileprivate var loginStack: TransactionStack?
+    private func createLoginStack(_ form: LoginForm, onCompletion: @escaping (AfterLogin?) -> Void) -> TransactionStack{
+        return TransactionStack(callBack: {(received) in
             if let loginResponse = received?.first as? AfterLogin{
-                let _ = self?.management.loginWithToken(loginResponse.id_token! as String
+                let management: UserManagement = AppRouter.shared().getAccount()
+                let _ = management.loginWithToken(loginResponse.id_token! as String
                     , email: form.username! as String
                     , password: form.password! as String
                     , remembered: form.rememberMe.boolValue)
                 let profile = UserProfile()
                 profile.userName = form.username
                 //TODO:
-                self?.management.profile = profile
+                management.profile = profile
                 onCompletion(loginResponse)
             }else{
                 onCompletion(nil)
             }
         })
+    }
+    
+    func login(_ form: LoginForm, onCompletion: @escaping (AfterLogin?) -> Void) {
+        guard let request = ServiceBroker.defaultFactory().request(forKey: "SignIn", classType: WebRequest.self) else{
+            fatalError("Login not found")
+        }
+        request.payLoad = form
+        loginStack = createLoginStack(form, onCompletion: onCompletion)
         let process = Transaction(request: request, parserType: AfterLogin.self)
         loginStack?.push(process)
         loginStack?.commit()
