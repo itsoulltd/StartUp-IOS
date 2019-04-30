@@ -1,6 +1,0 @@
-framework module CoreNetworkStack {
-  umbrella header "CoreNetworkStack.h"
-
-  export *
-  module * { export * }
-}
