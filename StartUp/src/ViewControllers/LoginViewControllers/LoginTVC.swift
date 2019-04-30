@@ -152,7 +152,7 @@ class LoginTVC: UITableViewController {
                 alert.title = "Login Failed!"
                 alert.message = "Please Try again later."
                 alert.cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
-                MessageController.alert(alert)
+                AlertViewController.show(alert)
                 return
             }
             print(parser.serializeIntoInfo())//

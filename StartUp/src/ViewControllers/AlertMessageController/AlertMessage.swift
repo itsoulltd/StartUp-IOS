@@ -20,7 +20,6 @@ enum AlertMessageType: Int {
 @available(iOS 8.0, *)
 @objcMembers
 class AlertMessage: NGObject {
-   
     var type: AlertMessageType = .errorBanner
     var title: NSString = ""
     var message: NSString = ""

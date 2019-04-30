@@ -8,24 +8,24 @@
 
 import UIKit
 
-class MessageController: NSObject {
+class AlertViewController: NSObject {
    
     @available(iOS 8.0, *)
-    class func alert(_ message: AlertMessage){
-        if let activeViewController = MessageController.visibleViewController(){
-            MessageController.alert(activeViewController, message: message)
+    class func show(_ message: AlertMessage){
+        if let activeViewController = AlertViewController.visibleViewController(){
+            AlertViewController.show(activeViewController, message: message)
         }
     }
     
     @available(iOS 8.0, *)
-    class func alert(_ viewController: UIViewController, message: AlertMessage){
-        let alertViewController = createAlertMessageController(message)
+    class func show(_ viewController: UIViewController, message: AlertMessage){
+        let alertViewController = createAlertViewController(message)
         viewController.present(alertViewController, animated: true, completion: nil)
     }
     
     @available(iOS 8.0, *)
-    class func alert(using controller: UIAlertController){
-        if let visible = MessageController.visibleViewController(){
+    class func show(using controller: UIAlertController){
+        if let visible = AlertViewController.visibleViewController(){
             visible.present(controller, animated: true, completion: nil)
         }
     }
@@ -51,7 +51,7 @@ class MessageController: NSObject {
     }
     
     @available(iOS 8.0, *)
-    fileprivate class func createAlertMessageController(_ message: AlertMessage) -> UIAlertController{
+    fileprivate class func createAlertViewController(_ message: AlertMessage) -> UIAlertController{
         let alertViewController = UIAlertController(title: message.title as String, message: message.message as String, preferredStyle: UIAlertControllerStyle.alert)
         
         if let cancelAction = message.cancelAction{
@@ -68,7 +68,7 @@ class MessageController: NSObject {
     
     @available(iOS 8.0, *)
     class func longTextAlert( _ viewController: UIViewController, message: AlertMessage){
-        let alertViewController = createAlertMessageController(message)
+        let alertViewController = createAlertViewController(message)
         alertViewController.view.frame = UIScreen.main.applicationFrame
         viewController.present(alertViewController, animated: true, completion: nil)
     }

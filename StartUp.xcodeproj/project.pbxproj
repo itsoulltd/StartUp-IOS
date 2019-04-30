@@ -57,7 +57,7 @@
 		269FEE86209B917A004FA261 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 269FEE19209B917A004FA261 /* Lato-Light.ttf */; };
 		269FEE87209B917A004FA261 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 269FEE1A209B917A004FA261 /* Lato-Regular.ttf */; };
 		269FEE93209B917A004FA261 /* AlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FEE2C209B917A004FA261 /* AlertMessage.swift */; };
-		269FEE94209B917A004FA261 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FEE2D209B917A004FA261 /* MessageController.swift */; };
+		269FEE94209B917A004FA261 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FEE2D209B917A004FA261 /* AlertViewController.swift */; };
 		269FEE95209B917A004FA261 /* ForgetPasswordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FEE2F209B917A004FA261 /* ForgetPasswordTVC.swift */; };
 		269FEE96209B917A004FA261 /* LoginTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FEE31209B917A004FA261 /* LoginTVC.swift */; };
 		269FEE98209B917A004FA261 /* AuthorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FEE35209B917A004FA261 /* AuthorTableViewCell.swift */; };
@@ -172,7 +172,7 @@
 		269FEE19209B917A004FA261 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		269FEE1A209B917A004FA261 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		269FEE2C209B917A004FA261 /* AlertMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertMessage.swift; sourceTree = "<group>"; };
-		269FEE2D209B917A004FA261 /* MessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
+		269FEE2D209B917A004FA261 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		269FEE2F209B917A004FA261 /* ForgetPasswordTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordTVC.swift; sourceTree = "<group>"; };
 		269FEE31209B917A004FA261 /* LoginTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTVC.swift; sourceTree = "<group>"; };
 		269FEE35209B917A004FA261 /* AuthorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorTableViewCell.swift; sourceTree = "<group>"; };
@@ -437,7 +437,7 @@
 			isa = PBXGroup;
 			children = (
 				269FEE2C209B917A004FA261 /* AlertMessage.swift */,
-				269FEE2D209B917A004FA261 /* MessageController.swift */,
+				269FEE2D209B917A004FA261 /* AlertViewController.swift */,
 			);
 			path = AlertMessageController;
 			sourceTree = "<group>";
@@ -594,7 +594,7 @@
 				269FEE6C209B917A004FA261 /* DomainTestCases.swift in Sources */,
 				26250980209C406E008C162A /* MegaGridRouter.swift in Sources */,
 				269FEE5A209B917A004FA261 /* RegistrationForm.swift in Sources */,
-				269FEE94209B917A004FA261 /* MessageController.swift in Sources */,
+				269FEE94209B917A004FA261 /* AlertViewController.swift in Sources */,
 				269FEE93209B917A004FA261 /* AlertMessage.swift in Sources */,
 				269FEE81209B917A004FA261 /* FontConfig.swift in Sources */,
 				269FEE99209B917A004FA261 /* CustomTableViewCell.swift in Sources */,
