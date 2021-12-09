@@ -17,9 +17,9 @@ class LoginForm: BaseForm {
     
     override func serializeValue(_ value: Any!, forKey key: String!) -> Any! {
         if key == "rememberMe" {
-            return rememberMe.boolValue ? "true" : "false" as AnyObject!
+            return rememberMe.boolValue ? "true" : "false" as AnyObject
         }else{
-            return super.serializeValue(value, forKey: key) as AnyObject!
+            return super.serializeValue(value, forKey: key) as AnyObject
         }
     }
 }

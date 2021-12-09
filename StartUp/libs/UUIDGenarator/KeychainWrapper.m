@@ -139,7 +139,8 @@
 {
     // 1
     NSString *name = identifier;
-    name = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //name = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    name = [name stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.whitespaceAndNewlineCharacterSet];
     // 2
     NSString *computedHashString = [NSString stringWithFormat:@"%@%lu%@", name, (unsigned long)pinHash, SALT_HASH];
     // 3

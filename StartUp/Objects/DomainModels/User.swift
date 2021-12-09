@@ -31,7 +31,7 @@ class User: NGObject {
         if let request = ServiceBroker.defaultFactory().request(forKey: "IsSignedIn", classType: WebRequest.self){
             request.addAuth()
             signInCheckStack = TransactionStack(callBack: { (objs) in
-                print(objs)
+                print(objs as Any)
             })
             let transaction = Transaction(request: request, parserType: Response.self)
             signInCheckStack?.push(transaction)

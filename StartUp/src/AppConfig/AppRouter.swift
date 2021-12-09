@@ -85,7 +85,7 @@ class AppRouter: NSObject {
     }
     
     func languageID() -> String{
-        return Locale.preferredLanguages.first as String!
+        return Locale.preferredLanguages.first!
     }
     
     final func resolveLanguageCode() -> Int{

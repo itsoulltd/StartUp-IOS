@@ -57,14 +57,13 @@ class FontConfig: NSObject {
             let isExist: Bool = fontStyles.contains(fontName)
             var finalFontName: String = fontName
             if !isExist{
-                finalFontName = fontStyles.firstObject as! String!
+                finalFontName = fontStyles.firstObject as! String
                 NSLog("\(fontName) is not available. So for consistancy \(finalFontName) has been randered.")
             }
             return finalFontName
         }else{
             fatalError("\(fontName) is not available. So we crash here :$")
         }
-        return ""
     }
 }
 

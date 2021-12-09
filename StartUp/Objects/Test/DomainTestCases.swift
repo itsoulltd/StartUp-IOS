@@ -57,12 +57,12 @@ class DomainTestCases: NSObject {
     func sortTest(by keyPath: String, commend: SortCommand){
         print("-------------------------------------------------")
         for item in items {
-            print(item.serializeIntoInfo())
+            print(item.serializeIntoInfo()!)
         }
         print("After Sort:")
         let sortedItems = commend.sort(items, forKeyPath: keyPath, order: ComparisonResult.orderedAscending)
         for item in sortedItems {
-            print(item.serializeIntoInfo())
+            print(item.serializeIntoInfo()!)
         }
         print("-------------------------------------------------")
     }
