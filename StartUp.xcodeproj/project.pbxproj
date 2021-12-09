@@ -14,13 +14,7 @@
 		26250980209C406E008C162A /* MegaGridRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2625097F209C406E008C162A /* MegaGridRouter.swift */; };
 		269FEE3C209B917A004FA261 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 269FEDAB209B917A004FA261 /* Assets.xcassets */; };
 		269FEE3D209B917A004FA261 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269FEDAC209B917A004FA261 /* LaunchScreen.storyboard */; };
-		269FEE43209B917A004FA261 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FEDB9209B917A004FA261 /* RNCryptor.m */; };
-		269FEE44209B917A004FA261 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FEDBB209B917A004FA261 /* RNCryptorEngine.m */; };
-		269FEE45209B917A004FA261 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FEDBD209B917A004FA261 /* RNDecryptor.m */; };
-		269FEE46209B917A004FA261 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FEDBF209B917A004FA261 /* RNEncryptor.m */; };
 		269FEE47209B917A004FA261 /* TRVSMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FEDC2209B917A004FA261 /* TRVSMonitor.m */; };
-		269FEE49209B917A004FA261 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FEDC6209B917A004FA261 /* KeychainWrapper.m */; };
-		269FEE4A209B917A004FA261 /* UUIDGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FEDC8209B917A004FA261 /* UUIDGenerator.m */; };
 		269FEE4C209B917A004FA261 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FEDCC209B917A004FA261 /* XMLReader.m */; };
 		269FEE51209B917A004FA261 /* DNObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FEDD3209B917A004FA261 /* DNObject+Extension.swift */; };
 		269FEE53209B917A004FA261 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FEDD5209B917A004FA261 /* User.swift */; };
@@ -114,24 +108,9 @@
 		269FEDB1209B917A004FA261 /* CoreNetworkStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreNetworkStack.framework; sourceTree = "<group>"; };
 		269FEDB2209B917A004FA261 /* FileSystemSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FileSystemSDK.framework; sourceTree = "<group>"; };
 		269FEDB3209B917A004FA261 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MBProgressHUD.framework; sourceTree = "<group>"; };
-		269FEDB5209B917A004FA261 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
-		269FEDB6209B917A004FA261 /* RNCryptor+Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Swift.h"; sourceTree = "<group>"; };
-		269FEDB7209B917A004FA261 /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
-		269FEDB8209B917A004FA261 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
-		269FEDB9209B917A004FA261 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
-		269FEDBA209B917A004FA261 /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
-		269FEDBB209B917A004FA261 /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
-		269FEDBC209B917A004FA261 /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
-		269FEDBD209B917A004FA261 /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
-		269FEDBE209B917A004FA261 /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
-		269FEDBF209B917A004FA261 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
 		269FEDC1209B917A004FA261 /* TRVSMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRVSMonitor.h; sourceTree = "<group>"; };
 		269FEDC2209B917A004FA261 /* TRVSMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRVSMonitor.m; sourceTree = "<group>"; };
 		269FEDC3209B917A004FA261 /* UIView_Shake.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UIView_Shake.framework; sourceTree = "<group>"; };
-		269FEDC5209B917A004FA261 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
-		269FEDC6209B917A004FA261 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
-		269FEDC7209B917A004FA261 /* UUIDGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUIDGenerator.h; sourceTree = "<group>"; };
-		269FEDC8209B917A004FA261 /* UUIDGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUIDGenerator.m; sourceTree = "<group>"; };
 		269FEDC9209B917A004FA261 /* WebServiceKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebServiceKit.framework; sourceTree = "<group>"; };
 		269FEDCB209B917A004FA261 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		269FEDCC209B917A004FA261 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
@@ -231,32 +210,12 @@
 				269FEDB1209B917A004FA261 /* CoreNetworkStack.framework */,
 				269FEDB2209B917A004FA261 /* FileSystemSDK.framework */,
 				269FEDB3209B917A004FA261 /* MBProgressHUD.framework */,
-				269FEDB4209B917A004FA261 /* RNCryptor */,
 				269FEDC0209B917A004FA261 /* TRVSMonitor */,
 				269FEDC3209B917A004FA261 /* UIView_Shake.framework */,
-				269FEDC4209B917A004FA261 /* UUIDGenarator */,
 				269FEDC9209B917A004FA261 /* WebServiceKit.framework */,
 				269FEDCA209B917A004FA261 /* XMLReader */,
 			);
 			path = libs;
-			sourceTree = "<group>";
-		};
-		269FEDB4209B917A004FA261 /* RNCryptor */ = {
-			isa = PBXGroup;
-			children = (
-				269FEDB5209B917A004FA261 /* RNCryptor+Private.h */,
-				269FEDB6209B917A004FA261 /* RNCryptor+Swift.h */,
-				269FEDB7209B917A004FA261 /* RNCryptor-Prefix.pch */,
-				269FEDB8209B917A004FA261 /* RNCryptor.h */,
-				269FEDB9209B917A004FA261 /* RNCryptor.m */,
-				269FEDBA209B917A004FA261 /* RNCryptorEngine.h */,
-				269FEDBB209B917A004FA261 /* RNCryptorEngine.m */,
-				269FEDBC209B917A004FA261 /* RNDecryptor.h */,
-				269FEDBD209B917A004FA261 /* RNDecryptor.m */,
-				269FEDBE209B917A004FA261 /* RNEncryptor.h */,
-				269FEDBF209B917A004FA261 /* RNEncryptor.m */,
-			);
-			path = RNCryptor;
 			sourceTree = "<group>";
 		};
 		269FEDC0209B917A004FA261 /* TRVSMonitor */ = {
@@ -266,17 +225,6 @@
 				269FEDC2209B917A004FA261 /* TRVSMonitor.m */,
 			);
 			path = TRVSMonitor;
-			sourceTree = "<group>";
-		};
-		269FEDC4209B917A004FA261 /* UUIDGenarator */ = {
-			isa = PBXGroup;
-			children = (
-				269FEDC5209B917A004FA261 /* KeychainWrapper.h */,
-				269FEDC6209B917A004FA261 /* KeychainWrapper.m */,
-				269FEDC7209B917A004FA261 /* UUIDGenerator.h */,
-				269FEDC8209B917A004FA261 /* UUIDGenerator.m */,
-			);
-			path = UUIDGenarator;
 			sourceTree = "<group>";
 		};
 		269FEDCA209B917A004FA261 /* XMLReader */ = {
@@ -582,8 +530,6 @@
 				269FEE71209B917A004FA261 /* AppDelegate.swift in Sources */,
 				269FEE69209B917A004FA261 /* HttpWebRequestExtension.swift in Sources */,
 				269FEE96209B917A004FA261 /* LoginTVC.swift in Sources */,
-				269FEE43209B917A004FA261 /* RNCryptor.m in Sources */,
-				269FEE45209B917A004FA261 /* RNDecryptor.m in Sources */,
 				269FEE95209B917A004FA261 /* ForgetPasswordTVC.swift in Sources */,
 				269FEE77209B917A004FA261 /* BackgroundFetchMonitor.swift in Sources */,
 				2625097C209C3EB2008C162A /* ForgotPassRouter.swift in Sources */,
@@ -601,7 +547,6 @@
 				269FEE56209B917A004FA261 /* ContactUsForm.swift in Sources */,
 				269FEE47209B917A004FA261 /* TRVSMonitor.m in Sources */,
 				269FEE5D209B917A004FA261 /* Validation.swift in Sources */,
-				269FEE4A209B917A004FA261 /* UUIDGenerator.m in Sources */,
 				269FEE5F209B917A004FA261 /* AfterRegistration.swift in Sources */,
 				269FEE53209B917A004FA261 /* User.swift in Sources */,
 				269FEE54209B917A004FA261 /* DNCoreDocument.swift in Sources */,
@@ -617,14 +562,11 @@
 				269FEE6B209B917A004FA261 /* ServiceBroker.swift in Sources */,
 				269FEE74209B917A004FA261 /* AppRuleSystem.swift in Sources */,
 				269FEE73209B917A004FA261 /* AppRouter.swift in Sources */,
-				269FEE49209B917A004FA261 /* KeychainWrapper.m in Sources */,
-				269FEE46209B917A004FA261 /* RNEncryptor.m in Sources */,
 				269FEE51209B917A004FA261 /* DNObject+Extension.swift in Sources */,
 				269FEE5C209B917A004FA261 /* UserProfile.swift in Sources */,
 				2625097A209C3E04008C162A /* RegistrationRouter.swift in Sources */,
 				269FEE70209B917A004FA261 /* AppAppearance.swift in Sources */,
 				269FEE6E209B917A004FA261 /* AssetsCatalog.swift in Sources */,
-				269FEE44209B917A004FA261 /* RNCryptorEngine.m in Sources */,
 				269FEE67209B917A004FA261 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
