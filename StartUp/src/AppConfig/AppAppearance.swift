@@ -70,7 +70,7 @@ open class AppAppearance: NSObject{
 open class SearchBar: NSObject{
     
     class func Color(_ bar: UISearchBar){
-        bar.searchBarStyle = UISearchBarStyle.prominent
+        bar.searchBarStyle = UISearchBar.Style.prominent
         bar.barTintColor = StaticColorBank.BrandColor
         bar.tintColor = UIColor.white
     }
@@ -84,7 +84,7 @@ open class SearchBar: NSObject{
     fileprivate class func getAttributes(_ text: String, color: UIColor) -> NSAttributedString{
         let attribute = NSMutableAttributedString(string: text)
         let range = (text as NSString).range(of: text, options: NSString.CompareOptions.caseInsensitive)
-        attribute.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
+        attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
         return attribute
     }
 }
@@ -101,8 +101,8 @@ open class NavigationBar: NSObject{
     }
     
     class func Title(){
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor:StaticColorBank.titleColor
-            , NSAttributedStringKey.font: FontConfig.defaultFont(style: FontStyle.Medium, size: 15.0)]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:StaticColorBank.titleColor
+            , NSAttributedString.Key.font: FontConfig.defaultFont(style: FontStyle.Medium, size: 15.0)]
     }
     
 }
@@ -124,28 +124,28 @@ open class TabBar: NSObject{
     
     class func ItemsTitleColor(){
         UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: -4.0)
-        UITabBarItem.appearance().setTitleTextAttributes([ NSAttributedStringKey.font: FontConfig.defaultFont(style: FontStyle.Bold, size: 11.0), NSAttributedStringKey.foregroundColor: StaticColorBank.tabItemTitleColor], for: UIControlState())
-        UITabBarItem.appearance().setTitleTextAttributes([ NSAttributedStringKey.font: FontConfig.defaultFont(style: FontStyle.Bold, size: 11.0),NSAttributedStringKey.foregroundColor: StaticColorBank.tabItemTitleSelectColor!], for: UIControlState.selected)
+        UITabBarItem.appearance().setTitleTextAttributes([ NSAttributedString.Key.font: FontConfig.defaultFont(style: FontStyle.Bold, size: 11.0), NSAttributedString.Key.foregroundColor: StaticColorBank.tabItemTitleColor], for: UIControl.State())
+        UITabBarItem.appearance().setTitleTextAttributes([ NSAttributedString.Key.font: FontConfig.defaultFont(style: FontStyle.Bold, size: 11.0),NSAttributedString.Key.foregroundColor: StaticColorBank.tabItemTitleSelectColor!], for: UIControl.State.selected)
     }
 }
 
 open class Slider: NSObject{
     
     class func Appearance(activateOn classTypes: [AnyObject.Type]? = nil){
-        let minImg = UIImage(catalog: AssetCatalog.sliderMin).resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 0))
-        let maxImg = UIImage(catalog: AssetCatalog.sliderMax).resizableImage(withCapInsets: UIEdgeInsetsMake(0, 5, 0, 0))
+        let minImg = UIImage(catalog: AssetCatalog.sliderMin).resizableImage(withCapInsets: UIEdgeInsets.init(top: 0, left: 5, bottom: 0, right: 0))
+        let maxImg = UIImage(catalog: AssetCatalog.sliderMax).resizableImage(withCapInsets: UIEdgeInsets.init(top: 0, left: 5, bottom: 0, right: 0))
         let thumb = UIImage(catalog: AssetCatalog.sliderThumbNail)
         if classTypes == nil{
-            UISlider.appearance().setMaximumTrackImage(maxImg, for: UIControlState())
-            UISlider.appearance().setMinimumTrackImage(minImg, for: UIControlState())
-            UISlider.appearance().setThumbImage(thumb, for: UIControlState())
-            UISlider.appearance().setThumbImage(thumb, for: UIControlState.highlighted)
+            UISlider.appearance().setMaximumTrackImage(maxImg, for: UIControl.State())
+            UISlider.appearance().setMinimumTrackImage(minImg, for: UIControl.State())
+            UISlider.appearance().setThumbImage(thumb, for: UIControl.State())
+            UISlider.appearance().setThumbImage(thumb, for: UIControl.State.highlighted)
         }
         else{
-            UISlider.appearance(whenContainedInInstancesOf: classTypes! as! [UIAppearanceContainer.Type]).setMaximumTrackImage(maxImg, for: UIControlState())
-            UISlider.appearance(whenContainedInInstancesOf: classTypes! as! [UIAppearanceContainer.Type]).setMinimumTrackImage(minImg, for: UIControlState())
-            UISlider.appearance(whenContainedInInstancesOf: classTypes! as! [UIAppearanceContainer.Type]).setThumbImage(thumb, for: UIControlState())
-            UISlider.appearance(whenContainedInInstancesOf: classTypes! as! [UIAppearanceContainer.Type]).setThumbImage(thumb, for: UIControlState.highlighted)
+            UISlider.appearance(whenContainedInInstancesOf: classTypes! as! [UIAppearanceContainer.Type]).setMaximumTrackImage(maxImg, for: UIControl.State())
+            UISlider.appearance(whenContainedInInstancesOf: classTypes! as! [UIAppearanceContainer.Type]).setMinimumTrackImage(minImg, for: UIControl.State())
+            UISlider.appearance(whenContainedInInstancesOf: classTypes! as! [UIAppearanceContainer.Type]).setThumbImage(thumb, for: UIControl.State())
+            UISlider.appearance(whenContainedInInstancesOf: classTypes! as! [UIAppearanceContainer.Type]).setThumbImage(thumb, for: UIControl.State.highlighted)
         }
     }
     
@@ -170,16 +170,16 @@ open class Button: NSObject{
         View.Carv(sender)
         sender.backgroundColor = StaticColorBank.buttonColor
         sender.tintColor = StaticColorBank.buttonColor
-        sender.setTitleColor(StaticColorBank.buttonTitleColor, for: UIControlState())
-        sender.setTitleColor(StaticColorBank.buttonTitleColor, for: UIControlState.selected)
+        sender.setTitleColor(StaticColorBank.buttonTitleColor, for: UIControl.State())
+        sender.setTitleColor(StaticColorBank.buttonTitleColor, for: UIControl.State.selected)
     }
     
     class func DeleteAppearance(_ sender: UIButton){
         View.Carv(sender)
         sender.backgroundColor = UIColor.red
         sender.tintColor = StaticColorBank.buttonColor
-        sender.setTitleColor(StaticColorBank.buttonTitleColor, for: UIControlState())
-        sender.setTitleColor(StaticColorBank.buttonTitleColor, for: UIControlState.selected)
+        sender.setTitleColor(StaticColorBank.buttonTitleColor, for: UIControl.State())
+        sender.setTitleColor(StaticColorBank.buttonTitleColor, for: UIControl.State.selected)
     }
     
     class func TitleAppearance(_ sender: UIButton){
@@ -203,10 +203,10 @@ open class View: NSObject{
     }
     
     @available(iOS 8.0, *)
-    class func createVisualEffect(_ frame: CGRect, style: UIBlurEffectStyle = UIBlurEffectStyle.dark) -> UIVisualEffectView{
+    class func createVisualEffect(_ frame: CGRect, style: UIBlurEffect.Style = UIBlurEffect.Style.dark) -> UIVisualEffectView{
         let blurEfect = UIBlurEffect(style: style)
         let visualEffectView = UIVisualEffectView(effect: blurEfect)
-        visualEffectView.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth]
+        visualEffectView.autoresizingMask = [UIView.AutoresizingMask.flexibleHeight, UIView.AutoresizingMask.flexibleWidth]
         visualEffectView.frame = frame
         return visualEffectView
     }
@@ -218,7 +218,7 @@ open class Text: NSObject{
         let availableSize: CGSize = (maxSize != nil) ? maxSize! : CGSize(width: CGFloat(320.0), height: CGFloat(MAXFLOAT))
         let size: CGSize = text.boundingRect(with: availableSize
             , options: NSStringDrawingOptions.usesLineFragmentOrigin
-            , attributes: [NSAttributedStringKey.font: font]
+            , attributes: [NSAttributedString.Key.font: font]
             , context: nil).size
         return size
     }

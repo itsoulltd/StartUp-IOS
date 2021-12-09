@@ -52,7 +52,7 @@ class AlertViewController: NSObject {
     
     @available(iOS 8.0, *)
     fileprivate class func createAlertViewController(_ message: AlertMessage) -> UIAlertController{
-        let alertViewController = UIAlertController(title: message.title as String, message: message.message as String, preferredStyle: UIAlertControllerStyle.alert)
+        let alertViewController = UIAlertController(title: message.title as String, message: message.message as String, preferredStyle: UIAlertController.Style.alert)
         
         if let cancelAction = message.cancelAction{
             alertViewController.addAction(cancelAction)

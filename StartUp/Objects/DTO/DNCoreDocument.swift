@@ -57,7 +57,7 @@ class DNCoreDocument: NSObject {
         else{
             // 1. save it out, 2. close it, 3. read it back in.
             // You probably can get away with doing less
-            document?.save(to: localURL, for: UIDocumentSaveOperation.forCreating, completionHandler: { [weak self] (success: Bool) -> Void in
+            document?.save(to: localURL, for: UIDocument.SaveOperation.forCreating, completionHandler: { [weak self] (success: Bool) -> Void in
                 if success{
                     print("1. save it out")
                     self?.document?.close(completionHandler: { [weak self] (success: Bool) -> Void in

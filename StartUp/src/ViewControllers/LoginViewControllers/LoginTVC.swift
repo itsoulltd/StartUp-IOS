@@ -151,11 +151,11 @@ class LoginTVC: UITableViewController {
                 let alert = AlertMessage()
                 alert.title = "Login Failed!"
                 alert.message = "Please Try again later."
-                alert.cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+                alert.cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
                 AlertViewController.show(alert)
                 return
             }
-            print(parser.serializeIntoInfo())//
+            print(parser.serializeIntoInfo()!)//
             AppRouter.shared().start()
         }
     }
@@ -189,7 +189,7 @@ extension LoginTVC: UITextFieldDelegate{
             self.passwordTextField.becomeFirstResponder()
         }else if textField === self.passwordTextField{
             self.passwordTextField.resignFirstResponder()
-            self.signInButton.sendActions(for: UIControlEvents.touchUpInside)
+            self.signInButton.sendActions(for: UIControl.Event.touchUpInside)
         }
         return true
     }

@@ -21,7 +21,7 @@ class MegaGridTvc: UITableViewController {
         self.title = "My Grid"
         
         if let _ = self.navigationController{
-            let logout = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.done, target: self, action: #selector(MegaGridTvc.cancelAction(sender:)))
+            let logout = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.done, target: self, action: #selector(MegaGridTvc.cancelAction(sender:)))
             self.navigationItem.rightBarButtonItems = [logout]
         }
     }

@@ -20,12 +20,12 @@ class DomainTestCases: NSObject {
 
     var items: [NGObjectProtocol] = {
         var items = [NGObjectProtocol]()
-        items.append(NGObject(info: ["name":"towhid","age":32,"dob":DateManager .sharedInstance().day(after: 54)]))
-        items.append(NGObject(info: ["name":"Sohana","age":23,"dob":DateManager .sharedInstance().day(after: 23)]))
-        items.append(NGObject(info: ["name":"Tanvir","age":28,"dob":DateManager .sharedInstance().day(after: 12)]))
-        items.append(NGObject(info: ["name":"Sumaiya","age":19,"dob":DateManager .sharedInstance().day(after: 19)]))
-        items.append(NGObject(info: ["name":"Maruf","age":32,"dob":DateManager .sharedInstance().day(after: 20)]))
-        items.append(NGObject(info: ["name":"Tushin","age":14,"dob":DateManager .sharedInstance().day(after: 20)]))
+        items.append(NGObject(info: ["name":"towhid","age":32,"dob":DateManager .sharedInstance().day(after: 54) ?? Date()]))
+        items.append(NGObject(info: ["name":"Sohana","age":23,"dob":DateManager .sharedInstance().day(after: 23) ?? Date()]))
+        items.append(NGObject(info: ["name":"Tanvir","age":28,"dob":DateManager .sharedInstance().day(after: 12) ?? Date()]))
+        items.append(NGObject(info: ["name":"Sumaiya","age":19,"dob":DateManager .sharedInstance().day(after: 19) ?? Date()]))
+        items.append(NGObject(info: ["name":"Maruf","age":32,"dob":DateManager .sharedInstance().day(after: 20) ?? Date()]))
+        items.append(NGObject(info: ["name":"Tushin","age":14,"dob":DateManager .sharedInstance().day(after: 20) ?? Date()]))
         return items
     }()
     
@@ -49,7 +49,7 @@ class DomainTestCases: NSObject {
         for (key, value) in dic as! [AnyHashable:NSArray] {
             print("\(key) : \n")
             for val in value as! [NGObject] {
-                print(val.serializeIntoInfo())
+                print(val.serializeIntoInfo()!)
             }
         }
     }
@@ -92,7 +92,7 @@ class DomainTestCases: NSObject {
         
         self.user.contactUs(contactus!) { (res) in
             if let r = res{
-                print(r.serializeIntoInfo())
+                print(r.serializeIntoInfo()!)
             }
         }
         

@@ -15,7 +15,7 @@ class BackgroundFetchMonitor: NSObject {
     fileprivate var commendList: [FetchCommend] = [FetchCommend]()
 
     func configureFetchSchedule(_ application: UIApplication) -> Void{
-        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
     }
     
     func executeFetch(_ completionHandler: (UIBackgroundFetchResult) -> Void){
