@@ -1,0 +1,11 @@
+framework module FileSystemSDK {
+  umbrella header "FileSystemSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module FileSystemSDK.Swift {
+    header "FileSystemSDK-Swift.h"
+    requires objc
+}
