@@ -12,6 +12,11 @@
 		2625097C209C3EB2008C162A /* ForgotPassRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2625097B209C3EB2008C162A /* ForgotPassRouter.swift */; };
 		2625097E209C3FA4008C162A /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2625097D209C3FA4008C162A /* LoginRouter.swift */; };
 		26250980209C406E008C162A /* MegaGridRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2625097F209C406E008C162A /* MegaGridRouter.swift */; };
+		268C51602AD18E7800CE5482 /* WebServiceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C515F2AD18E7700CE5482 /* WebServiceKit.framework */; };
+		268C51622AD18E8900CE5482 /* NGAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C51612AD18E8900CE5482 /* NGAppKit.framework */; };
+		268C51642AD18F1600CE5482 /* FileSystemSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C51632AD18F1600CE5482 /* FileSystemSDK.framework */; };
+		268C51662AD18F3100CE5482 /* CoreNetworkStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C51652AD18F3100CE5482 /* CoreNetworkStack.framework */; };
+		268C51682AD18F4600CE5482 /* CoreDataStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C51672AD18F4500CE5482 /* CoreDataStack.framework */; };
 		269FEE3C209B917A004FA261 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 269FEDAB209B917A004FA261 /* Assets.xcassets */; };
 		269FEE3D209B917A004FA261 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269FEDAC209B917A004FA261 /* LaunchScreen.storyboard */; };
 		269FEE47209B917A004FA261 /* TRVSMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FEDC2209B917A004FA261 /* TRVSMonitor.m */; };
@@ -59,20 +64,10 @@
 		269FEE9A209B917A004FA261 /* MegaGridTvc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FEE37209B917A004FA261 /* MegaGridTvc.swift */; };
 		269FEE9B209B917A004FA261 /* PopularCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FEE38209B917A004FA261 /* PopularCollectionViewCell.swift */; };
 		269FEE9C209B917A004FA261 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 269FEE3A209B917A004FA261 /* Main.storyboard */; };
-		269FEE9E209B926E004FA261 /* CoreDataStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269FEDB0209B917A004FA261 /* CoreDataStack.framework */; };
-		269FEE9F209B926E004FA261 /* CoreDataStack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 269FEDB0209B917A004FA261 /* CoreDataStack.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		269FEEA0209B926E004FA261 /* CoreNetworkStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269FEDB1209B917A004FA261 /* CoreNetworkStack.framework */; };
-		269FEEA1209B926E004FA261 /* CoreNetworkStack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 269FEDB1209B917A004FA261 /* CoreNetworkStack.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		269FEEA2209B926E004FA261 /* FileSystemSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269FEDB2209B917A004FA261 /* FileSystemSDK.framework */; };
-		269FEEA3209B926E004FA261 /* FileSystemSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 269FEDB2209B917A004FA261 /* FileSystemSDK.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		269FEEA4209B926E004FA261 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269FEDB3209B917A004FA261 /* MBProgressHUD.framework */; };
 		269FEEA5209B926E004FA261 /* MBProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 269FEDB3209B917A004FA261 /* MBProgressHUD.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		269FEEA6209B926E004FA261 /* UIView_Shake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269FEDC3209B917A004FA261 /* UIView_Shake.framework */; };
 		269FEEA7209B926E004FA261 /* UIView_Shake.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 269FEDC3209B917A004FA261 /* UIView_Shake.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		269FEEA8209B926E004FA261 /* WebServiceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269FEDC9209B917A004FA261 /* WebServiceKit.framework */; };
-		269FEEA9209B926E004FA261 /* WebServiceKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 269FEDC9209B917A004FA261 /* WebServiceKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		269FEEAD209B92B1004FA261 /* NGAppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269FEEAA209B9283004FA261 /* NGAppKit.framework */; };
-		269FEEAE209B92B1004FA261 /* NGAppKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 269FEEAA209B9283004FA261 /* NGAppKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,12 +77,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				269FEEA9209B926E004FA261 /* WebServiceKit.framework in Embed Frameworks */,
 				269FEEA5209B926E004FA261 /* MBProgressHUD.framework in Embed Frameworks */,
-				269FEE9F209B926E004FA261 /* CoreDataStack.framework in Embed Frameworks */,
-				269FEEA3209B926E004FA261 /* FileSystemSDK.framework in Embed Frameworks */,
-				269FEEA1209B926E004FA261 /* CoreNetworkStack.framework in Embed Frameworks */,
-				269FEEAE209B92B1004FA261 /* NGAppKit.framework in Embed Frameworks */,
 				269FEEA7209B926E004FA261 /* UIView_Shake.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -101,17 +91,18 @@
 		2625097B209C3EB2008C162A /* ForgotPassRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassRouter.swift; sourceTree = "<group>"; };
 		2625097D209C3FA4008C162A /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		2625097F209C406E008C162A /* MegaGridRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegaGridRouter.swift; sourceTree = "<group>"; };
+		268C515F2AD18E7700CE5482 /* WebServiceKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebServiceKit.framework; sourceTree = "<group>"; };
+		268C51612AD18E8900CE5482 /* NGAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NGAppKit.framework; sourceTree = "<group>"; };
+		268C51632AD18F1600CE5482 /* FileSystemSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FileSystemSDK.framework; sourceTree = "<group>"; };
+		268C51652AD18F3100CE5482 /* CoreNetworkStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreNetworkStack.framework; sourceTree = "<group>"; };
+		268C51672AD18F4500CE5482 /* CoreDataStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreDataStack.framework; sourceTree = "<group>"; };
 		269FEDAB209B917A004FA261 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		269FEDAD209B917A004FA261 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		269FEDAE209B917A004FA261 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		269FEDB0209B917A004FA261 /* CoreDataStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreDataStack.framework; sourceTree = "<group>"; };
-		269FEDB1209B917A004FA261 /* CoreNetworkStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreNetworkStack.framework; sourceTree = "<group>"; };
-		269FEDB2209B917A004FA261 /* FileSystemSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FileSystemSDK.framework; sourceTree = "<group>"; };
 		269FEDB3209B917A004FA261 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MBProgressHUD.framework; sourceTree = "<group>"; };
 		269FEDC1209B917A004FA261 /* TRVSMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRVSMonitor.h; sourceTree = "<group>"; };
 		269FEDC2209B917A004FA261 /* TRVSMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRVSMonitor.m; sourceTree = "<group>"; };
 		269FEDC3209B917A004FA261 /* UIView_Shake.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UIView_Shake.framework; sourceTree = "<group>"; };
-		269FEDC9209B917A004FA261 /* WebServiceKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebServiceKit.framework; sourceTree = "<group>"; };
 		269FEDCB209B917A004FA261 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		269FEDCC209B917A004FA261 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		269FEDD3209B917A004FA261 /* DNObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DNObject+Extension.swift"; sourceTree = "<group>"; };
@@ -159,7 +150,6 @@
 		269FEE37209B917A004FA261 /* MegaGridTvc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MegaGridTvc.swift; sourceTree = "<group>"; };
 		269FEE38209B917A004FA261 /* PopularCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularCollectionViewCell.swift; sourceTree = "<group>"; };
 		269FEE3A209B917A004FA261 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		269FEEAA209B9283004FA261 /* NGAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NGAppKit.framework; sourceTree = "<group>"; };
 		26DBF0101DBE979100BB6030 /* StartUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StartUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -168,13 +158,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				269FEEA8209B926E004FA261 /* WebServiceKit.framework in Frameworks */,
+				268C51622AD18E8900CE5482 /* NGAppKit.framework in Frameworks */,
+				268C51642AD18F1600CE5482 /* FileSystemSDK.framework in Frameworks */,
+				268C51602AD18E7800CE5482 /* WebServiceKit.framework in Frameworks */,
 				269FEEA4209B926E004FA261 /* MBProgressHUD.framework in Frameworks */,
-				269FEE9E209B926E004FA261 /* CoreDataStack.framework in Frameworks */,
-				269FEEA2209B926E004FA261 /* FileSystemSDK.framework in Frameworks */,
-				269FEEA0209B926E004FA261 /* CoreNetworkStack.framework in Frameworks */,
-				269FEEAD209B92B1004FA261 /* NGAppKit.framework in Frameworks */,
 				269FEEA6209B926E004FA261 /* UIView_Shake.framework in Frameworks */,
+				268C51662AD18F3100CE5482 /* CoreNetworkStack.framework in Frameworks */,
+				268C51682AD18F4600CE5482 /* CoreDataStack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +178,18 @@
 				26250979209C3E04008C162A /* RegistrationRouter.swift */,
 			);
 			path = RegistrationViewControllers;
+			sourceTree = "<group>";
+		};
+		266EB9F62AD17B5C00F63173 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				268C51672AD18F4500CE5482 /* CoreDataStack.framework */,
+				268C51652AD18F3100CE5482 /* CoreNetworkStack.framework */,
+				268C51632AD18F1600CE5482 /* FileSystemSDK.framework */,
+				268C51612AD18E8900CE5482 /* NGAppKit.framework */,
+				268C515F2AD18E7700CE5482 /* WebServiceKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		269FEDAA209B917A004FA261 /* StartUp */ = {
@@ -205,14 +207,9 @@
 		269FEDAF209B917A004FA261 /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				269FEEAA209B9283004FA261 /* NGAppKit.framework */,
-				269FEDB0209B917A004FA261 /* CoreDataStack.framework */,
-				269FEDB1209B917A004FA261 /* CoreNetworkStack.framework */,
-				269FEDB2209B917A004FA261 /* FileSystemSDK.framework */,
 				269FEDB3209B917A004FA261 /* MBProgressHUD.framework */,
 				269FEDC0209B917A004FA261 /* TRVSMonitor */,
 				269FEDC3209B917A004FA261 /* UIView_Shake.framework */,
-				269FEDC9209B917A004FA261 /* WebServiceKit.framework */,
 				269FEDCA209B917A004FA261 /* XMLReader */,
 			);
 			path = libs;
@@ -433,6 +430,7 @@
 			children = (
 				269FEDAA209B917A004FA261 /* StartUp */,
 				26DBF0111DBE979100BB6030 /* Products */,
+				266EB9F62AD17B5C00F63173 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -709,6 +707,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/StartUp/libs",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = StartUp/Resource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -733,6 +732,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/StartUp/libs",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = StartUp/Resource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
