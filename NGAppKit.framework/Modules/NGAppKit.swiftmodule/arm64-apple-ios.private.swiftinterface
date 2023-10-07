@@ -1,0 +1,363 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
+// swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name NGAppKit
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import CoreData
+import CoreDataStack
+import Foundation
+@_exported import NGAppKit
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+@objc(ResolutionStrategyProtocol) public protocol ResolutionStrategyProtocol : ObjectiveC.NSObjectProtocol {
+  @objc var factTable: Foundation.NSMutableDictionary { get }
+  @objc var messageBox: Foundation.NSMutableDictionary { get }
+  @objc func assert(message: Swift.String?, forFact fact: Swift.String)
+  @objc func execute(_ system: NGAppKit.NGRuleSystem, rules: [NGAppKit.NGRuleProtocol])
+  @objc func reset()
+}
+@_inheritsConvenienceInitializers @objc(ForwardChaining) open class ForwardChaining : ObjectiveC.NSObject, NGAppKit.ResolutionStrategyProtocol {
+  @objc open var factTable: Foundation.NSMutableDictionary {
+    @objc get
+  }
+  @objc open var messageBox: Foundation.NSMutableDictionary {
+    @objc get
+  }
+  @objc open func execute(_ system: NGAppKit.NGRuleSystem, rules: [NGAppKit.NGRuleProtocol])
+  @objc open func reset()
+  @objc open func assert(message: Swift.String?, forFact fact: Swift.String)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(BackwardChaining) open class BackwardChaining : NGAppKit.ForwardChaining {
+  @objc override open func execute(_ system: NGAppKit.NGRuleSystem, rules: [NGAppKit.NGRuleProtocol])
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(Progressive) open class Progressive : NGAppKit.ForwardChaining {
+  @objc override open func execute(_ system: NGAppKit.NGRuleSystem, rules: [NGAppKit.NGRuleProtocol])
+  @objc override open func reset()
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(OrderedProgressive) open class OrderedProgressive : NGAppKit.Progressive {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(AlphabeticalSort) open class AlphabeticalSort : NGAppKit.SortCommand {
+  override open func sort(inMemory collection: inout [CoreDataStack.NGObjectProtocol], forKeyPath keyPath: Swift.String?, order: Foundation.ComparisonResult = ComparisonResult.orderedAscending) -> [CoreDataStack.NGObjectProtocol]
+  override open func sort(_ collection: [CoreDataStack.NGObjectProtocol], forKeyPath keyPath: Swift.String?, order: Foundation.ComparisonResult = ComparisonResult.orderedAscending) -> [CoreDataStack.NGObjectProtocol]
+  @objc override dynamic public init!(info: [Swift.AnyHashable : Any]!)
+  @objc override dynamic public init!(json: Foundation.Data!)
+  @objc override dynamic public init()
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+public enum RuleEvaluationStrategy : Swift.Int {
+  case forwardChaining
+  case backwardChaining
+  case progressive
+  case orderedProgressive
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(NGRuleSystem) open class NGRuleSystem : ObjectiveC.NSObject {
+  public struct NGRuleSystemKeys {
+  }
+  public init(strategy: NGAppKit.RuleEvaluationStrategy = .forwardChaining)
+  open func resetSystem()
+  open func evaluateSystem()
+  open func setState(_ key: Swift.String, value: Swift.AnyObject)
+  open func state(_ key: Swift.String) -> Swift.AnyObject?
+  open func progress() -> Swift.Double
+  open func gradeFor(_ fact: Swift.String) -> Swift.Double
+  open func messagesFor(_ fact: Swift.String) -> [Swift.String]
+  open func satisfied(_ fact: Swift.String) -> Swift.Bool
+  open func assert(_ fact: Swift.String, grade: Foundation.NSNumber = NSNumber(value: 1.0 as Double), message: Swift.String? = nil)
+  open func retreat(_ fact: Swift.String)
+  open func addRules(from array: [NGAppKit.NGRuleProtocol])
+  open func addRule(_ rule: NGAppKit.NGRuleProtocol) -> NGAppKit.NGRuleSystem
+  open func copyRules() -> [NGAppKit.NGRuleProtocol]
+  open func removeRule(at index: Swift.Int) -> NGAppKit.NGRuleProtocol
+  @objc deinit
+}
+@objc(UserManagement) @objcMembers open class UserManagement : CoreDataStack.NGObject {
+  @objc public var profile: CoreDataStack.NGObjectProtocol? {
+    @objc get
+    @objc set
+  }
+  @objc open func deleteProfile()
+  @objc open func updateProfile(_ value: Swift.AnyObject, forKey key: Swift.String)
+  @objc public var oauth: NGAppKit.OAuth
+  @objc public var credential: NGAppKit.Credential
+  @objc public var loggedIn: Swift.Bool
+  @objc public var token: Swift.String? {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc convenience public init(profileType: CoreDataStack.NGObject.Type)
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc open func logout(_ passwordOnly: Swift.Bool = false)
+  @objc open func loginWithToken(_ token: Swift.String, email: Swift.String, password: Swift.String, remembered: Swift.Bool = false) -> Swift.Bool
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(Credential) @objcMembers open class Credential : CoreDataStack.NGObject {
+  @objc public var isRemembered: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var email: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc public var password: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc override dynamic open func updateValue(_ value: Any!, forKey key: Swift.String!)
+  @objc open func removeCredential(_ passwordOnly: Swift.Bool)
+  @objc override dynamic public init!(info: [Swift.AnyHashable : Any]!)
+  @objc override dynamic public init!(json: Foundation.Data!)
+  @objc override dynamic public init()
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(UserProfile) @objcMembers open class UserProfile : CoreDataStack.NGObject {
+  @objc public var firstName: Swift.String?
+  @objc public var lastName: Swift.String?
+  @objc public var name: Swift.String {
+    @objc get
+  }
+  public var age: Swift.Int?
+  @objc public var dob: Foundation.Date?
+  @objc public var profileImagePath: Foundation.URL?
+  @objc public var thumbNailPath: Foundation.URL?
+  @objc override dynamic open func updateValue(_ value: Any!, forKey key: Swift.String!)
+  @objc override dynamic open func updateDate(_ dateStr: Swift.String!) -> Foundation.Date!
+  @objc override dynamic open func serializeDate(_ date: Foundation.Date!) -> Swift.String!
+  @objc override dynamic public init!(info: [Swift.AnyHashable : Any]!)
+  @objc override dynamic public init!(json: Foundation.Data!)
+  @objc override dynamic public init()
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(DateSort) open class DateSort : NGAppKit.SortCommand {
+  override open func sort(inMemory collection: inout [CoreDataStack.NGObjectProtocol], forKeyPath keyPath: Swift.String? = nil, order: Foundation.ComparisonResult = ComparisonResult.orderedAscending) -> [CoreDataStack.NGObjectProtocol]
+  override open func sort(_ collection: [CoreDataStack.NGObjectProtocol], forKeyPath keyPath: Swift.String? = nil, order: Foundation.ComparisonResult = ComparisonResult.orderedAscending) -> [CoreDataStack.NGObjectProtocol]
+  override open func isDateType(forKeyPath keyPath: Swift.String?) -> Swift.Bool
+  override open func date(fromString stringValue: Swift.String?) -> Foundation.Date?
+  @objc override dynamic public init!(info: [Swift.AnyHashable : Any]!)
+  @objc override dynamic public init!(json: Foundation.Data!)
+  @objc override dynamic public init()
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(OAuth) @objcMembers open class OAuth : CoreDataStack.NGObject {
+  @objc public var token: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc public var secretKey: Swift.String?
+  @objc override dynamic open func updateValue(_ value: Any!, forKey key: Swift.String!)
+  @objc open func removeToken()
+  @objc override dynamic public init!(info: [Swift.AnyHashable : Any]!)
+  @objc override dynamic public init!(json: Foundation.Data!)
+  @objc override dynamic public init()
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(Hibernate) public class Hibernate : CoreDataStack.NGCoreObject {
+  @objc override dynamic public init!(entity: CoreData.NSEntityDescription!, insertInto context: CoreData.NSManagedObjectContext!, updateWithInfo info: [Swift.AnyHashable : Any]!)
+  @objc override dynamic public init!(entity: CoreData.NSEntityDescription!, insertInto context: CoreData.NSManagedObjectContext!, updateWithJSON json: Foundation.Data!)
+  @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
+  @objc deinit
+}
+extension NGAppKit.Hibernate {
+  @nonobjc public class func fetchRequest() -> CoreData.NSFetchRequest<NGAppKit.Hibernate>
+  @objc @NSManaged dynamic public var info: CoreDataStack.NGObject? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic public var createDate: Foundation.NSDate? {
+    @objc get
+    @objc set
+  }
+}
+@_inheritsConvenienceInitializers @objc(NumericSort) open class NumericSort : NGAppKit.SortCommand {
+  override open func compare(_ first: ObjectiveC.NSObject, second: ObjectiveC.NSObject, forKeyPath keyPath: Swift.String?) -> Swift.Bool
+  @objc override dynamic public init!(info: [Swift.AnyHashable : Any]!)
+  @objc override dynamic public init!(json: Foundation.Data!)
+  @objc override dynamic public init()
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc(NGRuleProtocol) public protocol NGRuleProtocol : ObjectiveC.NSObjectProtocol {
+  @objc weak var system: NGAppKit.NGRuleSystem? { get set }
+  @objc func validate() -> Swift.Bool
+  @objc func executeAssertion()
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc(NGRule) open class NGRule : ObjectiveC.NSObject, NGAppKit.NGRuleProtocol {
+  @objc weak open var system: NGAppKit.NGRuleSystem? {
+    @objc get
+    @objc set
+  }
+  open var assertion: ((_ system: NGAppKit.NGRuleSystem) -> Swift.Void)!
+  public init(condition: @escaping (_ ruleSystem: NGAppKit.NGRuleSystem) -> Swift.Bool, assertion: @escaping (_ ruleSystem: NGAppKit.NGRuleSystem) -> Swift.Void)
+  @objc open func validate() -> Swift.Bool
+  @objc open func executeAssertion()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(NGLogicRule) open class NGLogicRule : NGAppKit.NGRule {
+  public init(condition: NGAppKit.Logical, value: @escaping (_ ruleSystem: NGAppKit.NGRuleSystem) -> Swift.AnyObject, assertion: @escaping (_ ruleSystem: NGAppKit.NGRuleSystem) -> Swift.Void)
+  @objc override open func validate() -> Swift.Bool
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc(NGValidationRule) open class NGValidationRule : NGAppKit.NGRule {
+  public init(validation: NGAppKit.Validation, value: @escaping (_ ruleSystem: NGAppKit.NGRuleSystem) -> Swift.AnyObject, assertion: @escaping (_ ruleSystem: NGAppKit.NGRuleSystem) -> Swift.Void)
+  @objc override open func validate() -> Swift.Bool
+  @objc deinit
+}
+extension CoreDataStack.NGCoreObject {
+  @nonobjc public class func fetchRequest() -> CoreData.NSFetchRequest<CoreDataStack.NGCoreObject>
+}
+@objc @_inheritsConvenienceInitializers @objcMembers open class Registration : CoreDataStack.NGObject {
+  @objc public var email: Foundation.NSString?
+  @objc public var password: Foundation.NSString?
+  @objc public var passwordConfirmation: Foundation.NSString?
+  @objc public var firstName: Foundation.NSString?
+  @objc public var lastName: Foundation.NSString?
+  @objc override dynamic public init!(info: [Swift.AnyHashable : Any]!)
+  @objc override dynamic public init!(json: Foundation.Data!)
+  @objc override dynamic public init()
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc(Validation) public protocol Validation : ObjectiveC.NSObjectProtocol {
+  @objc func validate(_ value: Swift.AnyObject) -> Swift.Bool
+}
+public enum RelationalOperator : Swift.Int {
+  case equal
+  case min
+  case minOrEqual
+  case max
+  case maxOrEqual
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(Equal) open class Equal : ObjectiveC.NSObject, NGAppKit.Validation {
+  public init(baseValue: Swift.AnyObject)
+  @objc open func validate(_ value: Swift.AnyObject) -> Swift.Bool
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(EqualDate) open class EqualDate : NGAppKit.Equal {
+  @objc override open func validate(_ value: Swift.AnyObject) -> Swift.Bool
+  override public init(baseValue: Swift.AnyObject)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(Greater) open class Greater : NGAppKit.Equal {
+  @objc override open func validate(_ value: Swift.AnyObject) -> Swift.Bool
+  override public init(baseValue: Swift.AnyObject)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(GreaterDate) open class GreaterDate : NGAppKit.Greater {
+  @objc override open func validate(_ value: Swift.AnyObject) -> Swift.Bool
+  override public init(baseValue: Swift.AnyObject)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(Smaller) open class Smaller : NGAppKit.Greater {
+  @objc override open func validate(_ value: Swift.AnyObject) -> Swift.Bool
+  override public init(baseValue: Swift.AnyObject)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(SmallerDate) open class SmallerDate : NGAppKit.Smaller {
+  @objc override open func validate(_ value: Swift.AnyObject) -> Swift.Bool
+  override public init(baseValue: Swift.AnyObject)
+  @objc deinit
+}
+@objc(Logical) open class Logical : ObjectiveC.NSObject, NGAppKit.Validation {
+  public init(left: NGAppKit.Validation, right: NGAppKit.Validation)
+  @objc open func validate(_ value: Swift.AnyObject) -> Swift.Bool
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(And) open class And : NGAppKit.Logical {
+  @objc override open func validate(_ value: Swift.AnyObject) -> Swift.Bool
+  override public init(left: NGAppKit.Validation, right: NGAppKit.Validation)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(Or) open class Or : NGAppKit.Logical {
+  @objc override open func validate(_ value: Swift.AnyObject) -> Swift.Bool
+  override public init(left: NGAppKit.Validation, right: NGAppKit.Validation)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(Xor) open class Xor : NGAppKit.Logical {
+  @objc override open func validate(_ value: Swift.AnyObject) -> Swift.Bool
+  override public init(left: NGAppKit.Validation, right: NGAppKit.Validation)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(Nor) open class Nor : NGAppKit.Logical {
+  @objc override open func validate(_ value: Swift.AnyObject) -> Swift.Bool
+  override public init(left: NGAppKit.Validation, right: NGAppKit.Validation)
+  @objc deinit
+}
+@objc(Length) open class Length : ObjectiveC.NSObject, NGAppKit.Validation {
+  public var targetLength: Swift.Int {
+    get
+  }
+  public var relationOperator: NGAppKit.RelationalOperator {
+    get
+  }
+  public init(length: Swift.Int, relation: NGAppKit.RelationalOperator)
+  @objc open func validate(_ value: Swift.AnyObject) -> Swift.Bool
+  @objc deinit
+}
+@objc(RegX) open class RegX : ObjectiveC.NSObject, NGAppKit.Validation {
+  public var regx: Foundation.NSRegularExpression? {
+    get
+  }
+  public init(pattern: Swift.String)
+  @objc open func validate(_ value: Swift.AnyObject) -> Swift.Bool
+  @objc deinit
+}
+public protocol SortCommandProtocol : ObjectiveC.NSObjectProtocol {
+  static func restoreSharedCommand(defaultSortType sortType: CoreDataStack.NGObject.Type) -> NGAppKit.SortCommand
+  static func restoreCommand(byKey key: Swift.String) -> NGAppKit.SortCommand?
+  static func storeSharedCommand(_ command: NGAppKit.SortCommand)
+  static func storeCommand(_ command: NGAppKit.SortCommand, byKey key: Swift.String)
+  func sort(inMemory collection: inout [CoreDataStack.NGObjectProtocol], forKeyPath keyPath: Swift.String?, order: Foundation.ComparisonResult) -> [CoreDataStack.NGObjectProtocol]
+  func sort(_ collection: [CoreDataStack.NGObjectProtocol], forKeyPath keyPath: Swift.String?, order: Foundation.ComparisonResult) -> [CoreDataStack.NGObjectProtocol]
+  func compare(_ first: ObjectiveC.NSObject, second: ObjectiveC.NSObject, forKeyPath keyPath: Swift.String?) -> Swift.Bool
+  func isDateType(forKeyPath keyPath: Swift.String?) -> Swift.Bool
+  func date(fromString stringValue: Swift.String?) -> Foundation.Date?
+  func preferredSortOrder() -> Foundation.ComparisonResult
+}
+@_inheritsConvenienceInitializers @objc(SortCommand) open class SortCommand : CoreDataStack.NGObject, NGAppKit.SortCommandProtocol {
+  open class func restoreSharedCommand(defaultSortType sortType: CoreDataStack.NGObject.Type = SortCommand.self) -> NGAppKit.SortCommand
+  open class func restoreCommand(byKey key: Swift.String) -> NGAppKit.SortCommand?
+  open class func storeSharedCommand(_ command: NGAppKit.SortCommand)
+  open class func storeCommand(_ command: NGAppKit.SortCommand, byKey key: Swift.String)
+  open func sort(inMemory collection: inout [CoreDataStack.NGObjectProtocol], forKeyPath keyPath: Swift.String?, order: Foundation.ComparisonResult = ComparisonResult.orderedAscending) -> [CoreDataStack.NGObjectProtocol]
+  open func sort(_ collection: [CoreDataStack.NGObjectProtocol], forKeyPath keyPath: Swift.String?, order: Foundation.ComparisonResult = ComparisonResult.orderedAscending) -> [CoreDataStack.NGObjectProtocol]
+  open var order: Foundation.ComparisonResult
+  open func preferredSortOrder() -> Foundation.ComparisonResult
+  open func isDateType(forKeyPath keyPath: Swift.String?) -> Swift.Bool
+  open func date(fromString stringValue: Swift.String?) -> Foundation.Date?
+  open func compare(_ first: ObjectiveC.NSObject, second: ObjectiveC.NSObject, forKeyPath keyPath: Swift.String?) -> Swift.Bool
+  @objc override dynamic public init!(info: [Swift.AnyHashable : Any]!)
+  @objc override dynamic public init!(json: Foundation.Data!)
+  @objc override dynamic public init()
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+extension NGAppKit.RuleEvaluationStrategy : Swift.Equatable {}
+extension NGAppKit.RuleEvaluationStrategy : Swift.Hashable {}
+extension NGAppKit.RuleEvaluationStrategy : Swift.RawRepresentable {}
+extension NGAppKit.RelationalOperator : Swift.Equatable {}
+extension NGAppKit.RelationalOperator : Swift.Hashable {}
+extension NGAppKit.RelationalOperator : Swift.RawRepresentable {}

@@ -1,0 +1,236 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
+// swift-module-flags: -target x86_64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name FileSystemSDK
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import CoreDataStack
+import CoreNetworkStack
+@_exported import FileSystemSDK
+import Foundation
+import MobileCoreServices
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+@objc(SpaceIn) public enum SpaceIn : Swift.Int {
+  case bytes, kb, mb, gb, tb
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc(DiskUtility) open class DiskUtility : ObjectiveC.NSObject {
+  open class func documentDirectoryPath() -> Foundation.NSString
+  open class func totalSpaceIn(_ space: FileSystemSDK.SpaceIn = .bytes) -> Swift.Double
+  open class func freeSpaceIn(_ space: FileSystemSDK.SpaceIn = .bytes) -> Swift.Double
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public protocol ExportProtocol : ObjectiveC.NSObjectProtocol {
+  @objc func handleDocumentExport(_ documentUrl: Foundation.URL, docUTI: Swift.String, presentOnView: UIKit.UIView)
+}
+@_inheritsConvenienceInitializers @objc(ExportWizard) open class ExportWizard : ObjectiveC.NSObject, UIKit.UIDocumentInteractionControllerDelegate, FileSystemSDK.ExportProtocol {
+  @objc open func handleDocumentExport(_ documentUrl: Foundation.URL, docUTI: Swift.String, presentOnView: UIKit.UIView)
+  @objc open func documentInteractionControllerDidDismissOpenInMenu(_ controller: UIKit.UIDocumentInteractionController)
+  @objc open func documentInteractionController(_ controller: UIKit.UIDocumentInteractionController, willBeginSendingToApplication application: Swift.String?)
+  @objc open func documentInteractionController(_ controller: UIKit.UIDocumentInteractionController, didEndSendingToApplication application: Swift.String?)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc(IDocumentMetadata) public protocol IDocumentMetadata : ObjectiveC.NSObjectProtocol {
+  @objc var documentUrl: Foundation.URL { get }
+  @objc var documentName: Swift.String { get }
+  @objc func getAttributes() -> Foundation.NSDictionary?
+  @objc func modifiedDate() -> Foundation.Date?
+  @objc func creationDate() -> Foundation.Date?
+  @objc func documentType() -> Foundation.NSString?
+}
+@_hasMissingDesignatedInitializers @objc(DocumentMetadata) @objcMembers open class DocumentMetadata : CoreDataStack.NGObject, FileSystemSDK.IDocumentMetadata {
+  @objc open var documentUrl: Foundation.URL {
+    @objc get
+  }
+  @objc open var documentName: Swift.String {
+    @objc get
+  }
+  @objc required dynamic public init(coder aDecoder: Foundation.NSCoder)
+  @objc deinit
+  @objc open func getAttributes() -> Foundation.NSDictionary?
+  @objc open func modifiedDate() -> Foundation.Date?
+  @objc open func creationDate() -> Foundation.Date?
+  @objc open func documentType() -> Foundation.NSString?
+  @objc override dynamic open func updateValue(_ value: Any!, forKey key: Swift.String!)
+  @objc override dynamic open func serializeValue(_ value: Any!, forKey key: Swift.String!) -> Any!
+}
+@objc(IFile) public protocol IFile : ObjectiveC.NSObjectProtocol {
+  @objc var metadata: FileSystemSDK.IDocumentMetadata { get }
+  @objc var name: Swift.String { get }
+  @objc var URL: Foundation.URL { get }
+  @objc func isFile() -> Swift.Bool
+  @objc func fileExist() -> Swift.Bool
+  @objc func mimeType() -> Foundation.NSString
+  @objc var sizeInBytes: Swift.Double { get }
+  @objc var sizeInKBytes: Swift.Double { get }
+  @objc var sizeInMBytes: Swift.Double { get }
+  @objc var sizeInGBytes: Swift.Double { get }
+  @objc func read() -> Foundation.Data?
+  @objc func write(_ data: Foundation.Data) -> Swift.Bool
+  @objc func writeFrom(_ readfile: FileSystemSDK.IFile, bufferSize: Swift.Int, progress: FileSystemSDK.IFileProgress?) -> Swift.Bool
+  @objc func writeAsynchFrom(_ readfile: FileSystemSDK.IFile, bufferSize: Swift.Int, progress: FileSystemSDK.IFileProgress?, completionHandler: ((Swift.Bool) -> Swift.Void)?)
+  @objc func writeAsynchTo(_ file: FileSystemSDK.IFile, bufferSize: Swift.Int, progress: FileSystemSDK.IFileProgress?, completionHandler: ((Swift.Bool) -> Swift.Void)?)
+  @objc func delete() -> Swift.Bool
+  @objc func rename(_ rename: Swift.String) -> Swift.Bool
+}
+@objc(IFileProgress) public protocol IFileProgress : ObjectiveC.NSObjectProtocol {
+  @objc func readWriteProgress(_ progress: Swift.Double)
+}
+@objc(File) @objcMembers open class File : CoreDataStack.NGObject, FileSystemSDK.IFile {
+  @objc open var URL: Foundation.URL {
+    @objc get
+  }
+  @objc open var name: Swift.String {
+    @objc get
+  }
+  @objc open var sizeInBytes: Swift.Double {
+    @objc get
+  }
+  @objc open var sizeInKBytes: Swift.Double {
+    @objc get
+  }
+  @objc open var sizeInMBytes: Swift.Double {
+    @objc get
+  }
+  @objc open var sizeInGBytes: Swift.Double {
+    @objc get
+  }
+  @objc open var metadata: FileSystemSDK.IDocumentMetadata {
+    @objc get
+  }
+  @objc public init(url: Foundation.URL)
+  @objc required dynamic public init(coder aDecoder: Foundation.NSCoder)
+  @objc open func fileExist() -> Swift.Bool
+  @objc open func isFile() -> Swift.Bool
+  @objc open func mimeType() -> Foundation.NSString
+  @objc open func read() -> Foundation.Data?
+  @objc open func write(_ data: Foundation.Data) -> Swift.Bool
+  @objc final public func calculateProgress(totalReadWrite rwBytes: Swift.Int, totalDataLength tdlBytes: Swift.Double, progress: FileSystemSDK.IFileProgress?)
+  @objc open func writeFrom(_ readfile: FileSystemSDK.IFile, bufferSize: Swift.Int = 1024, progress: FileSystemSDK.IFileProgress? = nil) -> Swift.Bool
+  @objc open func writeAsynchFrom(_ readfile: FileSystemSDK.IFile, bufferSize: Swift.Int = 1024, progress: FileSystemSDK.IFileProgress? = nil, completionHandler: ((Swift.Bool) -> Swift.Void)? = nil)
+  @objc open func writeAsynchTo(_ file: FileSystemSDK.IFile, bufferSize: Swift.Int = 1024, progress: FileSystemSDK.IFileProgress? = nil, completionHandler: ((Swift.Bool) -> Swift.Void)? = nil)
+  @objc open func delete() -> Swift.Bool
+  @objc open func rename(_ rename: Swift.String) -> Swift.Bool
+  @objc override dynamic open func updateValue(_ value: Any!, forKey key: Swift.String!)
+  @objc override dynamic open func serializeValue(_ value: Any!, forKey key: Swift.String!) -> Any!
+  @objc override dynamic open func updateDate(_ dateStr: Swift.String!) -> Foundation.Date!
+  @objc override dynamic open func serializeDate(_ date: Foundation.Date!) -> Swift.String!
+  @objc deinit
+}
+@objc(ISecureFile) public protocol ISecureFile : ObjectiveC.NSObjectProtocol {
+  @objc func decrypted(bufferSize size: Swift.Int, progress: FileSystemSDK.IFileProgress?, decrypt: ((Foundation.Data) -> Foundation.Data)?, completionHandler: @escaping (Foundation.Data) -> Swift.Void)
+  @objc func encrypted(bufferSize size: Swift.Int, progress: FileSystemSDK.IFileProgress?, encrypt: ((Foundation.Data) -> Foundation.Data)?, completionHandler: @escaping (Foundation.Data) -> Swift.Void)
+  @objc func secureWriteFrom(_ readfile: FileSystemSDK.IFile, bufferSize: Swift.Int, progress: FileSystemSDK.IFileProgress?, encrypt: ((Foundation.Data) -> Foundation.Data)?, completionHandler: ((Swift.Bool) -> Swift.Void)?)
+  @objc func secureWriteTo(_ file: FileSystemSDK.IFile, bufferSize: Swift.Int, progress: FileSystemSDK.IFileProgress?, encrypt: ((Foundation.Data) -> Foundation.Data)?, completionHandler: ((Swift.Bool) -> Swift.Void)?)
+}
+extension FileSystemSDK.File : FileSystemSDK.ISecureFile {
+  @objc dynamic public func decrypted(bufferSize size: Swift.Int = 1024, progress: FileSystemSDK.IFileProgress?, decrypt: ((Foundation.Data) -> Foundation.Data)?, completionHandler: @escaping (Foundation.Data) -> Swift.Void)
+  @objc dynamic public func encrypted(bufferSize size: Swift.Int = 1024, progress: FileSystemSDK.IFileProgress? = nil, encrypt: ((Foundation.Data) -> Foundation.Data)?, completionHandler: @escaping (Foundation.Data) -> Swift.Void)
+  @objc dynamic public func secureWriteTo(_ file: FileSystemSDK.IFile, bufferSize: Swift.Int, progress: FileSystemSDK.IFileProgress?, encrypt: ((Foundation.Data) -> Foundation.Data)?, completionHandler: ((Swift.Bool) -> Swift.Void)? = nil)
+  @objc dynamic public func secureWriteFrom(_ readfile: FileSystemSDK.IFile, bufferSize: Swift.Int = 1024, progress: FileSystemSDK.IFileProgress? = nil, encrypt: ((Foundation.Data) -> Foundation.Data)?, completionHandler: ((Swift.Bool) -> Swift.Void)? = nil)
+}
+@objc(IFolder) public protocol IFolder : ObjectiveC.NSObjectProtocol {
+  @objc var metadata: FileSystemSDK.IDocumentMetadata { get }
+  @objc var name: Swift.String { get }
+  @objc var URL: Foundation.URL { get }
+  @objc var sizeInBytes: Swift.Double { get }
+  @objc var sizeInKBytes: Swift.Double { get }
+  @objc var sizeInMBytes: Swift.Double { get }
+  @objc var sizeInGBytes: Swift.Double { get }
+  @objc func calculateSize() -> Swift.Double
+  @objc func calculateFilesSize() -> Swift.Double
+  @objc func path() -> Foundation.NSString?
+  @objc func isFolder() -> Swift.Bool
+  @objc func exist() -> Swift.Bool
+  @objc func addSubfolder(_ name: Swift.String) -> FileSystemSDK.IFolder
+  @objc func subfolder(_ name: Swift.String) -> FileSystemSDK.IFolder
+  @objc func rename(_ name: Swift.String) -> Swift.Bool
+  @objc func delete() -> Swift.Bool
+  @objc func moveTo(_ folder: FileSystemSDK.IFolder) -> FileSystemSDK.IFolder?
+  @objc func copyFrom(_ folder: FileSystemSDK.IFolder) -> Swift.Bool
+  @objc func searchfolders(_ folderName: Swift.String?) -> [FileSystemSDK.IFolder]
+  @objc func searchfiles(_ extention: Swift.String?) -> [FileSystemSDK.IFile]
+  @objc func moveIn(_ file: FileSystemSDK.IFile, replace: Swift.Bool) -> Swift.Bool
+  @objc func copyOf(_ file: FileSystemSDK.IFile, replace: Swift.Bool) -> Swift.Bool
+}
+@objc(Folder) @objcMembers open class Folder : ObjectiveC.NSObject, Foundation.FileManagerDelegate, FileSystemSDK.IFolder {
+  @objc public init(name: Swift.String? = nil, searchDirectoryType: Foundation.FileManager.SearchPathDirectory = FileManager.SearchPathDirectory.documentDirectory)
+  @objc open var metadata: FileSystemSDK.IDocumentMetadata {
+    @objc get
+  }
+  @objc open func path() -> Foundation.NSString?
+  @objc deinit
+  @objc open func isFolder() -> Swift.Bool
+  @objc open var name: Swift.String {
+    @objc get
+  }
+  @objc open var URL: Foundation.URL {
+    @objc get
+  }
+  @objc open func exist() -> Swift.Bool
+  @objc open func addSubfolder(_ name: Swift.String) -> FileSystemSDK.IFolder
+  @objc open func rename(_ name: Swift.String) -> Swift.Bool
+  @objc open func delete() -> Swift.Bool
+  @objc open func fileManager(_ fileManager: Foundation.FileManager, shouldProceedAfterError error: Swift.Error, movingItemAtPath srcPath: Swift.String, toPath dstPath: Swift.String) -> Swift.Bool
+  @objc open func moveTo(_ folder: FileSystemSDK.IFolder) -> FileSystemSDK.IFolder?
+  @objc open func fileManager(_ fileManager: Foundation.FileManager, shouldProceedAfterError error: Swift.Error, copyingItemAtPath srcPath: Swift.String, toPath dstPath: Swift.String) -> Swift.Bool
+  @objc open func copyFrom(_ folder: FileSystemSDK.IFolder) -> Swift.Bool
+  @objc open func subfolder(_ name: Swift.String) -> FileSystemSDK.IFolder
+  @objc open func searchfolders(_ folderName: Swift.String? = nil) -> [FileSystemSDK.IFolder]
+  @objc open func searchfiles(_ extention: Swift.String? = nil) -> [FileSystemSDK.IFile]
+  @objc final public func resolveChildName(name oldName: Swift.String) -> Swift.String
+  @objc open func saveAs(_ fileName: Swift.String, data: Foundation.Data, replace: Swift.Bool = true) -> (Foundation.URL?)
+  @objc open func pasteContent(_ file: FileSystemSDK.IFile, replace: Swift.Bool = true) -> (Foundation.URL?)
+  @objc open func moveIn(_ file: FileSystemSDK.IFile, replace: Swift.Bool = true) -> Swift.Bool
+  @objc open func copyOf(_ file: FileSystemSDK.IFile, replace: Swift.Bool = true) -> Swift.Bool
+  @objc override dynamic open func isEqual(_ object: Any?) -> Swift.Bool
+  @objc open func deleteContentByName(_ name: Swift.String) -> Swift.Bool
+  @objc open func deleteContent(_ file: FileSystemSDK.IFile) -> Swift.Bool
+  @objc open func calculateSize() -> Swift.Double
+  @objc open func calculateFilesSize() -> Swift.Double
+  @objc open func calculateSize(_ onCompletion: @escaping ((_ sizeInBytes: Foundation.NSNumber) -> Swift.Void))
+  @objc open var sizeInBytes: Swift.Double {
+    @objc get
+  }
+  @objc open var sizeInKBytes: Swift.Double {
+    @objc get
+  }
+  @objc open var sizeInMBytes: Swift.Double {
+    @objc get
+  }
+  @objc open var sizeInGBytes: Swift.Double {
+    @objc get
+  }
+}
+@objc(RemoteFileDelegate) public protocol RemoteFileDelegate {
+  @objc func didFinishSynch(_ request: CoreNetworkStack.HttpWebRequest, file: FileSystemSDK.IFile)
+}
+@_hasMissingDesignatedInitializers @objc(RemoteFile) @objcMembers open class RemoteFile : CoreDataStack.NGObject {
+  @objc required dynamic public init(coder aDecoder: Foundation.NSCoder)
+  @objc deinit
+  @objc override dynamic open func updateValue(_ value: Any!, forKey key: Swift.String!)
+  @objc override dynamic open func serializeValue(_ value: Any!, forKey key: Swift.String!) -> Any!
+}
+@available(iOS 8.0, *)
+@objc(ImportWizardDelegate) public protocol ImportWizardDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func importWizardPresenterViewController(_ wizard: FileSystemSDK.ImportWizard) -> UIKit.UIViewController
+  @objc func importWizard(_ wizard: FileSystemSDK.ImportWizard, didPickDocumentAtURL url: Foundation.URL)
+}
+@_hasMissingDesignatedInitializers @available(iOS 8.0, *)
+@objc(ImportWizard) @_Concurrency.MainActor(unsafe) open class ImportWizard : ObjectiveC.NSObject, UIKit.UIDocumentMenuDelegate, UIKit.UIDocumentPickerDelegate {
+  @_Concurrency.MainActor(unsafe) @objc open func documentMenu(_ documentMenu: UIKit.UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIKit.UIDocumentPickerViewController)
+  @_Concurrency.MainActor(unsafe) @objc open func documentMenuWasCancelled(_ documentMenu: UIKit.UIDocumentMenuViewController)
+  @_Concurrency.MainActor(unsafe) @objc open func documentPicker(_ controller: UIKit.UIDocumentPickerViewController, didPickDocumentAt url: Foundation.URL)
+  @_Concurrency.MainActor(unsafe) @objc open func documentPickerWasCancelled(_ controller: UIKit.UIDocumentPickerViewController)
+  @objc deinit
+}
+extension FileSystemSDK.SpaceIn : Swift.Equatable {}
+extension FileSystemSDK.SpaceIn : Swift.Hashable {}
+extension FileSystemSDK.SpaceIn : Swift.RawRepresentable {}

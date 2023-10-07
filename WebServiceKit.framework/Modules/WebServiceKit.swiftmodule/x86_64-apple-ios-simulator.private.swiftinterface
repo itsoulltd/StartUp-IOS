@@ -1,0 +1,267 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
+// swift-module-flags: -target x86_64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name WebServiceKit
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import CoreDataStack
+import CoreNetworkStack
+import Foundation
+import Swift
+import UIKit
+@_exported import WebServiceKit
+import _Concurrency
+import _StringProcessing
+@objc(Response) @objcMembers open class Response : CoreDataStack.NGObject {
+  @objc public static let HttpStatusUnauthorizedAccessNotification: Foundation.Notification.Name
+  @objc required override dynamic public init()
+  @objc required override dynamic public init!(info: [Swift.AnyHashable : Any]!)
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc public var uuid: ObjectiveC.NSObject
+  @objc public var succeed: Swift.Bool {
+    @objc get
+  }
+  @objc public var code: WebServiceKit.HttpStatusCode {
+    @objc get
+    @objc set
+  }
+  @objc public var error: Foundation.NSString?
+  @objc public var error_description: Foundation.NSString?
+  @objc public var errorMessage: Foundation.NSString?
+  @objc public var message: Foundation.NSString?
+  @objc public var fieldErrors: [WebServiceKit.FieldError]
+  @objc override dynamic open func updateValue(_ value: Any!, forKey key: Swift.String!)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(FieldError) @objcMembers open class FieldError : CoreDataStack.NGObject {
+  @objc public var objectName: Foundation.NSString?
+  @objc public var field: Foundation.NSString?
+  @objc public var message: Foundation.NSString?
+  @objc override dynamic public init!(info: [Swift.AnyHashable : Any]!)
+  @objc override dynamic public init!(json: Foundation.Data!)
+  @objc override dynamic public init()
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+public protocol TransactionProcessingProtocol : ObjectiveC.NSObjectProtocol {
+  var parserType: WebServiceKit.Response.Type { get set }
+  var request: CoreNetworkStack.HttpWebRequest { get set }
+  var linkedProcess: WebServiceKit.TransactionProcessingProtocol? { get set }
+  var workingMemory: [Swift.String : Swift.AnyObject] { get }
+  var workingMemoryHandler: ((_ previous: [Swift.String : Swift.AnyObject]) -> [Swift.String : Swift.AnyObject]) { get set }
+  func addObjectToMemory(_ value: Swift.AnyObject, key: Swift.String)
+  func copyObject(fromMemory memory: [Swift.String : Swift.AnyObject], key: Swift.String)
+  func copyAll(_ from: [Swift.String : Swift.AnyObject])
+  func execute(_ success: @escaping ((_ next: WebServiceKit.TransactionProcessingProtocol?, _ previousResponse: [CoreDataStack.NGObjectProtocol]?) -> Swift.Void), failed: @escaping ((_ abort: Swift.Bool, _ reason: WebServiceKit.Response) -> Swift.Void))
+}
+public protocol TransactionProcessorDelegate : ObjectiveC.NSObjectProtocol {
+  func processingDidFinished(_ processor: WebServiceKit.TransactionProcessor, finalResponse: [CoreDataStack.NGObjectProtocol]?)
+  func processingDidFailed(_ processor: WebServiceKit.TransactionProcessor, failedResponse: CoreDataStack.NGObjectProtocol)
+  func processingWillStart(_ processor: WebServiceKit.TransactionProcessor, forProcess process: WebServiceKit.TransactionProcessingProtocol)
+  func processingDidEnd(_ processor: WebServiceKit.TransactionProcessor, forProcess process: WebServiceKit.TransactionProcessingProtocol)
+}
+@objc(TransactionProcessor) @objcMembers open class TransactionProcessor : ObjectiveC.NSObject {
+  required public init(delegate: WebServiceKit.TransactionProcessorDelegate?, errorResponse: CoreDataStack.NGObject.Type = NGObject.self)
+  final public func push(process: WebServiceKit.TransactionProcessingProtocol)
+  @objc final public func reverse()
+  @objc final public func start()
+  @objc final public func abort()
+  @objc deinit
+}
+@objc(Transaction) @objcMembers public class Transaction : ObjectiveC.NSObject, WebServiceKit.TransactionProcessingProtocol {
+  @objc required public init(request: CoreNetworkStack.HttpWebRequest, parserType: WebServiceKit.Response.Type, memoryHandler: ((_ previous: [Swift.String : Swift.AnyObject]) -> [Swift.String : Swift.AnyObject])? = nil)
+  @objc public var workingMemoryHandler: ((_ previous: [Swift.String : Swift.AnyObject]) -> [Swift.String : Swift.AnyObject]) {
+    @objc get
+    @objc set
+  }
+  @objc public var parserType: WebServiceKit.Response.Type {
+    @objc get
+    @objc set
+  }
+  @objc public var workingMemory: [Swift.String : Swift.AnyObject] {
+    @objc get
+  }
+  @objc public func addObjectToMemory(_ value: Swift.AnyObject, key: Swift.String)
+  @objc public func copyObject(fromMemory memory: [Swift.String : Swift.AnyObject], key: Swift.String)
+  @objc public func copyAll(_ from: [Swift.String : Swift.AnyObject])
+  public var linkedProcess: WebServiceKit.TransactionProcessingProtocol? {
+    get
+    set
+  }
+  @objc public var request: CoreNetworkStack.HttpWebRequest {
+    @objc get
+    @objc set
+  }
+  public func execute(_ success: @escaping ((_ next: WebServiceKit.TransactionProcessingProtocol?, _ previousResponse: [CoreDataStack.NGObjectProtocol]?) -> Swift.Void), failed: @escaping ((_ abort: Swift.Bool, _ reason: WebServiceKit.Response) -> Swift.Void))
+  @objc deinit
+}
+public enum TransactionStackState : Swift.Int {
+  case None, Running, Finished, Failed, Canceled
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc(TransactionStack) @objcMembers open class TransactionStack : ObjectiveC.NSObject, WebServiceKit.TransactionProcessorDelegate {
+  public var status: WebServiceKit.TransactionStackState {
+    get
+  }
+  @objc required override dynamic public init()
+  @objc convenience public init(callBack: ((_ received: [CoreDataStack.NGObjectProtocol]?) -> Swift.Void)?)
+  open func push(_ process: WebServiceKit.TransactionProcessingProtocol)
+  @objc open func commit(reverse inOrder: Swift.Bool = false, callBack: ((_ received: [CoreDataStack.NGObjectProtocol]?) -> Swift.Void)? = nil)
+  @objc open func cancel()
+  @objc open func processingDidFinished(_ processor: WebServiceKit.TransactionProcessor, finalResponse: [CoreDataStack.NGObjectProtocol]?)
+  @objc open func processingDidFailed(_ processor: WebServiceKit.TransactionProcessor, failedResponse: CoreDataStack.NGObjectProtocol)
+  open func processingWillStart(_ processor: WebServiceKit.TransactionProcessor, forProcess process: WebServiceKit.TransactionProcessingProtocol)
+  open func processingDidEnd(_ processor: WebServiceKit.TransactionProcessor, forProcess process: WebServiceKit.TransactionProcessingProtocol)
+  @objc deinit
+}
+@objc(RequestQueueDelegate) public protocol RequestQueueDelegate {
+  @objc func requestDidSucceed(_ forRequest: CoreNetworkStack.HttpWebRequest?, incomming: Foundation.Data)
+  @objc func requestDidFailed(_ forRequest: CoreNetworkStack.HttpWebRequest?, error: Foundation.NSError?)
+  @objc optional func downloadSucceed(_ forRequest: CoreNetworkStack.HttpWebRequest?, saveUrl: Foundation.URL)
+  @objc optional func progressListener(_ forRequest: CoreNetworkStack.HttpWebRequest?) -> WebServiceKit.ProgressListener
+}
+@objc(ProgressListener) public protocol ProgressListener {
+  @objc func progressUpdate(_ value: CoreFoundation.CGFloat)
+  @objc optional func progressStart()
+  @objc optional func progressEnd()
+}
+@_inheritsConvenienceInitializers @objc(DownloadQueue) @objcMembers public class DownloadQueue : WebServiceKit.SavableRequestQueue {
+  @objc override public init(configuration: WebServiceKit.RequestQueueConfiguration)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(UploadQueue) @objcMembers public class UploadQueue : WebServiceKit.SavableRequestQueue {
+  @objc override public init(configuration: WebServiceKit.RequestQueueConfiguration)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(UploadOnceQueue) @objcMembers public class UploadOnceQueue : WebServiceKit.UploadQueue {
+  @objc public func applicationDidEnterBackground()
+  @objc public func applicationWillEnterForeground()
+  @objc override public func addCompletionHandler(_ identifier: Swift.String, completionHandler: @escaping () -> Swift.Void)
+  @objc override public init(configuration: WebServiceKit.RequestQueueConfiguration)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(ContentDelegateImpl) open class ContentDelegateImpl : CoreDataStack.NGObject, CoreNetworkStack.ContentDelegate {
+  weak public var listener: WebServiceKit.ProgressListener?
+  @objc open func progressHandler(_ handler: CoreNetworkStack.ContentHandler!, didFailedWithError error: Swift.Error!)
+  @objc open func progressHandler(_ handler: CoreNetworkStack.ContentHandler!, uploadPercentage percentage: Swift.Float)
+  @objc open func progressHandler(_ handler: CoreNetworkStack.ContentHandler!, downloadPercentage percentage: Swift.Float)
+  @objc deinit
+  @objc override dynamic public init!(info: [Swift.AnyHashable : Any]!)
+  @objc override dynamic public init!(json: Foundation.Data!)
+  @objc override dynamic public init()
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+}
+@objc(RequestQueueConfiguration) @objcMembers open class RequestQueueConfiguration : CoreDataStack.NGObject {
+  public struct Keys {
+    public static let MaxTryCount: Swift.String
+    public static let EnergyStateEnabled: Swift.String
+  }
+  @objc public var identifier: Foundation.NSString!
+  @objc public init(identifier: Foundation.NSString, info: Foundation.NSDictionary)
+  @objc required dynamic public init(coder aDecoder: Foundation.NSCoder)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(Tracker) @objcMembers public class Tracker : CoreDataStack.NGObject {
+  @objc public var guid: Foundation.NSString!
+  @objc public var orderIndex: Foundation.NSNumber!
+  @objc public var request: CoreNetworkStack.HttpWebRequest?
+  @objc public var maxTryCount: Foundation.NSNumber
+  @objc public var tryCount: Foundation.NSNumber
+  @objc deinit
+  @objc override dynamic open func updateValue(_ value: Any!, forKey key: Swift.String!)
+  @objc override dynamic open func serializeValue(_ value: Any!, forKey key: Swift.String!) -> Any!
+  @objc public class func sort(_ list: [WebServiceKit.Tracker]) -> [WebServiceKit.Tracker]
+  @objc override dynamic public init!(info: [Swift.AnyHashable : Any]!)
+  @objc override dynamic public init!(json: Foundation.Data!)
+  @objc override dynamic public init()
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+}
+@objc(RequestQueue) public protocol RequestQueue {
+  @objc func enqueueRequest(_ capsul: CoreNetworkStack.HttpWebRequest)
+  @objc func enqueueRequest(_ capsul: CoreNetworkStack.HttpWebRequest, progressListener: WebServiceKit.ProgressListener?)
+  @objc func cancelable(_ capsul: CoreNetworkStack.HttpWebRequest) -> Swift.Bool
+  @objc func cancelRequest(_ capsul: CoreNetworkStack.HttpWebRequest)
+}
+@objc(BaseRequestQueue) @objcMembers open class BaseRequestQueue : ObjectiveC.NSObject, WebServiceKit.RequestQueue {
+  @objc public func addCompletionHandler(_ identifier: Swift.String, completionHandler: @escaping () -> Swift.Void)
+  @objc public init(configuration: WebServiceKit.RequestQueueConfiguration)
+  @objc deinit
+  @objc public func activateInternetReachability()
+  @objc public func deactivateInternetReachability()
+  @objc weak public var delegate: WebServiceKit.RequestQueueDelegate?
+  @objc public var networkReachable: Swift.Bool {
+    @objc get
+  }
+  @objc open func enqueueRequest(_ capsul: CoreNetworkStack.HttpWebRequest)
+  @objc open func enqueueRequest(_ capsul: CoreNetworkStack.HttpWebRequest, progressListener: WebServiceKit.ProgressListener?)
+  @objc open func cancelable(_ capsul: CoreNetworkStack.HttpWebRequest) -> Swift.Bool
+  @objc open func cancelRequest(_ capsul: CoreNetworkStack.HttpWebRequest)
+  @objc final public func kickStart()
+}
+@_inheritsConvenienceInitializers @objc(SavableRequestQueue) @objcMembers open class SavableRequestQueue : WebServiceKit.BaseRequestQueue {
+  @objc override public init(configuration: WebServiceKit.RequestQueueConfiguration)
+  @objc convenience public init(configuration: WebServiceKit.RequestQueueConfiguration, remoteSession: CoreNetworkStack.RemoteSession)
+  @objc deinit
+  @objc public func applicationDidEnterBackground(_ notification: Foundation.Notification)
+  @objc public func restoreState()
+}
+@objc(HttpStatusCode) public enum HttpStatusCode : Swift.Int {
+  case ok = 200
+  case created = 201
+  case badRequest = 400
+  case unauthorized = 401
+  case paymentRequired = 402
+  case forbidden = 403
+  case notFound = 404
+  case methodNotAllowed = 405
+  case notAcceptable = 406
+  case poxyAuthRequired = 407
+  case requestTimeout = 408
+  case internalServerError = 500
+  case notImplemented = 501
+  case badGateway = 502
+  case serviceUnavailable = 503
+  case gatewayTimeout = 504
+  case httpVersionNotSupported = 505
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct RequestMetaKeys {
+}
+@_inheritsConvenienceInitializers @objc(RequestMetadata) @objcMembers open class RequestMetadata : CoreDataStack.NGObject {
+  @objc override dynamic open func updateValue(_ value: Any!, forKey key: Swift.String!)
+  @objc override dynamic open func serializeValue(_ value: Any!, forKey key: Swift.String!) -> Any!
+  @objc override dynamic public init!(info: [Swift.AnyHashable : Any]!)
+  @objc override dynamic public init!(json: Foundation.Data!)
+  @objc override dynamic public init()
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc(RequestFactory) open class RequestFactory : ObjectiveC.NSObject {
+  public var propertyList: CoreDataStack.PropertyList!
+  required public init(configFileName fileName: Swift.String)
+  required public init(propertyList property: CoreDataStack.PropertyList)
+  final public func updateProperty(_ value: Swift.AnyObject, forKey key: Swift.String)
+  final public func getProperty(forKey key: Swift.String) -> Swift.AnyObject
+  open func httpReferrerHeaderValue() -> [Swift.String]
+  open func isLiveUrlActive() -> Swift.Bool
+  open func activeURL() -> Foundation.URL
+  open func activeURLString() -> Swift.String
+  open func pingURLString() -> Swift.String
+  final public func validateUrlStr(_ urlStr: Swift.String) -> Swift.String
+  final public func metadata(forKey key: Swift.String) -> WebServiceKit.RequestMetadata?
+  open func requestURL(forKey key: Swift.String) -> Foundation.URL?
+  open func request(forKey key: Swift.String, classType: CoreNetworkStack.HttpWebRequest.Type = HttpWebRequest.self) -> CoreNetworkStack.HttpWebRequest?
+  @objc deinit
+}
+extension WebServiceKit.TransactionStackState : Swift.Equatable {}
+extension WebServiceKit.TransactionStackState : Swift.Hashable {}
+extension WebServiceKit.TransactionStackState : Swift.RawRepresentable {}
+extension WebServiceKit.HttpStatusCode : Swift.Equatable {}
+extension WebServiceKit.HttpStatusCode : Swift.Hashable {}
+extension WebServiceKit.HttpStatusCode : Swift.RawRepresentable {}

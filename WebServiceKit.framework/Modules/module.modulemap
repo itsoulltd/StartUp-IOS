@@ -1,0 +1,11 @@
+framework module WebServiceKit {
+  umbrella header "WebServiceKit.h"
+
+  export *
+  module * { export * }
+}
+
+module WebServiceKit.Swift {
+  header "WebServiceKit-Swift.h"
+  requires objc
+}
